@@ -1,55 +1,198 @@
-import { Box, Button, Divider, Grid, Typography } from '@mui/material'
+import { Box, Button, Card, Divider, Grid, IconButton, Modal, Typography } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add';
 import { WhitecardBox } from '../Stadium Tours/StadiumTours'
 import { Link } from 'react-router-dom'
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
-import ArsenalFC from "../../imgs/teamslogo/ArsenalFC.png"
+import manchester from "../../imgs/teamslogo/manchester.png";
+import ArsenalFC from '../../imgs/teamslogo/Arsenal.png';
+import liverpool from '../../imgs/teamslogo/liverpool.png';
+import chelsea from "../../imgs/teamslogo/chelsea.png";
+import manchestercity from "../../imgs/teamslogo/manchestercity.png";
+import tottenhamhotspur from "../../imgs/teamslogo/tottenhamhotspur.png"
+import { useState } from 'react';
+const teamsapi = [
+  {
+    id: "0",
+    teamimg: manchester,
+    teamimgalt: "manchester",
+    temaName: "Manchester United",
+    primary: "Primary",
+    secondary: "Secondary",
+    primarycolor: "#FFE500",
+    secondarycolor: "#DA020E",
+  },
+  {
+    id: "1",
+    teamimg: ArsenalFC,
+    teamimgalt: "ArsenalFC",
+    temaName: "Arsenal",
+    primary: "Primary",
+    secondary: "Secondary",
+    primarycolor: "#DA020E",
+    secondarycolor: "#E9E8E8",
+  },
+  {
+    id: "2",
+    teamimg: liverpool,
+    teamimgalt: "liverpool",
+    temaName: "Liverpool",
+    primary: "Primary",
+    secondary: "Secondary",
+    primarycolor: "#DA020E",
+    secondarycolor: "#E9E8E8",
+  },
+  {
+    id: "3",
+    teamimg: chelsea,
+    teamimgalt: "chelsea",
+    temaName: "Chelsea",
+    primary: "Primary",
+    secondary: "Secondary",
+    primarycolor: "#034694",
+    secondarycolor: "#E9E8E8",
+  },
+  {
+    id: "4",
+    teamimg: manchestercity,
+    teamimgalt: "manchestercity",
+    temaName: "Manchester City",
+    primary: "Primary",
+    secondary: "Secondary",
+    primarycolor: "#6CADDF",
+    secondarycolor: "#E9E8E8",
+  },
+  {
+    id: "5",
+    teamimg: tottenhamhotspur,
+    teamimgalt: "tottenhamhotspur",
+    temaName: "Tottenham Hotspur",
+    primary: "Primary",
+    secondary: "Secondary",
+    primarycolor: "#132257",
+    secondarycolor: "#E9E8E8",
+  },
+]
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width:'min(100% - 0px , 400px)',
+  bgcolor: 'background.paper',
+  borderRadius: '12px',
+  boxShadow: 24,
+  padding: '10px 30px',
+};
 const Teams = () => {
-    return (
-        <Box component="main" sx={{ flexGrow: 1, my: 10, background: "transparent", height: "100%", }}>
-            <WhitecardBox >
-                <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", py: "10px" }}>
-                    <Typography variant='h5' sx={{ fontSize: "25px", fontWeight: "600" }}>Teams</Typography>
-                    <Button variant="contained" to="" component={Link} > <AddIcon /> add</Button>
-                </Box>
-                <Divider />
-                <Box>
-                <Box sx={{py:1}}>
-            <Grid container spacing={2} alignItems="center">
-              <Grid item lg={1}  xs={12} sx={{display:"flex", justifyContent:"center" }}>
-                <img src={ArsenalFC} alt='ArsenalFC' width="100%" height="80px" style={{objectFit:"contain"}} />
-              </Grid>
-              <Grid item lg={11}>
-                <Grid container spacing={2}>
-                  <Grid item lg={10}>
-                  <Box sx={{my:2}}>
-                    <Typography sx={{fontSize:"25px" , fontWeight:"600"}} >Manchester United</Typography>
-                  </Box>
-                    <Box sx={{display:"flex", alignItems:"center"}}>
-                     <Box sx={{textAlign:"center"}}> <Typography sx={{fontSize:"20px", fontWeight:"500"}} >Primary</Typography><Typography sx={{width:"70px",height:"25px", backgroundColor:"#DA020E",}}></Typography> </Box>
-                     <Box sx={{ml:2}}> <Typography sx={{fontSize:"20px", fontWeight:"500"}}>Secondary</Typography><Typography sx={{width:"70px",height:"25px", backgroundColor:"#FFE500",}}></Typography> </Box>
-                    </Box>
-                  </Grid>
-                  <Grid item lg={2} sx={{}}>
-                  <Box sx={{display:"grid", justifyContent:"end"}}>
-
-                    <Box sx={{my:1}}>
-                      <Button variant="outlined"> <EditIcon/></Button>
-                    </Box>
-                    <Box sx={{my:1}}>
-                      <Button variant="outlined"><DeleteOutlineOutlinedIcon/></Button>
-                    </Box>
-                  </Box>
-                  </Grid>
-                </Grid>
-              </Grid>
-            </Grid>
-            </Box>
-                </Box>
-            </WhitecardBox>
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const [image, setImage] = useState(null);
+  const changeImage = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const imageURL = URL.createObjectURL(file);
+      setImage(imageURL);
+    }
+  };
+  return (
+    <Box component="main" sx={{ flexGrow: 1, my: 10, background: "transparent", height: "100%", }}>
+      <WhitecardBox >
+        <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", py: "10px" }}>
+          <Typography variant='h5' sx={{ fontSize: "25px", fontWeight: "600" }}>Teams</Typography>
+          <Button variant="contained" onClick={handleOpen} startIcon={<AddIcon />} ><span style={{ marginTop: "3px" }}>add</span></Button>
         </Box>
-    )
+        <Divider />
+        <Box>
+          <Box sx={{ py: 1 }}>
+            <Grid container spacing={2} alignItems="center" justifyContent="center">
+              {teamsapi.map((curEle, index) => {
+                const { teamimg, teamimgalt, temaName, primary, secondary, primarycolor, secondarycolor, } = curEle;
+                return (
+                  <Grid item lg={4} sm={6} xs={12}>
+                    <Card sx={{ my: 2, boxShadow: "rgba(0, 0, 0, 0.16) 0px 1px 4px", p: 1 }} >
+                      <Box sx={{ display: "flex", justifyContent: "center" }}>
+                        <img src={teamimg} alt={teamimgalt} width="100%" height="80px" style={{ objectFit: "contain" }} />
+                      </Box>
+                      <Box sx={{ mt: 1, textAlign: "center" }}>
+                        <Typography sx={{ fontSize: "25px", fontWeight: "600" }} >{temaName}</Typography>
+                      </Box>
+                      <Box sx={{ mb: 1, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                        <Box sx={{ textAlign: "center" }}> <Typography sx={{ fontSize: "20px", fontWeight: "500" }} >{primary}</Typography><Typography sx={{ width: "70px", height: "25px", backgroundColor: primarycolor }}></Typography> </Box>
+                        <Box sx={{ ml: 2 }}> <Typography sx={{ fontSize: "20px", fontWeight: "500" }}>{secondary}</Typography><Typography sx={{ width: "70px", height: "25px", backgroundColor: secondarycolor }}></Typography> </Box>
+                      </Box>
+                      <Box sx={{ display: "flex", justifyContent: "space-evenly" }}>
+                        <Box sx={{ my: 1 }}>
+                          <Button variant="outlined" onClick={handleOpen} > <EditIcon /></Button>
+                        </Box>
+                        <Box sx={{ my: 1 }}>
+                          <Button variant="outlined"><DeleteOutlineOutlinedIcon /></Button>
+                        </Box>
+                      </Box>
+                    </Card>
+                  </Grid>
+                )
+              })}
+
+            </Grid>
+          </Box>
+        </Box>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <IconButton
+              color="primary"
+              aria-label="upload picture"
+              component="label"
+              style={{ margin: '0 auto', display: 'block', borderRadius: 0 }}
+            >
+              <input hidden accept="image/*" type="file"
+               onChange={changeImage}
+              />
+
+      {image ? (
+        <img src={image} alt="Selected Image" style={{ height: "auto", width: 120 }} />
+      ) : (
+        <img
+          src={
+            'https://assets.upload.io/website/blog_assets/icons/material/icons/add_photo_alternate_outlined.svg'
+          }
+          alt=""
+          style={{ height: 200, width: 200 }}
+        />
+      )}
+            </IconButton>
+            <Box sx={{ my: 2 }}>
+              <label htmlFor="team-name" style={{ fontSize: "17px", fontWeight: "600" }}>Team Name :</label>
+              <input type="text" for="tema-name" width="100%" className='text-input' placeholder='Enter team name' />
+            </Box>
+            <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", my: 2 }}>
+              <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
+
+                <label htmlFor="primary" style={{ width: "100%", textAlign: "center", fontSize: "17px", fontWeight: "600" }}>Primary</label>
+                <input type="color" for="primary" />
+              </Box>
+              <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
+
+                <label htmlFor='secondary ' style={{ width: "100%", textAlign: "center", fontSize: "17px", fontWeight: "600" }}>Secondry</label>
+                <input type="color" for="secondy" />
+              </Box>
+            </Box>
+            <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", my: 2 }} >
+              <Button variant='outlined' onClick={handleClose} sx={{ width: '45%', fontSize: "17px", fontWeight: "500" }}>Cancel</Button>
+              <Button variant='contained' sx={{ width: '45%', fontSize: "17px", fontWeight: "500" }}>Save</Button>
+            </Box>
+          </Box>
+        </Modal>
+      </WhitecardBox>
+
+    </Box>
+  )
 }
 
 export default Teams

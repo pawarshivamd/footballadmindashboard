@@ -17,15 +17,12 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-
+import Groups3OutlinedIcon from '@mui/icons-material/Groups3Outlined';
 import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined';
-import GroupsOutlinedIcon from '@mui/icons-material/GroupsOutlined';
-import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
-import LibraryBooksOutlinedIcon from '@mui/icons-material/LibraryBooksOutlined';
+import JoinInnerOutlinedIcon from '@mui/icons-material/JoinInnerOutlined';
 import {
   Avatar,
   Button,
-  Collapse,
   Dialog,
   DialogActions,
   DialogContent,
@@ -38,11 +35,8 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import {
-  ExpandLess,
-  ExpandMore,
   Logout,
 } from "@mui/icons-material";
-import ContactEmergencyOutlinedIcon from '@mui/icons-material/ContactEmergencyOutlined';
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 const smallScreenBreakpoint = 991;
 const drawerWidth = 250;
@@ -181,7 +175,7 @@ const Navbar = () => {
             }}
           >
             <Typography variant="h6" noWrap component="div">
-              App Tracker
+              Football 
             </Typography>
             <Hidden mdUp>
               <IconButton
@@ -307,7 +301,7 @@ const Navbar = () => {
               <ListItemIcon sx={{ minWidth: 0, mr: open ? 3 : "auto", justifyContent: "center", }}>
                 <GroupOutlinedIcon color='primary' />
               </ListItemIcon>
-              <ListItemText primary="Teams" sx={{ opacity: open ? 1 : 0 }} />
+              <ListItemText primary="Teams" sx={{ opacity: open ? 1 : 0, '& span ':{fontWeight:600} }} />
             </ListItemButton>
           </ListItem>
           <ListItem
@@ -323,9 +317,9 @@ const Navbar = () => {
               }}
             >
               <ListItemIcon sx={{ minWidth: 0, mr: open ? 3 : "auto", justifyContent: "center", }}>
-                <GroupOutlinedIcon color='primary' />
+                <JoinInnerOutlinedIcon color='primary' />
               </ListItemIcon>
-              <ListItemText primary="Stadium Tours" sx={{ opacity: open ? 1 : 0 }} />
+              <ListItemText primary="Stadium Tours" sx={{ opacity: open ? 1 : 0, '& span ':{fontWeight:600} }} />
             </ListItemButton>
           </ListItem>
           <ListItem
@@ -341,9 +335,9 @@ const Navbar = () => {
               }}
             >
               <ListItemIcon sx={{ minWidth: 0, mr: open ? 3 : "auto", justifyContent: "center", }}>
-                <GroupOutlinedIcon color='primary' />
+                <Groups3OutlinedIcon  color='primary' />
               </ListItemIcon>
-              <ListItemText primary="Teams Matches" sx={{ opacity: open ? 1 : 0 , fontSize:"22px" , fontWeight:"600" }} />
+              <ListItemText primary="Teams Matches" sx={{ opacity: open ? 1 : 0, '& span ':{fontWeight:600} }} />
             </ListItemButton>
           </ListItem>
         </List>

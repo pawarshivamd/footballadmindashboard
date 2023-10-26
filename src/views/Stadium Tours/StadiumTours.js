@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import { Box, Button, Divider, Grid, Table, TableBody, TableCell, TableHead, TablePagination, TableRow, Typography, } from '@mui/material';
+import { Box, Button, Divider, Grid, IconButton, Modal, Typography, } from '@mui/material';
 import styled from '@emotion/styled';
-import Loading from '../../layout/Loader/Loading';
 import AddIcon from '@mui/icons-material/Add';
-import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import { Link } from 'react-router-dom';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
@@ -160,66 +158,140 @@ export const WhitecardBox = styled(Box)(() => ({
   },
 }))
 
-
-const StadiumTours = ({ loading }) => {
-
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width:'min(100% - 0px , 400px)',
+  bgcolor: 'background.paper',
+  borderRadius: '12px',
+  boxShadow: 24,
+  padding: '10px 30px',
+};
+const StadiumTours = () => {
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const [image, setImage] = useState(null);
+  const changeImage = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const imageURL = URL.createObjectURL(file);
+      setImage(imageURL);
+    }
+  };
 
   return (
 
     <Box component="main" sx={{ flexGrow: 1, my: 10, background: "transparent", height: "100%", }}>
-      {loading ? (
-        <Loading />
-      ) : (
-        <WhitecardBox >
-          <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", py: "10px" }}>
-            <Typography variant='h5' sx={{ fontSize: "25px", fontWeight: "600" }}>Stadium Tours</Typography>
-            <Button variant="contained" to="/adduser" component={Link} > <AddIcon /> add</Button>
-          </Box>
-          <Divider />
-          <Box>
-            {stadiumtoursdata.map((curEle, index) => {
-              const { StadiumImg, ImgAlt, TeamName, Place, INumber } = curEle;
-              return (
-                <>
 
-                
+      <WhitecardBox >
+        <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", py: "10px" }}>
+          <Typography variant='h5' sx={{ fontSize: "25px", fontWeight: "600" }}>Stadium Tours</Typography>
+          <Button variant="contained" onClick={handleOpen} startIcon={<AddIcon />} ><span style={{ marginTop: "3px" }}>add</span></Button>
+        </Box>
+        <Divider />
+        <Box>
+          {stadiumtoursdata.map((curEle, index) => {
+            const { StadiumImg, ImgAlt, TeamName, Place, INumber } = curEle;
+            return (
+              <>
+
+
                 <Box sx={{ py: 1, my: 2 }}>
                   <Grid container spacing={2}>
-                    <Grid item lg={3}>
+                    <Grid item lg={3} sm={3} xs={12}>
                       <img src={StadiumImg} alt={ImgAlt} width="100%" height="143px" />
                     </Grid>
-                    <Grid item lg={9}>
+                    <Grid item lg={9} sm={9} xs={12}>
                       <Grid container spacing={2}>
-                        <Grid item lg={10}>
+                        <Grid item lg={10} sm={10} xs={12} >
                           <Box sx={{ my: 2 }}>
-                            <Typography sx={{ fontSize: "17px", fontWeight: "400" }} >{Place}</Typography>
-                            <Typography sx={{ fontSize: "25px", fontWeight: "600" }} >{TeamName}</Typography>
+                            <Typography sx={{ fontSize: "25px", fontWeight: "600" }} >{Place}</Typography>
+                            <Typography sx={{ fontSize: "17px", fontWeight: "500" }} >{TeamName}</Typography>
                           </Box>
                           <Box>
                             <Typography sx={{ fontSize: "19px", fontWeight: "500" }}>Inquiry Number : {INumber}</Typography>
                           </Box>
                         </Grid>
-                        <Grid item lg={2}>
-                        <Box sx={{display:"grid", justifyContent:"end"}}>
-                          <Box sx={{ my: 1 }}>
-                            <Button variant="outlined"> <EditIcon /></Button>
+                        <Grid item lg={2} sm={2} xs={12}>
+                          <Box sx={{
+                            display: "grid",
+                            justifyContent: "end",
+                            '@media (max-width: 767px)': {
+                              display: 'flex',
+                              justifyContent: "space-around",
+                            },
+                          }}>
+                            <Box sx={{ my: 1 }}>
+                              <Button variant="outlined" onClick={handleOpen}> <EditIcon /></Button>
+                            </Box>
+                            <Box sx={{ my: 1 }}>
+                              <Button variant="outlined"><DeleteOutlineOutlinedIcon /></Button>
+                            </Box>
                           </Box>
-                          <Box sx={{ my: 1 }}>
-                            <Button variant="outlined"><DeleteOutlineOutlinedIcon /></Button>
-                          </Box>
-                        </Box>
                         </Grid>
                       </Grid>
                     </Grid>
                   </Grid>
                 </Box>
-                <Divider/>
-                </>
-              )
-            })}
+                <Divider />
+              </>
+            )
+          })}
+        </Box>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <IconButton
+              color="primary"
+              aria-label="upload picture"
+              component="label"
+              style={{ margin: '0 auto', display: 'block', borderRadius: 0 }}
+            >
+              <input hidden accept="image/*" type="file"
+                onChange={changeImage}
+              />
+
+              {image ? (
+                <img src={image} alt="Selected Image" style={{ height: "auto", width: 120 }} />
+              ) : (
+                <img
+                  src={
+                    'https://assets.upload.io/website/blog_assets/icons/material/icons/add_photo_alternate_outlined.svg'
+                  }
+                  alt=""
+                  style={{ height: 200, width: 200 }}
+                />
+              )}
+            </IconButton>
+            <Box sx={{ my: 2 }}>
+              <label htmlFor="team-name" style={{ fontSize: "17px", fontWeight: "600" }}>Team Name :</label>
+              <input type="text" id="tema-name" width="100%" className='text-input' placeholder='Enter team name' />
+            </Box>
+            <Box sx={{ my: 2 }}>
+              <label htmlFor="place-name" style={{ fontSize: "17px", fontWeight: "600" }}>Place Name :</label>
+              <input type="text" id="palce-name" width="100%" className='text-input' placeholder='Enter Place name' />
+            </Box>
+            <Box sx={{ my: 2 }}>
+              <label htmlFor="inquiry-number" style={{ fontSize: "17px", fontWeight: "600" }}>Inquiry Number :</label>
+              <input type="text" id="inquiry-number" width="100%" className='text-input' placeholder='Enter inquiry number' />
+            </Box>
+
+            <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", my: 2 }} >
+              <Button variant='outlined' onClick={handleClose} sx={{ width: '45%', fontSize: "17px", fontWeight: "500" }}>Cancel</Button>
+              <Button variant='contained' sx={{ width: '45%', fontSize: "17px", fontWeight: "500" }}>Save</Button>
+            </Box>
           </Box>
-        </WhitecardBox>
-      )}
+        </Modal>
+
+      </WhitecardBox>
+
 
     </Box>
 

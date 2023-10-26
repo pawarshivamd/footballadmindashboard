@@ -9,8 +9,8 @@ import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import bg from "../../imgs/login bg/bg.jpg";
-import logo from '../../imgs/logo/logo.svg'; 
+import bg from "../../imgs/login bg/bg.png";
+import logo from '../../imgs/logo/logo.svg';
 import { Link, Link as RouterLink } from 'react-router-dom';
 import { Button } from '@mui/material';
 
@@ -62,11 +62,25 @@ const Login = () => {
 
 
     return (
-        <Typography sx={{ width:"100%", minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: ` url(${bg}) ` , backgroundSize:"cover" }} component='div'>
-            <Card sx={{ maxWidth: 350, marginInline: 'auto', padding: 3, boxShadow:" rgba(0, 0, 0, 0.35) 0px 5px 15px" }}>
+        <Typography sx={{ width: "100%", minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: ` url(${bg}) `, backgroundSize: "cover", backgroundPosition: "center" }} component='div'>
+            <Card sx={{
+                width: "min(100% - 0px , 320px)",
+                marginInline: "auto",
+                boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
+                position: "relative",
+                padding: "30px 20px",
+                overflow: "visible ",
+            }} >
                 <Box
-                    component="div"
-                    sx={{  width: '120px', py:2, marginInline: 'auto' }}
+                    sx={{
+                        width: "150px",
+                        position: "absolute",
+                        top: "-24px",
+                        left: "50%",
+                        right: "50%",
+                        transform: " translate(-50% , -50%)",
+                        borderRadius: " 7px",
+                    }}
                 >
                     <img src={logo} alt="Logo" width="100%" height="100%" />
                 </Box>
@@ -108,7 +122,7 @@ const Login = () => {
                                         onMouseDown={handleMouseDownPassword}
                                         edge="end"
                                     >
-                                        {showPassword ?  <Visibility /> : <VisibilityOff />}
+                                        {showPassword ? <Visibility /> : <VisibilityOff />}
                                     </IconButton>
                                 </InputAdornment>
                             }
@@ -127,8 +141,8 @@ const Login = () => {
                         Forgot Password?
                     </Typography>
 
-                    <Box sx={{ mt: 3,textAlign:"center" }} component="div">
-                        <Button variant="contained"  to="/stadium-tours" component={Link} >Sign in</Button>
+                    <Box sx={{ mt: 3, textAlign: "center" }} component="div">
+                        <Button variant="contained" sx={{ fontWeight: "600" }} to="/stadium-tours" component={Link} >Sign in</Button>
                     </Box>
                 </Box>
             </Card>
