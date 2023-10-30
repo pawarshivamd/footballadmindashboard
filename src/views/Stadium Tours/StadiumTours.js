@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Button, Divider, Grid, IconButton, Modal, Typography, } from '@mui/material';
+import { Box, Button, Divider, FormControl, Grid, IconButton, Modal, Typography, } from '@mui/material';
 import styled from '@emotion/styled';
 import AddIcon from '@mui/icons-material/Add';
 import { Link } from 'react-router-dom';
@@ -20,6 +20,7 @@ import ASRoma from '../../imgs/stadium/ASRoma.png'
 import PSG from '../../imgs/stadium/PSG.png'
 import BayernMunich from '../../imgs/stadium/BayernMunich.png'
 import BorussiaDortmund from '../../imgs/stadium/BorussiaDortmund.png'
+import { Inputcustom } from '../Teams Matches/TeamsMatches';
 
 const stadiumtoursdata = [
   {
@@ -163,7 +164,7 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width:'min(100% - 0px , 400px)',
+  width: 'min(100% - 0px , 400px)',
   bgcolor: 'background.paper',
   borderRadius: '12px',
   boxShadow: 24,
@@ -199,7 +200,7 @@ const StadiumTours = () => {
               <>
 
 
-                <Box sx={{ py: 1, my: 2 }}>
+                <Box key={index} sx={{ py: 1, my: 2 }} >
                   <Grid container spacing={2}>
                     <Grid item lg={3} sm={3} xs={12}>
                       <img src={StadiumImg} alt={ImgAlt} width="100%" height="143px" />
@@ -208,18 +209,18 @@ const StadiumTours = () => {
                       <Grid container spacing={2}>
                         <Grid item lg={10} sm={10} xs={12} >
                           <Box sx={{ my: 2 }}>
-                            <Typography sx={{ fontSize: "25px", fontWeight: "600" }} >{Place}</Typography>
-                            <Typography sx={{ fontSize: "17px", fontWeight: "500" }} >{TeamName}</Typography>
+                            <Typography sx={{ fontSize: "22px", fontWeight: "600" }} >{Place}</Typography>
+                            <Typography sx={{ fontSize: "16px", fontWeight: "500" }} >{TeamName}</Typography>
                           </Box>
                           <Box>
-                            <Typography sx={{ fontSize: "19px", fontWeight: "500" }}>Inquiry Number : {INumber}</Typography>
+                            <Typography sx={{ fontSize: "17px", fontWeight: "500" }}>Inquiry Number : {INumber}</Typography>
                           </Box>
                         </Grid>
                         <Grid item lg={2} sm={2} xs={12}>
                           <Box sx={{
                             display: "grid",
                             justifyContent: "end",
-                            '@media (max-width: 767px)': {
+                            '@media (max-width: 600px)': {
                               display: 'flex',
                               justifyContent: "space-around",
                             },
@@ -248,45 +249,55 @@ const StadiumTours = () => {
           aria-describedby="modal-modal-description"
         >
           <Box sx={style}>
-            <IconButton
-              color="primary"
-              aria-label="upload picture"
-              component="label"
-              style={{ margin: '0 auto', display: 'block', borderRadius: 0 }}
-            >
-              <input hidden accept="image/*" type="file"
-                onChange={changeImage}
-              />
 
-              {image ? (
-                <img src={image} alt="Selected Image" style={{ height: "auto", width: 120 }} />
-              ) : (
-                <img
-                  src={
-                    'https://assets.upload.io/website/blog_assets/icons/material/icons/add_photo_alternate_outlined.svg'
-                  }
-                  alt=""
-                  style={{ height: 200, width: 200 }}
-                />
-              )}
-            </IconButton>
-            <Box sx={{ my: 2 }}>
-              <label htmlFor="team-name" style={{ fontSize: "17px", fontWeight: "600" }}>Team Name :</label>
-              <input type="text" id="tema-name" width="100%" className='text-input' placeholder='Enter team name' />
-            </Box>
-            <Box sx={{ my: 2 }}>
-              <label htmlFor="place-name" style={{ fontSize: "17px", fontWeight: "600" }}>Place Name :</label>
-              <input type="text" id="palce-name" width="100%" className='text-input' placeholder='Enter Place name' />
-            </Box>
-            <Box sx={{ my: 2 }}>
-              <label htmlFor="inquiry-number" style={{ fontSize: "17px", fontWeight: "600" }}>Inquiry Number :</label>
-              <input type="text" id="inquiry-number" width="100%" className='text-input' placeholder='Enter inquiry number' />
-            </Box>
+            <Grid container spacing={2}>
+              <Grid item lg={12} xs={12}>
+                <IconButton
+                  color="primary"
+                  aria-label="upload picture"
+                  component="label"
+                  style={{ margin: '0 auto', display: 'block', borderRadius: 0 }}
+                >
+                  <input hidden accept="image/*" type="file"
+                    onChange={changeImage}
+                  />
 
-            <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", my: 2 }} >
-              <Button variant='outlined' onClick={handleClose} sx={{ width: '45%', fontSize: "17px", fontWeight: "500" }}>Cancel</Button>
-              <Button variant='contained' sx={{ width: '45%', fontSize: "17px", fontWeight: "500" }}>Save</Button>
-            </Box>
+                  {image ? (
+                    <img src={image} alt="Selected Image" style={{ height: "auto", width: 120 }} />
+                  ) : (
+                    <img
+                      src={
+                        'https://assets.upload.io/website/blog_assets/icons/material/icons/add_photo_alternate_outlined.svg'
+                      }
+                      alt=""
+                      style={{ height: 200, width: 200 }}
+                    />
+                  )}
+                </IconButton>
+              </Grid>
+              <Grid item lg={12} xs={12}>
+                <FormControl fullWidth>
+                  <Inputcustom InputLabelProps={{ shrink: true }} type="text" id="tema-name" label='Team Name :' placeholder='Enter Team Name' variant="filled" />
+                </FormControl>
+              </Grid>
+              <Grid item lg={12} xs={12}>
+                <FormControl fullWidth>
+                  <Inputcustom InputLabelProps={{ shrink: true }} type="text" id="palce-name" label='Place Name :' placeholder='Enter Place Name' variant="filled" />
+                </FormControl>
+              </Grid>
+              <Grid item lg={12} xs={12}>
+                <FormControl fullWidth>
+                  <Inputcustom InputLabelProps={{ shrink: true }} type="text" id="Inquiry-Number" label='Inquiry Number :' placeholder='Enter Inquiry Number' variant="filled" />
+                </FormControl>
+              </Grid>
+              <Grid item lg={12} xs={12}>
+                <Box sx={{ display: "flex", alignItems: "center", my: 2, justifyContent: "end" }} >
+                  <Button variant='outlined' onClick={handleClose} sx={{ mr: 1, width: '25%', fontSize: "17px", fontWeight: "600", textTransform: "capitalize" }}>Cancel</Button>
+                  <Button variant='contained' sx={{ width: '25%', fontSize: "17px", fontWeight: "600", textTransform: "capitalize" }}>Save</Button>
+                </Box>
+              </Grid>
+            </Grid>
+
           </Box>
         </Modal>
 

@@ -288,8 +288,13 @@ const Navbar = () => {
         <List>
         <ListItem
             disablePadding
-            sx={{ display: "block", border: "none", background: location.pathname === "/tems" ? "#d8e9ff" : "transparent", }}
-            onClick={() => navigate("/tems")}
+            sx={{ display: "block", border: "none", background: location.pathname === "/teams" ? "#d8e9ff" : "transparent", }}
+            onClick={() => {
+              navigate("/teams");
+              if (isScreenSmall) {
+                handleDrawerClose();
+              }
+            }}
           >
             <ListItemButton
               sx={{
@@ -307,7 +312,12 @@ const Navbar = () => {
           <ListItem
             disablePadding
             sx={{ display: "block", border: "none", background: location.pathname === "/stadium-tours" ? "#d8e9ff" : "transparent", }}
-            onClick={() => navigate("/stadium-tours")}
+            onClick={() => {
+              navigate("/stadium-tours");
+              if (isScreenSmall) {
+                handleDrawerClose();
+              }
+            }}
           >
             <ListItemButton
               sx={{
@@ -325,7 +335,12 @@ const Navbar = () => {
           <ListItem
             disablePadding
             sx={{ display: "block", border: "none", background: location.pathname === "/teams-matches" ? "#d8e9ff" : "transparent", }}
-            onClick={() => navigate("/teams-matches")}
+            onClick={() => {
+              navigate("/teams-matches");
+              if (isScreenSmall) {
+                handleDrawerClose();
+              }
+            }}
           >
             <ListItemButton
               sx={{
@@ -356,12 +371,13 @@ const Navbar = () => {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleCloseDialogbox}>No</Button>
+          <Button onClick={handleCloseDialogbox} variant="outlined" >No</Button>
           <Button
             onClick={() => {
               navigate("/");
             }}
-            autoFocus
+            variant='contained'
+            
           >
             Yes
           </Button>

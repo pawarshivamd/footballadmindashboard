@@ -1,13 +1,12 @@
 
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Login from './views/login-page/Login';
 import ForgotPassword from './views/login-page/ForgotPassword';
 import { createTheme, ThemeProvider, } from '@mui/material/styles';
 import { Box,} from '@mui/material';
-import Navbar from './views/navbar/topmenu/Navbar';
+import Navbar from './views/navbar/Navbar';
 import ProfilePage from './views/profile/ProfilePage';
-import Error from './views/error/Error';
 import MaybeShowNav from './views/MaybeShowNav';
 import StadiumTours from './views/Stadium Tours/StadiumTours';
 import TeamsMatches from './views/Teams Matches/TeamsMatches';
@@ -38,11 +37,11 @@ function App() {
         <Routes>
             <Route path="/" element={<Login />} />
             <Route path="/forgot-password" element={<ForgotPassword/>} />
-            <Route path="/tems" element={<Teams/>}/>
+            <Route path="/teams" element={<Teams/>}/>
             <Route path="/stadium-tours" element={<StadiumTours  />} />
             <Route path="/teams-matches" element={<TeamsMatches/>} />
             <Route path="/profile" element={<ProfilePage/>} />
-            <Route path="*" element={<Error/>}/>
+            <Route path="*" element={<Navigate to="/" />}/>
         </Routes>
         </Box>
         </BrowserRouter>

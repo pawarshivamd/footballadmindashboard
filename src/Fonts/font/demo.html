@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -57,9 +57,9 @@
             border-collapse: collapse;
             border-spacing: 0;
         }
-        /* common styles */
+        /* demo styles */
         body {
-            background: #f1f1f1;
+            background: #f0f0f0;
             color: #000;
         }
         .page {
@@ -134,36 +134,18 @@
         }
         pre {
             display: block;
-            position: relative;
             padding: 9px;
-            margin: 0 0 10px;
-            font-family: Monaco, Menlo, Consolas, "Courier New", monospace !important;
+            margin: 0 0 12px;
+            font-family: Monaco, Menlo, Consolas, "Courier New", monospace;
             font-size: 13px;
             line-height: 1.428571429;
             color: #333;
-            font-weight: normal !important;
-            font-style: normal !important;
+            font-weight: normal;
+            font-style: normal;
             background-color: #f5f5f5;
             border: 1px solid #ccc;
             overflow-x: auto;
             border-radius: 4px;
-        }
-        pre:after {
-            display: block;
-            position: absolute;
-            right: 0;
-            top: 0;
-            content: 'Usage';
-            line-height: 1;
-            padding: 5px 8px;
-            font-size: 12px;
-            color: #767676;
-            background-color: #fff;
-            border: 1px solid #ccc;
-            border-right: none;
-            border-top: none;
-            border-radius: 0 4px 0 4px;
-            z-index: 10;
         }
         /* responsive */
         @media (max-width: 959px) {
@@ -176,18 +158,78 @@
 </head>
 <body>
 <div class="page">
-    <div class="demo" style="font-family: 'DIN Next LT Pro'; font-weight: 900; font-style: normal;">
-        <h1>DIN Next LT Pro Black Condensed</h1>
-        <pre>.your-style {
+    <div class="demo">
+        <h1 style="font-family: 'DIN Next LT Pro'; font-weight: bold; font-style: normal;">DIN Next LT Pro Bold</h1>
+        <pre title="Usage">.your-style {
+    font-family: 'DIN Next LT Pro';
+    font-weight: bold;
+    font-style: normal;
+}</pre>
+        <pre title="Preload (optional)">
+&lt;link rel=&quot;preload&quot; href=&quot;DINNextLTPro-Bold.woff2&quot; as=&quot;font&quot; type=&quot;font/woff2&quot; crossorigin&gt;</pre>
+        <div class="font-container" style="font-family: 'DIN Next LT Pro'; font-weight: bold; font-style: normal;">
+            <p class="letters">
+                abcdefghijklmnopqrstuvwxyz<br>
+ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
+                0123456789.:,;()*!?'@#&lt;&gt;$%&^+-=~
+            </p>
+            <p class="s10" style="font-size: 10px;">The quick brown fox jumps over the lazy dog.</p>
+            <p class="s11" style="font-size: 11px;">The quick brown fox jumps over the lazy dog.</p>
+            <p class="s12" style="font-size: 12px;">The quick brown fox jumps over the lazy dog.</p>
+            <p class="s14" style="font-size: 14px;">The quick brown fox jumps over the lazy dog.</p>
+            <p class="s18" style="font-size: 18px;">The quick brown fox jumps over the lazy dog.</p>
+            <p class="s24" style="font-size: 24px;">The quick brown fox jumps over the lazy dog.</p>
+            <p class="s30" style="font-size: 30px;">The quick brown fox jumps over the lazy dog.</p>
+            <p class="s36" style="font-size: 36px;">The quick brown fox jumps over the lazy dog.</p>
+            <p class="s48" style="font-size: 48px;">The quick brown fox jumps over the lazy dog.</p>
+            <p class="s60" style="font-size: 60px;">The quick brown fox jumps over the lazy dog.</p>
+            <p class="s72" style="font-size: 72px;">The quick brown fox jumps over the lazy dog.</p>
+        </div>
+    </div>
+
+    <div class="demo">
+        <h1 style="font-family: 'GE Flow'; font-weight: normal; font-style: normal;">GE Flow</h1>
+        <pre title="Usage">.your-style {
+    font-family: 'GE Flow';
+    font-weight: normal;
+    font-style: normal;
+}</pre>
+        <pre title="Preload (optional)">
+&lt;link rel=&quot;preload&quot; href=&quot;GEFlow.woff2&quot; as=&quot;font&quot; type=&quot;font/woff2&quot; crossorigin&gt;</pre>
+        <div class="font-container" style="font-family: 'GE Flow'; font-weight: normal; font-style: normal;">
+            <p class="letters">
+                abcdefghijklmnopqrstuvwxyz<br>
+ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
+                0123456789.:,;()*!?'@#&lt;&gt;$%&^+-=~
+            </p>
+            <p class="s10" style="font-size: 10px;">The quick brown fox jumps over the lazy dog.</p>
+            <p class="s11" style="font-size: 11px;">The quick brown fox jumps over the lazy dog.</p>
+            <p class="s12" style="font-size: 12px;">The quick brown fox jumps over the lazy dog.</p>
+            <p class="s14" style="font-size: 14px;">The quick brown fox jumps over the lazy dog.</p>
+            <p class="s18" style="font-size: 18px;">The quick brown fox jumps over the lazy dog.</p>
+            <p class="s24" style="font-size: 24px;">The quick brown fox jumps over the lazy dog.</p>
+            <p class="s30" style="font-size: 30px;">The quick brown fox jumps over the lazy dog.</p>
+            <p class="s36" style="font-size: 36px;">The quick brown fox jumps over the lazy dog.</p>
+            <p class="s48" style="font-size: 48px;">The quick brown fox jumps over the lazy dog.</p>
+            <p class="s60" style="font-size: 60px;">The quick brown fox jumps over the lazy dog.</p>
+            <p class="s72" style="font-size: 72px;">The quick brown fox jumps over the lazy dog.</p>
+        </div>
+    </div>
+
+    <div class="demo">
+        <h1 style="font-family: 'DIN Next LT Pro'; font-weight: 900; font-style: normal;">DIN Next LT Pro Black</h1>
+        <pre title="Usage">.your-style {
     font-family: 'DIN Next LT Pro';
     font-weight: 900;
     font-style: normal;
 }</pre>
-        <div class="font-container">
+        <pre title="Preload (optional)">
+&lt;link rel=&quot;preload&quot; href=&quot;DINNextLTPro-Black.woff2&quot; as=&quot;font&quot; type=&quot;font/woff2&quot; crossorigin&gt;</pre>
+        <div class="font-container" style="font-family: 'DIN Next LT Pro'; font-weight: 900; font-style: normal;">
             <p class="letters">
                 abcdefghijklmnopqrstuvwxyz<br>
 ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
-                0123456789.:,;()*!?'@#<>$%&^+-=~
+                0123456789.:,;()*!?'@#&lt;&gt;$%&^+-=~
             </p>
             <p class="s10" style="font-size: 10px;">The quick brown fox jumps over the lazy dog.</p>
             <p class="s11" style="font-size: 11px;">The quick brown fox jumps over the lazy dog.</p>
@@ -202,70 +244,21 @@ ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
             <p class="s72" style="font-size: 72px;">The quick brown fox jumps over the lazy dog.</p>
         </div>
     </div>
-    <div class="demo" style="font-family: 'DIN Next LT Pro'; font-weight: normal; font-style: normal;">
-        <h1>DIN Next LT Pro Regular</h1>
-        <pre>.your-style {
-    font-family: 'DIN Next LT Pro';
-    font-weight: normal;
-    font-style: normal;
-}</pre>
-        <div class="font-container">
-            <p class="letters">
-                abcdefghijklmnopqrstuvwxyz<br>
-ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
-                0123456789.:,;()*!?'@#<>$%&^+-=~
-            </p>
-            <p class="s10" style="font-size: 10px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s11" style="font-size: 11px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s12" style="font-size: 12px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s14" style="font-size: 14px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s18" style="font-size: 18px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s24" style="font-size: 24px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s30" style="font-size: 30px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s36" style="font-size: 36px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s48" style="font-size: 48px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s60" style="font-size: 60px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s72" style="font-size: 72px;">The quick brown fox jumps over the lazy dog.</p>
-        </div>
-    </div>
-    <div class="demo" style="font-family: 'DIN Next LT Pro'; font-weight: 500; font-style: normal;">
-        <h1>DIN Next LT Pro Medium</h1>
-        <pre>.your-style {
-    font-family: 'DIN Next LT Pro';
-    font-weight: 500;
-    font-style: normal;
-}</pre>
-        <div class="font-container">
-            <p class="letters">
-                abcdefghijklmnopqrstuvwxyz<br>
-ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
-                0123456789.:,;()*!?'@#<>$%&^+-=~
-            </p>
-            <p class="s10" style="font-size: 10px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s11" style="font-size: 11px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s12" style="font-size: 12px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s14" style="font-size: 14px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s18" style="font-size: 18px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s24" style="font-size: 24px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s30" style="font-size: 30px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s36" style="font-size: 36px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s48" style="font-size: 48px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s60" style="font-size: 60px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s72" style="font-size: 72px;">The quick brown fox jumps over the lazy dog.</p>
-        </div>
-    </div>
-    <div class="demo" style="font-family: 'DIN Next LT Pro'; font-weight: bold; font-style: italic;">
-        <h1>DIN Next LT Pro Bold Italic</h1>
-        <pre>.your-style {
-    font-family: 'DIN Next LT Pro';
+
+    <div class="demo">
+        <h1 style="font-family: 'GE Flow'; font-weight: bold; font-style: normal;">GE Flow Bold</h1>
+        <pre title="Usage">.your-style {
+    font-family: 'GE Flow';
     font-weight: bold;
-    font-style: italic;
+    font-style: normal;
 }</pre>
-        <div class="font-container">
+        <pre title="Preload (optional)">
+&lt;link rel=&quot;preload&quot; href=&quot;GEFlow-Bold.woff2&quot; as=&quot;font&quot; type=&quot;font/woff2&quot; crossorigin&gt;</pre>
+        <div class="font-container" style="font-family: 'GE Flow'; font-weight: bold; font-style: normal;">
             <p class="letters">
                 abcdefghijklmnopqrstuvwxyz<br>
 ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
-                0123456789.:,;()*!?'@#<>$%&^+-=~
+                0123456789.:,;()*!?'@#&lt;&gt;$%&^+-=~
             </p>
             <p class="s10" style="font-size: 10px;">The quick brown fox jumps over the lazy dog.</p>
             <p class="s11" style="font-size: 11px;">The quick brown fox jumps over the lazy dog.</p>
@@ -280,18 +273,21 @@ ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
             <p class="s72" style="font-size: 72px;">The quick brown fox jumps over the lazy dog.</p>
         </div>
     </div>
-    <div class="demo" style="font-family: 'DIN Next LT Pro'; font-weight: 200; font-style: normal;">
-        <h1>DIN Next LT Pro UltraLight Condensed</h1>
-        <pre>.your-style {
+
+    <div class="demo">
+        <h1 style="font-family: 'DIN Next LT Pro'; font-weight: 200; font-style: normal;">DIN Next LT Pro UltraLight</h1>
+        <pre title="Usage">.your-style {
     font-family: 'DIN Next LT Pro';
     font-weight: 200;
     font-style: normal;
 }</pre>
-        <div class="font-container">
+        <pre title="Preload (optional)">
+&lt;link rel=&quot;preload&quot; href=&quot;DINNextLTPro-UltraLight.woff2&quot; as=&quot;font&quot; type=&quot;font/woff2&quot; crossorigin&gt;</pre>
+        <div class="font-container" style="font-family: 'DIN Next LT Pro'; font-weight: 200; font-style: normal;">
             <p class="letters">
                 abcdefghijklmnopqrstuvwxyz<br>
 ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
-                0123456789.:,;()*!?'@#<>$%&^+-=~
+                0123456789.:,;()*!?'@#&lt;&gt;$%&^+-=~
             </p>
             <p class="s10" style="font-size: 10px;">The quick brown fox jumps over the lazy dog.</p>
             <p class="s11" style="font-size: 11px;">The quick brown fox jumps over the lazy dog.</p>
@@ -306,70 +302,21 @@ ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
             <p class="s72" style="font-size: 72px;">The quick brown fox jumps over the lazy dog.</p>
         </div>
     </div>
-    <div class="demo" style="font-family: 'DIN Next LT Pro Condensed'; font-weight: bold; font-style: normal;">
-        <h1>DIN Next LT Pro Bold Condensed</h1>
-        <pre>.your-style {
-    font-family: 'DIN Next LT Pro Condensed';
-    font-weight: bold;
-    font-style: normal;
-}</pre>
-        <div class="font-container">
-            <p class="letters">
-                abcdefghijklmnopqrstuvwxyz<br>
-ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
-                0123456789.:,;()*!?'@#<>$%&^+-=~
-            </p>
-            <p class="s10" style="font-size: 10px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s11" style="font-size: 11px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s12" style="font-size: 12px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s14" style="font-size: 14px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s18" style="font-size: 18px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s24" style="font-size: 24px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s30" style="font-size: 30px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s36" style="font-size: 36px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s48" style="font-size: 48px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s60" style="font-size: 60px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s72" style="font-size: 72px;">The quick brown fox jumps over the lazy dog.</p>
-        </div>
-    </div>
-    <div class="demo" style="font-family: 'DIN Next Rounded LT Pro'; font-weight: 300; font-style: normal;">
-        <h1>DIN Next Rounded LT Pro Light</h1>
-        <pre>.your-style {
-    font-family: 'DIN Next Rounded LT Pro';
-    font-weight: 300;
-    font-style: normal;
-}</pre>
-        <div class="font-container">
-            <p class="letters">
-                abcdefghijklmnopqrstuvwxyz<br>
-ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
-                0123456789.:,;()*!?'@#<>$%&^+-=~
-            </p>
-            <p class="s10" style="font-size: 10px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s11" style="font-size: 11px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s12" style="font-size: 12px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s14" style="font-size: 14px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s18" style="font-size: 18px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s24" style="font-size: 24px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s30" style="font-size: 30px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s36" style="font-size: 36px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s48" style="font-size: 48px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s60" style="font-size: 60px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s72" style="font-size: 72px;">The quick brown fox jumps over the lazy dog.</p>
-        </div>
-    </div>
-    <div class="demo" style="font-family: 'DIN Next LT Pro'; font-weight: 200; font-style: italic;">
-        <h1>DIN Next LT Pro UltraLight Italic</h1>
-        <pre>.your-style {
+
+    <div class="demo">
+        <h1 style="font-family: 'DIN Next LT Pro'; font-weight: 200; font-style: italic;">DIN Next LT Pro UltraLight Italic</h1>
+        <pre title="Usage">.your-style {
     font-family: 'DIN Next LT Pro';
     font-weight: 200;
     font-style: italic;
 }</pre>
-        <div class="font-container">
+        <pre title="Preload (optional)">
+&lt;link rel=&quot;preload&quot; href=&quot;DINNextLTPro-UltraLightIt.woff2&quot; as=&quot;font&quot; type=&quot;font/woff2&quot; crossorigin&gt;</pre>
+        <div class="font-container" style="font-family: 'DIN Next LT Pro'; font-weight: 200; font-style: italic;">
             <p class="letters">
                 abcdefghijklmnopqrstuvwxyz<br>
 ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
-                0123456789.:,;()*!?'@#<>$%&^+-=~
+                0123456789.:,;()*!?'@#&lt;&gt;$%&^+-=~
             </p>
             <p class="s10" style="font-size: 10px;">The quick brown fox jumps over the lazy dog.</p>
             <p class="s11" style="font-size: 11px;">The quick brown fox jumps over the lazy dog.</p>
@@ -384,70 +331,21 @@ ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
             <p class="s72" style="font-size: 72px;">The quick brown fox jumps over the lazy dog.</p>
         </div>
     </div>
-    <div class="demo" style="font-family: 'DIN Next LT Pro'; font-weight: 200; font-style: normal;">
-        <h1>DIN Next LT Pro UltraLight</h1>
-        <pre>.your-style {
+
+    <div class="demo">
+        <h1 style="font-family: 'DIN Next LT Pro'; font-weight: 900; font-style: italic;">DIN Next LT Pro Heavy Italic</h1>
+        <pre title="Usage">.your-style {
     font-family: 'DIN Next LT Pro';
-    font-weight: 200;
-    font-style: normal;
-}</pre>
-        <div class="font-container">
-            <p class="letters">
-                abcdefghijklmnopqrstuvwxyz<br>
-ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
-                0123456789.:,;()*!?'@#<>$%&^+-=~
-            </p>
-            <p class="s10" style="font-size: 10px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s11" style="font-size: 11px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s12" style="font-size: 12px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s14" style="font-size: 14px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s18" style="font-size: 18px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s24" style="font-size: 24px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s30" style="font-size: 30px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s36" style="font-size: 36px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s48" style="font-size: 48px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s60" style="font-size: 60px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s72" style="font-size: 72px;">The quick brown fox jumps over the lazy dog.</p>
-        </div>
-    </div>
-    <div class="demo" style="font-family: 'DIN Next LT Pro'; font-weight: normal; font-style: normal;">
-        <h1>DIN Next LT Pro Condensed</h1>
-        <pre>.your-style {
-    font-family: 'DIN Next LT Pro';
-    font-weight: normal;
-    font-style: normal;
-}</pre>
-        <div class="font-container">
-            <p class="letters">
-                abcdefghijklmnopqrstuvwxyz<br>
-ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
-                0123456789.:,;()*!?'@#<>$%&^+-=~
-            </p>
-            <p class="s10" style="font-size: 10px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s11" style="font-size: 11px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s12" style="font-size: 12px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s14" style="font-size: 14px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s18" style="font-size: 18px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s24" style="font-size: 24px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s30" style="font-size: 30px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s36" style="font-size: 36px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s48" style="font-size: 48px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s60" style="font-size: 60px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s72" style="font-size: 72px;">The quick brown fox jumps over the lazy dog.</p>
-        </div>
-    </div>
-    <div class="demo" style="font-family: 'DIN Next LT Pro'; font-weight: normal; font-style: italic;">
-        <h1>DIN Next LT Pro Italic</h1>
-        <pre>.your-style {
-    font-family: 'DIN Next LT Pro';
-    font-weight: normal;
+    font-weight: 900;
     font-style: italic;
 }</pre>
-        <div class="font-container">
+        <pre title="Preload (optional)">
+&lt;link rel=&quot;preload&quot; href=&quot;DINNextLTPro-HeavyItalic.woff2&quot; as=&quot;font&quot; type=&quot;font/woff2&quot; crossorigin&gt;</pre>
+        <div class="font-container" style="font-family: 'DIN Next LT Pro'; font-weight: 900; font-style: italic;">
             <p class="letters">
                 abcdefghijklmnopqrstuvwxyz<br>
 ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
-                0123456789.:,;()*!?'@#<>$%&^+-=~
+                0123456789.:,;()*!?'@#&lt;&gt;$%&^+-=~
             </p>
             <p class="s10" style="font-size: 10px;">The quick brown fox jumps over the lazy dog.</p>
             <p class="s11" style="font-size: 11px;">The quick brown fox jumps over the lazy dog.</p>
@@ -462,18 +360,50 @@ ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
             <p class="s72" style="font-size: 72px;">The quick brown fox jumps over the lazy dog.</p>
         </div>
     </div>
-    <div class="demo" style="font-family: 'DIN Next Rounded LT Pro'; font-weight: 500; font-style: normal;">
-        <h1>DIN Next Rounded LT Pro Medium</h1>
-        <pre>.your-style {
-    font-family: 'DIN Next Rounded LT Pro';
+
+    <div class="demo">
+        <h1 style="font-family: 'DIN Next LT Pro'; font-weight: 500; font-style: italic;">DIN Next LT Pro Medium Italic</h1>
+        <pre title="Usage">.your-style {
+    font-family: 'DIN Next LT Pro';
+    font-weight: 500;
+    font-style: italic;
+}</pre>
+        <pre title="Preload (optional)">
+&lt;link rel=&quot;preload&quot; href=&quot;DINNextLTPro-MediumItalic.woff2&quot; as=&quot;font&quot; type=&quot;font/woff2&quot; crossorigin&gt;</pre>
+        <div class="font-container" style="font-family: 'DIN Next LT Pro'; font-weight: 500; font-style: italic;">
+            <p class="letters">
+                abcdefghijklmnopqrstuvwxyz<br>
+ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
+                0123456789.:,;()*!?'@#&lt;&gt;$%&^+-=~
+            </p>
+            <p class="s10" style="font-size: 10px;">The quick brown fox jumps over the lazy dog.</p>
+            <p class="s11" style="font-size: 11px;">The quick brown fox jumps over the lazy dog.</p>
+            <p class="s12" style="font-size: 12px;">The quick brown fox jumps over the lazy dog.</p>
+            <p class="s14" style="font-size: 14px;">The quick brown fox jumps over the lazy dog.</p>
+            <p class="s18" style="font-size: 18px;">The quick brown fox jumps over the lazy dog.</p>
+            <p class="s24" style="font-size: 24px;">The quick brown fox jumps over the lazy dog.</p>
+            <p class="s30" style="font-size: 30px;">The quick brown fox jumps over the lazy dog.</p>
+            <p class="s36" style="font-size: 36px;">The quick brown fox jumps over the lazy dog.</p>
+            <p class="s48" style="font-size: 48px;">The quick brown fox jumps over the lazy dog.</p>
+            <p class="s60" style="font-size: 60px;">The quick brown fox jumps over the lazy dog.</p>
+            <p class="s72" style="font-size: 72px;">The quick brown fox jumps over the lazy dog.</p>
+        </div>
+    </div>
+
+    <div class="demo">
+        <h1 style="font-family: 'DIN Next LT Pro'; font-weight: 500; font-style: normal;">DIN Next LT Pro Medium</h1>
+        <pre title="Usage">.your-style {
+    font-family: 'DIN Next LT Pro';
     font-weight: 500;
     font-style: normal;
 }</pre>
-        <div class="font-container">
+        <pre title="Preload (optional)">
+&lt;link rel=&quot;preload&quot; href=&quot;DINNextLTPro-Medium.woff2&quot; as=&quot;font&quot; type=&quot;font/woff2&quot; crossorigin&gt;</pre>
+        <div class="font-container" style="font-family: 'DIN Next LT Pro'; font-weight: 500; font-style: normal;">
             <p class="letters">
                 abcdefghijklmnopqrstuvwxyz<br>
 ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
-                0123456789.:,;()*!?'@#<>$%&^+-=~
+                0123456789.:,;()*!?'@#&lt;&gt;$%&^+-=~
             </p>
             <p class="s10" style="font-size: 10px;">The quick brown fox jumps over the lazy dog.</p>
             <p class="s11" style="font-size: 11px;">The quick brown fox jumps over the lazy dog.</p>
@@ -488,70 +418,21 @@ ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
             <p class="s72" style="font-size: 72px;">The quick brown fox jumps over the lazy dog.</p>
         </div>
     </div>
-    <div class="demo" style="font-family: 'DIN Next LT Pro'; font-weight: 900; font-style: normal;">
-        <h1>DIN Next LT Pro Heavy</h1>
-        <pre>.your-style {
-    font-family: 'DIN Next LT Pro';
-    font-weight: 900;
-    font-style: normal;
-}</pre>
-        <div class="font-container">
-            <p class="letters">
-                abcdefghijklmnopqrstuvwxyz<br>
-ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
-                0123456789.:,;()*!?'@#<>$%&^+-=~
-            </p>
-            <p class="s10" style="font-size: 10px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s11" style="font-size: 11px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s12" style="font-size: 12px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s14" style="font-size: 14px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s18" style="font-size: 18px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s24" style="font-size: 24px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s30" style="font-size: 30px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s36" style="font-size: 36px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s48" style="font-size: 48px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s60" style="font-size: 60px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s72" style="font-size: 72px;">The quick brown fox jumps over the lazy dog.</p>
-        </div>
-    </div>
-    <div class="demo" style="font-family: 'DIN Next LT Pro'; font-weight: 900; font-style: italic;">
-        <h1>DIN Next LT Pro Heavy Italic</h1>
-        <pre>.your-style {
-    font-family: 'DIN Next LT Pro';
-    font-weight: 900;
-    font-style: italic;
-}</pre>
-        <div class="font-container">
-            <p class="letters">
-                abcdefghijklmnopqrstuvwxyz<br>
-ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
-                0123456789.:,;()*!?'@#<>$%&^+-=~
-            </p>
-            <p class="s10" style="font-size: 10px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s11" style="font-size: 11px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s12" style="font-size: 12px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s14" style="font-size: 14px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s18" style="font-size: 18px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s24" style="font-size: 24px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s30" style="font-size: 30px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s36" style="font-size: 36px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s48" style="font-size: 48px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s60" style="font-size: 60px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s72" style="font-size: 72px;">The quick brown fox jumps over the lazy dog.</p>
-        </div>
-    </div>
-    <div class="demo" style="font-family: 'DIN Next LT Pro'; font-weight: bold; font-style: normal;">
-        <h1>DIN Next LT Pro Bold</h1>
-        <pre>.your-style {
+
+    <div class="demo">
+        <h1 style="font-family: 'DIN Next LT Pro'; font-weight: bold; font-style: italic;">DIN Next LT Pro Bold Italic</h1>
+        <pre title="Usage">.your-style {
     font-family: 'DIN Next LT Pro';
     font-weight: bold;
-    font-style: normal;
+    font-style: italic;
 }</pre>
-        <div class="font-container">
+        <pre title="Preload (optional)">
+&lt;link rel=&quot;preload&quot; href=&quot;DINNextLTPro-BoldItalic.woff2&quot; as=&quot;font&quot; type=&quot;font/woff2&quot; crossorigin&gt;</pre>
+        <div class="font-container" style="font-family: 'DIN Next LT Pro'; font-weight: bold; font-style: italic;">
             <p class="letters">
                 abcdefghijklmnopqrstuvwxyz<br>
 ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
-                0123456789.:,;()*!?'@#<>$%&^+-=~
+                0123456789.:,;()*!?'@#&lt;&gt;$%&^+-=~
             </p>
             <p class="s10" style="font-size: 10px;">The quick brown fox jumps over the lazy dog.</p>
             <p class="s11" style="font-size: 11px;">The quick brown fox jumps over the lazy dog.</p>
@@ -566,18 +447,50 @@ ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
             <p class="s72" style="font-size: 72px;">The quick brown fox jumps over the lazy dog.</p>
         </div>
     </div>
-    <div class="demo" style="font-family: 'DIN Next Rounded LT Pro'; font-weight: normal; font-style: normal;">
-        <h1>DIN Next Rounded LT Pro Regular</h1>
-        <pre>.your-style {
-    font-family: 'DIN Next Rounded LT Pro';
+
+    <div class="demo">
+        <h1 style="font-family: 'DIN Next LT Pro'; font-weight: 900; font-style: normal;">DIN Next LT Pro Heavy</h1>
+        <pre title="Usage">.your-style {
+    font-family: 'DIN Next LT Pro';
+    font-weight: 900;
+    font-style: normal;
+}</pre>
+        <pre title="Preload (optional)">
+&lt;link rel=&quot;preload&quot; href=&quot;DINNextLTPro-Heavy.woff2&quot; as=&quot;font&quot; type=&quot;font/woff2&quot; crossorigin&gt;</pre>
+        <div class="font-container" style="font-family: 'DIN Next LT Pro'; font-weight: 900; font-style: normal;">
+            <p class="letters">
+                abcdefghijklmnopqrstuvwxyz<br>
+ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
+                0123456789.:,;()*!?'@#&lt;&gt;$%&^+-=~
+            </p>
+            <p class="s10" style="font-size: 10px;">The quick brown fox jumps over the lazy dog.</p>
+            <p class="s11" style="font-size: 11px;">The quick brown fox jumps over the lazy dog.</p>
+            <p class="s12" style="font-size: 12px;">The quick brown fox jumps over the lazy dog.</p>
+            <p class="s14" style="font-size: 14px;">The quick brown fox jumps over the lazy dog.</p>
+            <p class="s18" style="font-size: 18px;">The quick brown fox jumps over the lazy dog.</p>
+            <p class="s24" style="font-size: 24px;">The quick brown fox jumps over the lazy dog.</p>
+            <p class="s30" style="font-size: 30px;">The quick brown fox jumps over the lazy dog.</p>
+            <p class="s36" style="font-size: 36px;">The quick brown fox jumps over the lazy dog.</p>
+            <p class="s48" style="font-size: 48px;">The quick brown fox jumps over the lazy dog.</p>
+            <p class="s60" style="font-size: 60px;">The quick brown fox jumps over the lazy dog.</p>
+            <p class="s72" style="font-size: 72px;">The quick brown fox jumps over the lazy dog.</p>
+        </div>
+    </div>
+
+    <div class="demo">
+        <h1 style="font-family: 'DIN Next LT Pro'; font-weight: normal; font-style: italic;">DIN Next LT Pro Italic</h1>
+        <pre title="Usage">.your-style {
+    font-family: 'DIN Next LT Pro';
     font-weight: normal;
-    font-style: normal;
+    font-style: italic;
 }</pre>
-        <div class="font-container">
+        <pre title="Preload (optional)">
+&lt;link rel=&quot;preload&quot; href=&quot;DINNextLTPro-Italic.woff2&quot; as=&quot;font&quot; type=&quot;font/woff2&quot; crossorigin&gt;</pre>
+        <div class="font-container" style="font-family: 'DIN Next LT Pro'; font-weight: normal; font-style: italic;">
             <p class="letters">
                 abcdefghijklmnopqrstuvwxyz<br>
 ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
-                0123456789.:,;()*!?'@#<>$%&^+-=~
+                0123456789.:,;()*!?'@#&lt;&gt;$%&^+-=~
             </p>
             <p class="s10" style="font-size: 10px;">The quick brown fox jumps over the lazy dog.</p>
             <p class="s11" style="font-size: 11px;">The quick brown fox jumps over the lazy dog.</p>
@@ -592,18 +505,21 @@ ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
             <p class="s72" style="font-size: 72px;">The quick brown fox jumps over the lazy dog.</p>
         </div>
     </div>
-    <div class="demo" style="font-family: 'DIN Next LT Pro'; font-weight: 300; font-style: normal;">
-        <h1>DIN Next LT Pro Light</h1>
-        <pre>.your-style {
+
+    <div class="demo">
+        <h1 style="font-family: 'DIN Next LT Pro'; font-weight: 300; font-style: normal;">DIN Next LT Pro Light</h1>
+        <pre title="Usage">.your-style {
     font-family: 'DIN Next LT Pro';
     font-weight: 300;
     font-style: normal;
 }</pre>
-        <div class="font-container">
+        <pre title="Preload (optional)">
+&lt;link rel=&quot;preload&quot; href=&quot;DINNextLTPro-Light.woff2&quot; as=&quot;font&quot; type=&quot;font/woff2&quot; crossorigin&gt;</pre>
+        <div class="font-container" style="font-family: 'DIN Next LT Pro'; font-weight: 300; font-style: normal;">
             <p class="letters">
                 abcdefghijklmnopqrstuvwxyz<br>
 ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
-                0123456789.:,;()*!?'@#<>$%&^+-=~
+                0123456789.:,;()*!?'@#&lt;&gt;$%&^+-=~
             </p>
             <p class="s10" style="font-size: 10px;">The quick brown fox jumps over the lazy dog.</p>
             <p class="s11" style="font-size: 11px;">The quick brown fox jumps over the lazy dog.</p>
@@ -618,214 +534,7 @@ ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
             <p class="s72" style="font-size: 72px;">The quick brown fox jumps over the lazy dog.</p>
         </div>
     </div>
-    <div class="demo" style="font-family: 'DIN Next Rounded LT Pro'; font-weight: bold; font-style: normal;">
-        <h1>DIN Next Rounded LT Pro Bold</h1>
-        <pre>.your-style {
-    font-family: 'DIN Next Rounded LT Pro';
-    font-weight: bold;
-    font-style: normal;
-}</pre>
-        <div class="font-container">
-            <p class="letters">
-                abcdefghijklmnopqrstuvwxyz<br>
-ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
-                0123456789.:,;()*!?'@#<>$%&^+-=~
-            </p>
-            <p class="s10" style="font-size: 10px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s11" style="font-size: 11px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s12" style="font-size: 12px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s14" style="font-size: 14px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s18" style="font-size: 18px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s24" style="font-size: 24px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s30" style="font-size: 30px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s36" style="font-size: 36px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s48" style="font-size: 48px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s60" style="font-size: 60px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s72" style="font-size: 72px;">The quick brown fox jumps over the lazy dog.</p>
-        </div>
-    </div>
-    <div class="demo" style="font-family: 'DIN Next LT Pro Medium Cond'; font-weight: 900; font-style: normal;">
-        <h1>DIN Next LT Pro Heavy Condensed</h1>
-        <pre>.your-style {
-    font-family: 'DIN Next LT Pro Medium Cond';
-    font-weight: 900;
-    font-style: normal;
-}</pre>
-        <div class="font-container">
-            <p class="letters">
-                abcdefghijklmnopqrstuvwxyz<br>
-ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
-                0123456789.:,;()*!?'@#<>$%&^+-=~
-            </p>
-            <p class="s10" style="font-size: 10px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s11" style="font-size: 11px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s12" style="font-size: 12px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s14" style="font-size: 14px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s18" style="font-size: 18px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s24" style="font-size: 24px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s30" style="font-size: 30px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s36" style="font-size: 36px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s48" style="font-size: 48px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s60" style="font-size: 60px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s72" style="font-size: 72px;">The quick brown fox jumps over the lazy dog.</p>
-        </div>
-    </div>
-    <div class="demo" style="font-family: 'DIN Next LT Pro'; font-weight: 300; font-style: italic;">
-        <h1>DIN Next LT Pro Light Italic</h1>
-        <pre>.your-style {
-    font-family: 'DIN Next LT Pro';
-    font-weight: 300;
-    font-style: italic;
-}</pre>
-        <div class="font-container">
-            <p class="letters">
-                abcdefghijklmnopqrstuvwxyz<br>
-ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
-                0123456789.:,;()*!?'@#<>$%&^+-=~
-            </p>
-            <p class="s10" style="font-size: 10px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s11" style="font-size: 11px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s12" style="font-size: 12px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s14" style="font-size: 14px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s18" style="font-size: 18px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s24" style="font-size: 24px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s30" style="font-size: 30px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s36" style="font-size: 36px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s48" style="font-size: 48px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s60" style="font-size: 60px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s72" style="font-size: 72px;">The quick brown fox jumps over the lazy dog.</p>
-        </div>
-    </div>
-    <div class="demo" style="font-family: 'DIN Next LT Pro'; font-weight: 300; font-style: normal;">
-        <h1>DIN Next LT Pro Light Condensed</h1>
-        <pre>.your-style {
-    font-family: 'DIN Next LT Pro';
-    font-weight: 300;
-    font-style: normal;
-}</pre>
-        <div class="font-container">
-            <p class="letters">
-                abcdefghijklmnopqrstuvwxyz<br>
-ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
-                0123456789.:,;()*!?'@#<>$%&^+-=~
-            </p>
-            <p class="s10" style="font-size: 10px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s11" style="font-size: 11px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s12" style="font-size: 12px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s14" style="font-size: 14px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s18" style="font-size: 18px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s24" style="font-size: 24px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s30" style="font-size: 30px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s36" style="font-size: 36px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s48" style="font-size: 48px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s60" style="font-size: 60px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s72" style="font-size: 72px;">The quick brown fox jumps over the lazy dog.</p>
-        </div>
-    </div>
-    <div class="demo" style="font-family: 'DIN Next LT Pro'; font-weight: 500; font-style: italic;">
-        <h1>DIN Next LT Pro Medium Italic</h1>
-        <pre>.your-style {
-    font-family: 'DIN Next LT Pro';
-    font-weight: 500;
-    font-style: italic;
-}</pre>
-        <div class="font-container">
-            <p class="letters">
-                abcdefghijklmnopqrstuvwxyz<br>
-ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
-                0123456789.:,;()*!?'@#<>$%&^+-=~
-            </p>
-            <p class="s10" style="font-size: 10px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s11" style="font-size: 11px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s12" style="font-size: 12px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s14" style="font-size: 14px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s18" style="font-size: 18px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s24" style="font-size: 24px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s30" style="font-size: 30px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s36" style="font-size: 36px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s48" style="font-size: 48px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s60" style="font-size: 60px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s72" style="font-size: 72px;">The quick brown fox jumps over the lazy dog.</p>
-        </div>
-    </div>
-    <div class="demo" style="font-family: 'DIN Next LT Pro'; font-weight: 900; font-style: normal;">
-        <h1>DIN Next LT Pro Black</h1>
-        <pre>.your-style {
-    font-family: 'DIN Next LT Pro';
-    font-weight: 900;
-    font-style: normal;
-}</pre>
-        <div class="font-container">
-            <p class="letters">
-                abcdefghijklmnopqrstuvwxyz<br>
-ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
-                0123456789.:,;()*!?'@#<>$%&^+-=~
-            </p>
-            <p class="s10" style="font-size: 10px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s11" style="font-size: 11px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s12" style="font-size: 12px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s14" style="font-size: 14px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s18" style="font-size: 18px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s24" style="font-size: 24px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s30" style="font-size: 30px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s36" style="font-size: 36px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s48" style="font-size: 48px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s60" style="font-size: 60px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s72" style="font-size: 72px;">The quick brown fox jumps over the lazy dog.</p>
-        </div>
-    </div>
-    <div class="demo" style="font-family: 'DIN Next LT Pro'; font-weight: 500; font-style: normal;">
-        <h1>DIN Next LT Pro Medium Condensed</h1>
-        <pre>.your-style {
-    font-family: 'DIN Next LT Pro';
-    font-weight: 500;
-    font-style: normal;
-}</pre>
-        <div class="font-container">
-            <p class="letters">
-                abcdefghijklmnopqrstuvwxyz<br>
-ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
-                0123456789.:,;()*!?'@#<>$%&^+-=~
-            </p>
-            <p class="s10" style="font-size: 10px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s11" style="font-size: 11px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s12" style="font-size: 12px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s14" style="font-size: 14px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s18" style="font-size: 18px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s24" style="font-size: 24px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s30" style="font-size: 30px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s36" style="font-size: 36px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s48" style="font-size: 48px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s60" style="font-size: 60px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s72" style="font-size: 72px;">The quick brown fox jumps over the lazy dog.</p>
-        </div>
-    </div>
-    <div class="demo" style="font-family: 'DIN Next LT Pro'; font-weight: 900; font-style: italic;">
-        <h1>DIN Next LT Pro Black Italic</h1>
-        <pre>.your-style {
-    font-family: 'DIN Next LT Pro';
-    font-weight: 900;
-    font-style: italic;
-}</pre>
-        <div class="font-container">
-            <p class="letters">
-                abcdefghijklmnopqrstuvwxyz<br>
-ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
-                0123456789.:,;()*!?'@#<>$%&^+-=~
-            </p>
-            <p class="s10" style="font-size: 10px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s11" style="font-size: 11px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s12" style="font-size: 12px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s14" style="font-size: 14px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s18" style="font-size: 18px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s24" style="font-size: 24px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s30" style="font-size: 30px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s36" style="font-size: 36px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s48" style="font-size: 48px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s60" style="font-size: 60px;">The quick brown fox jumps over the lazy dog.</p>
-            <p class="s72" style="font-size: 72px;">The quick brown fox jumps over the lazy dog.</p>
-        </div>
-    </div>
+
 </div>
 </body>
 </html>

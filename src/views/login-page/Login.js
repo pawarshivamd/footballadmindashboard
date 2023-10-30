@@ -142,7 +142,7 @@ const Login = () => {
                     </Typography>
 
                     <Box sx={{ mt: 3, textAlign: "center" }} component="div">
-                        <Button variant="contained" sx={{ fontWeight: "600" }} to="/stadium-tours" component={Link} >Sign in</Button>
+                        <Button variant="contained" sx={{ fontWeight: "600" }} to="/teams" component={Link} >Sign in</Button>
                     </Box>
                 </Box>
             </Card>
