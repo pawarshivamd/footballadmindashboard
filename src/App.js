@@ -4,7 +4,7 @@ import './App.css';
 import Login from './views/login-page/Login';
 import ForgotPassword from './views/login-page/ForgotPassword';
 import { createTheme, ThemeProvider, } from '@mui/material/styles';
-import { Box,} from '@mui/material';
+import { Box, } from '@mui/material';
 import Navbar from './views/navbar/Navbar';
 import ProfilePage from './views/profile/ProfilePage';
 import MaybeShowNav from './views/MaybeShowNav';
@@ -17,7 +17,7 @@ export const theme = createTheme({
       main: '#172945',
     },
     secondary: {
-      main: '#D8C65D', 
+      main: '#D8C65D',
     },
   },
   typography: {
@@ -28,24 +28,24 @@ export const theme = createTheme({
 });
 function App() {
   return (
-      <ThemeProvider theme={theme}>
-        <BrowserRouter>
-         <Box component="div" sx={{ display: "flex", background: "#eef2f6", width:"100%"  }}>
-        <MaybeShowNav>
-            <Navbar/>
-        </MaybeShowNav>
-        <Routes>
+    <ThemeProvider theme={theme}>
+      <BrowserRouter>
+        <Box component="div" sx={{ display: "flex", background: "#eef2f6", width: "100%" }}>
+          <MaybeShowNav>
+            <Navbar />
+          </MaybeShowNav>
+          <Routes>
             <Route path="/" element={<Login />} />
-            <Route path="/forgot-password" element={<ForgotPassword/>} />
-            <Route path="/teams" element={<Teams/>}/>
-            <Route path="/stadium-tours" element={<StadiumTours  />} />
-            <Route path="/teams-matches" element={<TeamsMatches/>} />
-            <Route path="/profile" element={<ProfilePage/>} />
-            <Route path="*" element={<Navigate to="/" />}/>
-        </Routes>
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/teams" element={<Teams />} />
+            <Route path="/stadium-tours" element={<StadiumTours />} />
+            <Route path="/teams-matches" element={<TeamsMatches />} />
+            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="*" element={<Navigate to="/" />} />
+          </Routes>
         </Box>
-        </BrowserRouter>
-      </ThemeProvider>
+      </BrowserRouter>
+    </ThemeProvider>
   );
 }
 

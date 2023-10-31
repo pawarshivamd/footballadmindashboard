@@ -11,6 +11,8 @@ import manchestercity from "../../imgs/teamslogo/manchestercity.png";
 import tottenhamhotspur from "../../imgs/teamslogo/tottenhamhotspur.png"
 import liverpool from '../../imgs/teamslogo/liverpool.png';
 import styled from 'styled-components';
+import HighlightOffOutlinedIcon from '@mui/icons-material/HighlightOffOutlined';
+
 const teamsvsapi = [
     {
         id: 0,
@@ -90,8 +92,7 @@ input[type="color" i]{
         Transform:none;
         fontSize:17px;
         fontWeight:600;
-        color:#000;
-
+        color:#172945;
     }
 
 `
@@ -117,7 +118,7 @@ const TeamsMatches = () => {
 
             <WhitecardBox >
                 <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", py: "10px" }}>
-                    <Typography variant='h5' sx={{ fontSize: "25px", fontWeight: "600" }}>Temas Matches</Typography>
+                    <Typography variant='h5' color="primary" sx={{ fontSize: "25px", fontWeight: "600" }}>Temas Matches</Typography>
                     <Button variant="contained" onClick={handleOpen} startIcon={<AddIcon />} ><span style={{ marginTop: "3px" }}>add</span></Button>
                 </Box>
                 <Divider />
@@ -134,14 +135,14 @@ const TeamsMatches = () => {
                                             <Grid container spacing={2} justifyContent="center">
                                                 <Grid item lg={4} sm={3} xs={3}>
                                                     <Box><img src={teamimg1} alt={teamimg1Alt} width="100%" height="70px" style={{ objectFit: "contain" }} /></Box>
-                                                    <Typography sx={{ textAlign: "center", fontWeight: "600" }}>{teamName1}</Typography>
+                                                    <Typography sx={{ textAlign: "center", fontWeight: "600" }} color="primary">{teamName1}</Typography>
                                                 </Grid>
                                                 <Grid item lg={4} sm={3} xs={3}>
                                                     <img src={vs} alt="vs" width="100%" height="70px" style={{ objectFit: "contain" }} />
                                                 </Grid>
                                                 <Grid item lg={4} sm={3} xs={3}>
                                                     <Box><img src={teamimg2} alt={teamimg2Alt} width="100%" height="70px" style={{ objectFit: "contain" }} /></Box>
-                                                    <Typography sx={{ textAlign: "center", fontWeight: "600" }}>{teamName2}</Typography>
+                                                    <Typography sx={{ textAlign: "center", fontWeight: "600" }} color="primary">{teamName2}</Typography>
                                                 </Grid>
                                             </Grid>
                                         </Grid>
@@ -153,12 +154,12 @@ const TeamsMatches = () => {
                                         }}>
                                             <Grid container spacing={2} alignItems="center">
                                                 <Grid item lg={6} sm={6} xs={12} >
-                                                    <Typography sx={{ fontWeight: 600, mb: 1 }}>League Name : <span>{leagueName}</span></Typography>
-                                                    <Typography sx={{ fontWeight: 600, mb: 1 }}>Date : <span>{date}</span></Typography>
+                                                    <Typography sx={{ fontWeight: 600, mb: 1 }} color="primary">League Name : <span>{leagueName}</span></Typography>
+                                                    <Typography sx={{ fontWeight: 600, mb: 1 }} color="primary">Date : <span>{date}</span></Typography>
                                                 </Grid>
-                                                <Grid item lg={6} sm={6} xs={12} sx={{ "@media(max-width:600px)": { pt:" 0 !important" } }} >
-                                                    <Typography sx={{ fontWeight: 600, mb: 1 }}>Time : <span>{time}</span></Typography>
-                                                    <Typography sx={{ fontWeight: 600, mb: 1 }}>Inquiry Number : <span>{inquiryNumber}</span></Typography>
+                                                <Grid item lg={6} sm={6} xs={12} sx={{ "@media(max-width:600px)": { pt: " 0 !important" } }} >
+                                                    <Typography sx={{ fontWeight: 600, mb: 1 }} color="primary">Time : <span>{time}</span></Typography>
+                                                    <Typography sx={{ fontWeight: 600, mb: 1 }} color="primary">Inquiry Number : <span>{inquiryNumber}</span></Typography>
                                                 </Grid>
                                             </Grid>
                                         </Grid>
@@ -194,7 +195,6 @@ const TeamsMatches = () => {
                 >
                     <Box sx={style}>
                         <Grid container spacing={2}>
-
                             <Grid item lg={6} xs={12}>
                                 <Autocomplete
                                     fullWidth

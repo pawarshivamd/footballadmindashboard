@@ -8,15 +8,13 @@ const MaybeShowNav = ({ children }) => {
   useEffect(() => {
     if (
       location.pathname === '/' ||
-      location.pathname === '/forgot-password' ||
-      location.pathname === '/otp' ||
-      location.pathname === '*'
+      location.pathname === '/forgot-password'
     ) {
       setShowNavbar(false);
     } else {
       setShowNavbar(true);
     }
-  }, [location.pathname]); 
+  }, [location.pathname]);
 
   return <div>{showNavbar && children}</div>;
 };

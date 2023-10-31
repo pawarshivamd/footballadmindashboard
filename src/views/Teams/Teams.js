@@ -12,6 +12,7 @@ import manchestercity from "../../imgs/teamslogo/manchestercity.png";
 import tottenhamhotspur from "../../imgs/teamslogo/tottenhamhotspur.png"
 import { useState } from 'react';
 import { Inputcustom } from '../Teams Matches/TeamsMatches';
+import HighlightOffOutlinedIcon from '@mui/icons-material/HighlightOffOutlined';
 const teamsapi = [
   {
     id: "0",
@@ -101,7 +102,7 @@ const Teams = () => {
     <Box component="main" sx={{ flexGrow: 1, my: 10, background: "transparent", height: "100%", }}>
       <WhitecardBox >
         <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", py: "10px" }}>
-          <Typography variant='h5' sx={{ fontSize: "25px", fontWeight: "600" }}>Teams</Typography>
+          <Typography variant='h5' sx={{ fontSize: "25px", fontWeight: "600", }} color="primary">Teams</Typography>
           <Button variant="contained" onClick={handleOpen} startIcon={<AddIcon />} ><span style={{ marginTop: "3px" }}>add</span></Button>
         </Box>
         <Divider />
@@ -117,11 +118,11 @@ const Teams = () => {
                         <img src={teamimg} alt={teamimgalt} width="100%" height="80px" style={{ objectFit: "contain" }} />
                       </Box>
                       <Box sx={{ mt: 1, textAlign: "center" }}>
-                        <Typography sx={{ fontSize: "22px", fontWeight: "600" }} >{temaName}</Typography>
+                        <Typography color="primary" sx={{ fontSize: "22px", fontWeight: "600" }} >{temaName}</Typography>
                       </Box>
                       <Box sx={{ mb: 1, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                        <Box sx={{ textAlign: "center" }}> <Typography sx={{ fontSize: "17px", fontWeight: "500" }} >{primary}</Typography><Typography sx={{ width: "70px", height: "25px", backgroundColor: primarycolor }}></Typography> </Box>
-                        <Box sx={{ ml: 2 }}> <Typography sx={{ fontSize: "17px", fontWeight: "500" }}>{secondary}</Typography><Typography sx={{ width: "70px", height: "25px", backgroundColor: secondarycolor }}></Typography> </Box>
+                        <Box sx={{ textAlign: "center" }}> <Typography sx={{ fontSize: "17px", fontWeight: "500" }} color="primary">{primary}</Typography><Typography sx={{ width: "70px", height: "25px", backgroundColor: primarycolor }}></Typography> </Box>
+                        <Box sx={{ ml: 2 }}> <Typography sx={{ fontSize: "17px", fontWeight: "500" }} color="primary">{secondary}</Typography><Typography sx={{ width: "70px", height: "25px", backgroundColor: secondarycolor }}></Typography> </Box>
                       </Box>
                       <Box sx={{ display: "flex", justifyContent: "space-evenly" }}>
                         <Box sx={{ my: 1 }}>
@@ -147,6 +148,10 @@ const Teams = () => {
         >
           <Box sx={style}>
             <Grid container spacing={2}>
+              <Grid item lg={12} xs={12}>
+                <Box sx={{ position: "relative", marginBottom: "10px" }} ><HighlightOffOutlinedIcon sx={{ position: "absolute", right: "0px", bottom: "-47px", top: "27px" }} /></Box>
+
+              </Grid>
               <Grid item lg={12} xs={12}>
                 <IconButton
                   color="primary"
@@ -178,15 +183,15 @@ const Teams = () => {
               </Grid>
               <Grid item lg={4} md={4} sm={4} xs={6}>
                 <FormControl fullWidth>
-                  <Inputcustom InputLabelProps={{ shrink: true }} type="color" id="Primary-color" label='Primary :' variant="filled"  />
+                  <Inputcustom InputLabelProps={{ shrink: true }} type="color" id="Primary-color" label='Primary :' variant="filled" />
                 </FormControl>
-               
+
               </Grid>
               <Grid item lg={4} md={4} sm={4} xs={6} xlOffset={4}>
                 <FormControl fullWidth>
                   <Inputcustom InputLabelProps={{ shrink: true }} type="color" id="secondry-color" label='Secondry :' variant="filled" />
                 </FormControl>
-                
+
               </Grid>
               <Grid item lg={12} xs={12}>
                 <Box sx={{ display: "flex", alignItems: "center", my: 2, justifyContent: "end" }} >

@@ -21,6 +21,7 @@ import PSG from '../../imgs/stadium/PSG.png'
 import BayernMunich from '../../imgs/stadium/BayernMunich.png'
 import BorussiaDortmund from '../../imgs/stadium/BorussiaDortmund.png'
 import { Inputcustom } from '../Teams Matches/TeamsMatches';
+import HighlightOffOutlinedIcon from '@mui/icons-material/HighlightOffOutlined';
 
 const stadiumtoursdata = [
   {
@@ -189,7 +190,7 @@ const StadiumTours = () => {
 
       <WhitecardBox >
         <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", py: "10px" }}>
-          <Typography variant='h5' sx={{ fontSize: "25px", fontWeight: "600" }}>Stadium Tours</Typography>
+          <Typography variant='h5' color="primary" sx={{ fontSize: "25px", fontWeight: "600" }}>Stadium Tours</Typography>
           <Button variant="contained" onClick={handleOpen} startIcon={<AddIcon />} ><span style={{ marginTop: "3px" }}>add</span></Button>
         </Box>
         <Divider />
@@ -209,11 +210,11 @@ const StadiumTours = () => {
                       <Grid container spacing={2}>
                         <Grid item lg={10} sm={10} xs={12} >
                           <Box sx={{ my: 2 }}>
-                            <Typography sx={{ fontSize: "22px", fontWeight: "600" }} >{Place}</Typography>
-                            <Typography sx={{ fontSize: "16px", fontWeight: "500" }} >{TeamName}</Typography>
+                            <Typography color="primary" sx={{ fontSize: "22px", fontWeight: "600" }} >{Place}</Typography>
+                            <Typography color="primary" sx={{ fontSize: "16px", fontWeight: "500" }} >{TeamName}</Typography>
                           </Box>
                           <Box>
-                            <Typography sx={{ fontSize: "17px", fontWeight: "500" }}>Inquiry Number : {INumber}</Typography>
+                            <Typography color="primary" sx={{ fontSize: "17px", fontWeight: "500" }}>Inquiry Number : {INumber}</Typography>
                           </Box>
                         </Grid>
                         <Grid item lg={2} sm={2} xs={12}>
@@ -251,6 +252,10 @@ const StadiumTours = () => {
           <Box sx={style}>
 
             <Grid container spacing={2}>
+              <Grid item lg={12} xs={12}>
+                <Box sx={{ position: "relative", marginBottom: "10px" }} ><HighlightOffOutlinedIcon sx={{ position: "absolute", right: "0px", bottom: "-47px", top: "27px" }} /></Box>
+
+              </Grid>
               <Grid item lg={12} xs={12}>
                 <IconButton
                   color="primary"

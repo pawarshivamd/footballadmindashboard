@@ -7,7 +7,7 @@ import MuiAppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
 import CssBaseline from "@mui/material/CssBaseline";
-import Typography from "@mui/material/Typography";
+import logo from "../../imgs/logo/logo.svg"
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -27,11 +27,11 @@ import {
   DialogActions,
   DialogContent,
   DialogContentText,
-  DialogTitle,
   Hidden,
   Menu,
   MenuItem,
   Tooltip,
+  Typography,
   useMediaQuery,
 } from "@mui/material";
 import {
@@ -62,7 +62,7 @@ const closedMixin = (theme) => ({
   },
   [theme.breakpoints.down(smallScreenBreakpoint)]: {
     width: 0, // Set the width to 0 on small screens
-    
+
   },
 });
 
@@ -152,7 +152,7 @@ const Navbar = () => {
   const handleClicklist = () => {
     setOpenlist((prevOpenlist) => !prevOpenlist);
   };
-  
+
   // const [routes] = useState(SideMenuList);
   return (
 
@@ -175,8 +175,11 @@ const Navbar = () => {
             }}
           >
             <Typography variant="h6" noWrap component="div">
-              Football 
+              Football Agency
             </Typography>
+            {/* <Box >
+                <img src={logo} alt=""  />
+            </Box> */}
             <Hidden mdUp>
               <IconButton
                 color="inherit"
@@ -286,7 +289,7 @@ const Navbar = () => {
         </DrawerHeader>
 
         <List>
-        <ListItem
+          <ListItem
             disablePadding
             sx={{ display: "block", border: "none", background: location.pathname === "/teams" ? "#d8e9ff" : "transparent", }}
             onClick={() => {
@@ -306,7 +309,7 @@ const Navbar = () => {
               <ListItemIcon sx={{ minWidth: 0, mr: open ? 3 : "auto", justifyContent: "center", }}>
                 <GroupOutlinedIcon color='primary' />
               </ListItemIcon>
-              <ListItemText primary="Teams" sx={{ opacity: open ? 1 : 0, '& span ':{fontWeight:600} }} />
+              <ListItemText primary="Teams" sx={{ opacity: open ? 1 : 0, '& span ': { fontWeight: 600 } }} />
             </ListItemButton>
           </ListItem>
           <ListItem
@@ -329,7 +332,7 @@ const Navbar = () => {
               <ListItemIcon sx={{ minWidth: 0, mr: open ? 3 : "auto", justifyContent: "center", }}>
                 <JoinInnerOutlinedIcon color='primary' />
               </ListItemIcon>
-              <ListItemText primary="Stadium Tours" sx={{ opacity: open ? 1 : 0, '& span ':{fontWeight:600} }} />
+              <ListItemText primary="Stadium Tours" sx={{ opacity: open ? 1 : 0, '& span ': { fontWeight: 600 } }} />
             </ListItemButton>
           </ListItem>
           <ListItem
@@ -350,9 +353,9 @@ const Navbar = () => {
               }}
             >
               <ListItemIcon sx={{ minWidth: 0, mr: open ? 3 : "auto", justifyContent: "center", }}>
-                <Groups3OutlinedIcon  color='primary' />
+                <Groups3OutlinedIcon color='primary' />
               </ListItemIcon>
-              <ListItemText primary="Teams Matches" sx={{ opacity: open ? 1 : 0, '& span ':{fontWeight:600} }} />
+              <ListItemText primary="Teams Matches" sx={{ opacity: open ? 1 : 0, '& span ': { fontWeight: 600 } }} />
             </ListItemButton>
           </ListItem>
         </List>
@@ -363,25 +366,26 @@ const Navbar = () => {
         onClose={handleCloseDialogbox}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
+
       >
-        <DialogTitle id="alert-dialog-title">{""}</DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            Are you sure want to logout?
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleCloseDialogbox} variant="outlined" >No</Button>
-          <Button
-            onClick={() => {
-              navigate("/");
-            }}
-            variant='contained'
-            
-          >
-            Yes
-          </Button>
-        </DialogActions>
+        <Box sx={{ p: 2 }}>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description" sx={{ fontSize: "1.2rem" }} color="primary">
+              Are you sure want to logout?
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions >
+            <Button onClick={handleCloseDialogbox} variant="outlined" >No</Button>
+            <Button
+              onClick={() => {
+                navigate("/");
+              }}
+              variant='contained'
+            >
+              Yes
+            </Button>
+          </DialogActions>
+        </Box>
       </Dialog>
     </Box>
 
