@@ -127,7 +127,7 @@ const ProfilePage = () => {
               </FormControl>
             </Grid>
             <Grid item lg={12} md={12} sm={12} xs={12}>
-              <Typography sx={{ mt: 3, width: "150px", marginLeft: "auto" }} >
+              <Typography sx={{ mt: 3, width: "80px", marginLeft: "auto" }} >
                 <Button variant="contained" fullWidth to="/user-details" >Save</Button>
               </Typography>
             </Grid>

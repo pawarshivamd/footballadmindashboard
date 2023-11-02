@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { WhitecardBox } from '../Stadium Tours/StadiumTours'
-import { Autocomplete, Box, Button, Divider, FormControl, Grid, IconButton, Modal, TextField, Typography } from '@mui/material'
+import { Autocomplete, Box, Button, Divider, FormControl, Grid, Modal, TextField, Typography } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add';
 import ArsenalFC from "../../imgs/teamslogo/Arsenal.png";
 import chelsea from "../../imgs/teamslogo/chelsea.png"
@@ -11,7 +11,6 @@ import manchestercity from "../../imgs/teamslogo/manchestercity.png";
 import tottenhamhotspur from "../../imgs/teamslogo/tottenhamhotspur.png"
 import liverpool from '../../imgs/teamslogo/liverpool.png';
 import styled from 'styled-components';
-import HighlightOffOutlinedIcon from '@mui/icons-material/HighlightOffOutlined';
 
 const teamsvsapi = [
     {
@@ -229,7 +228,7 @@ const TeamsMatches = () => {
                             <Grid item lg={6} xs={12}>
                                 <FormControl fullWidth >
 
-                                    <Inputcustom InputLabelProps={{ shrink: true }} type="date" id="date" label='Date :' variant="filled" placeholder='Enter Date' />
+                                    <Inputcustom InputLabelProps={{ shrink: true }} type="date" id="date" label='Date :' variant="filled"  />
                                 </FormControl>
                             </Grid>
                             <Grid item lg={6} xs={12}>

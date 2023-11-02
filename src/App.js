@@ -30,7 +30,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
-        <Box component="div" sx={{ display: "flex", background: "#eef2f6", width: "100%" }}>
+        <Box component="div" sx={{ display: "flex", background: "#eef2f6", width: "100%" , minHeight:"100vh"}}>
           <MaybeShowNav>
             <Navbar />
           </MaybeShowNav>

@@ -154,7 +154,7 @@ export const WhitecardBox = styled(Box)(() => ({
   borderRadius: '20px',
   marginInline: '32px',
   marginBottom: '16px',
-
+  
   '@media (max-width: 768px)': {
     marginInline: '16px',
   },
@@ -176,11 +176,14 @@ const StadiumTours = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [image, setImage] = useState(null);
+  const [isImageSelected, setImageSelected] = useState(false);
+
   const changeImage = (e) => {
     const file = e.target.files[0];
     if (file) {
       const imageURL = URL.createObjectURL(file);
       setImage(imageURL);
+      setImageSelected(true);
     }
   };
 
@@ -252,10 +255,7 @@ const StadiumTours = () => {
           <Box sx={style}>
 
             <Grid container spacing={2}>
-              <Grid item lg={12} xs={12}>
-                <Box sx={{ position: "relative", marginBottom: "10px" }} ><HighlightOffOutlinedIcon sx={{ position: "absolute", right: "0px", bottom: "-47px", top: "27px" }} /></Box>
 
-              </Grid>
               <Grid item lg={12} xs={12}>
                 <IconButton
                   color="primary"
@@ -266,18 +266,28 @@ const StadiumTours = () => {
                   <input hidden accept="image/*" type="file"
                     onChange={changeImage}
                   />
-
-                  {image ? (
-                    <img src={image} alt="Selected Image" style={{ height: "auto", width: 120 }} />
-                  ) : (
-                    <img
-                      src={
-                        'https://assets.upload.io/website/blog_assets/icons/material/icons/add_photo_alternate_outlined.svg'
-                      }
-                      alt=""
-                      style={{ height: 200, width: 200 }}
-                    />
-                  )}
+{image ? (
+    <>
+      {isImageSelected && (
+        <HighlightOffOutlinedIcon
+          sx={{ position: "absolute", right: "0px" , top: "0px" }}
+          onClick={() => {
+            setImage(null);
+            setImageSelected(false);
+          }}
+        />
+      )}
+      <img src={image} alt="Selected Image" style={{ height: "auto", width: 120 }} />
+    </>
+  ) : (
+    <img
+      src={
+        'https://assets.upload.io/website/blog_assets/icons/material/icons/add_photo_alternate_outlined.svg'
+      }
+      alt=""
+      style={{ height: 200, width: 200 }}
+    />
+  )}
                 </IconButton>
               </Grid>
               <Grid item lg={12} xs={12}>
