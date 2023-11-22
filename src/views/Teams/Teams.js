@@ -16,6 +16,12 @@ const Teams = () => {
 
   const [modalOpen, setModalOpen] = useState(false)
   const [deleteModal, setDeleteModal] = useState(false)
+  const [activeTeam, setactiveTeam] = useState({
+    name: "",
+    primary_color: "",
+    secondary_color: "",
+    team_logo: "",
+  })
 
   useEffect(() => {
     dispatch(fetchTeams())
@@ -67,6 +73,8 @@ const Teams = () => {
                   <TeamCard
                     team={team}
                     openDeletemodal={() => setDeleteModal(true)}
+                    handleOpenTeamModal={() => setModalOpen(true)}
+                    setactiveTeam={setactiveTeam}
                   />
                 )
               })}
@@ -74,7 +82,11 @@ const Teams = () => {
           </Box>
         </Box>
         <CommonModal open={modalOpen} handleClose={() => setModalOpen(false)}>
-          <TeamForm handleClose={() => setModalOpen(false)} />
+          <TeamForm
+            handleClose={() => setModalOpen(false)}
+            activeTeam={activeTeam}
+            setactiveTeam={setactiveTeam}
+          />
         </CommonModal>
         <DeleteConfirmationPopup
           open={deleteModal}
