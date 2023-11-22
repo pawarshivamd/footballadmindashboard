@@ -2,9 +2,9 @@ import { Box, Button, FormControl, Grid, IconButton } from "@mui/material"
 import { Inputcustom } from "../Teams Matches/TeamsMatches"
 import HighlightOffOutlinedIcon from "@mui/icons-material/HighlightOffOutlined"
 import { useEffect, useState } from "react"
-
 import { Formik, Form, Field, ErrorMessage } from "formik"
 import * as Yup from "yup"
+import uplodimg from "../../imgs/stadium/uplodimg.jpg"
 
 const style = {
   width: "min(100% - 0px , 400px)",
@@ -103,9 +103,7 @@ const StadiumForm = ({ activeStadium, handleClose, setactiveStadium }) => {
                     </>
                   ) : (
                     <img
-                      src={
-                        "https://assets.upload.io/website/blog_assets/icons/material/icons/add_photo_alternate_outlined.svg"
-                      }
+                      src={uplodimg}
                       alt=""
                       style={{ height: 200, width: 200 }}
                     />
