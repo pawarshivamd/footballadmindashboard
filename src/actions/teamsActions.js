@@ -10,7 +10,6 @@ export const fetchTeams = () => {
   return async (dispatch) => {
     dispatch({ type: TEAMS_CALL_BEGIN })
     try {
-      // Adjust the URL to your specific endpoint for fetching teams
       const { data } = await api.post("/adminGetTeams")
       const { message, status, teams } = data
       if (status) {
