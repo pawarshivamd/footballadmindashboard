@@ -4,6 +4,7 @@ import "./App.css"
 import { createTheme, ThemeProvider } from "@mui/material/styles"
 import { Box } from "@mui/material"
 import MaybeShowNav from "./views/MaybeShowNav"
+import Loader from "./views/common/loader/Loader"
 
 // Lazy imports
 const Login = lazy(() => import("./views/login-page/Login"))
@@ -42,7 +43,7 @@ function App() {
           }}
         >
           <MaybeShowNav>
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense fallback={<Loader />}>
               <Navbar />
             </Suspense>
           </MaybeShowNav>
