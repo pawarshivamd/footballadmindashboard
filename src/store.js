@@ -3,12 +3,14 @@ import thunk from "redux-thunk"
 
 import { composeWithDevTools } from "redux-devtools-extension"
 import apiReducer from "./reducers/apiReducer"
+import teamsReducer from "./reducers/teamsReducer"
 
 const initialState = {}
 const middlewares = [thunk]
 
 const rootReducer = combineReducers({
   api: apiReducer,
+  teams: teamsReducer,
   // other reducers...
 })
 

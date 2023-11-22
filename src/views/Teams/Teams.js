@@ -25,6 +25,8 @@ import { Inputcustom } from "../Teams Matches/TeamsMatches"
 import HighlightOffOutlinedIcon from "@mui/icons-material/HighlightOffOutlined"
 import { useDispatch, useSelector } from "react-redux"
 import { fetchData } from "../../actions/apiActions"
+import DeleteConfirmationPopup from "../common/Alert"
+import { fetchTeams } from "../../actions/teamsActions"
 const teamsapi = [
   {
     id: "0",
@@ -115,14 +117,13 @@ const Teams = () => {
   }
 
   const dispatch = useDispatch()
-  const { data, loading, error } = useSelector((state) => state.api)
+  const { teamsData, loading } = useSelector((state) => state.teams)
 
   useEffect(() => {
-    dispatch(fetchData())
+    dispatch(fetchTeams())
   }, [dispatch])
 
   if (loading) return <p>Loading...</p>
-  if (error) return <p>Error: {error}</p>
 
   return (
     <Box
@@ -163,18 +164,11 @@ const Teams = () => {
               alignItems="center"
               justifyContent="center"
             >
-              {teamsapi.map((curEle, index) => {
-                const {
-                  teamimg,
-                  teamimgalt,
-                  temaName,
-                  primary,
-                  secondary,
-                  primarycolor,
-                  secondarycolor,
-                } = curEle
+              {teamsData.map((curEle, index) => {
+                const { id, name, primary_color, secondary_color, team_logo } =
+                  curEle
                 return (
-                  <Grid item lg={4} sm={6} xs={12} key={index}>
+                  <Grid item lg={4} sm={6} xs={12} key={id}>
                     <Card
                       sx={{
                         my: 2,
@@ -184,8 +178,8 @@ const Teams = () => {
                     >
                       <Box sx={{ display: "flex", justifyContent: "center" }}>
                         <img
-                          src={teamimg}
-                          alt={teamimgalt}
+                          src={`https://football.jennypoint.com/api/resources/images/${team_logo}`}
+                          alt={name}
                           width="100%"
                           height="80px"
                           style={{ objectFit: "contain" }}
@@ -196,7 +190,7 @@ const Teams = () => {
                           color="primary"
                           sx={{ fontSize: "22px", fontWeight: "600" }}
                         >
-                          {temaName}
+                          {name}
                         </Typography>
                       </Box>
                       <Box
@@ -213,13 +207,13 @@ const Teams = () => {
                             sx={{ fontSize: "17px", fontWeight: "500" }}
                             color="primary"
                           >
-                            {primary}
+                            Primary
                           </Typography>
                           <Typography
                             sx={{
                               width: "70px",
                               height: "25px",
-                              backgroundColor: primarycolor,
+                              backgroundColor: primary_color,
                             }}
                           ></Typography>{" "}
                         </Box>
@@ -229,13 +223,13 @@ const Teams = () => {
                             sx={{ fontSize: "17px", fontWeight: "500" }}
                             color="primary"
                           >
-                            {secondary}
+                            Secondary
                           </Typography>
                           <Typography
                             sx={{
                               width: "70px",
                               height: "25px",
-                              backgroundColor: secondarycolor,
+                              backgroundColor: secondary_color,
                             }}
                           ></Typography>{" "}
                         </Box>
@@ -250,7 +244,7 @@ const Teams = () => {
                           </Button>
                         </Box>
                         <Box sx={{ my: 1 }}>
-                          <Button variant="outlined">
+                          <Button variant="contained" color="error">
                             <DeleteOutlineOutlinedIcon />
                           </Button>
                         </Box>
@@ -259,6 +253,7 @@ const Teams = () => {
                   </Grid>
                 )
               })}
+              <DeleteConfirmationPopup />
             </Grid>
           </Box>
         </Box>
