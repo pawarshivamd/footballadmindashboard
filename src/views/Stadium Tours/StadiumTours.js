@@ -22,6 +22,7 @@ import BayernMunich from '../../imgs/stadium/BayernMunich.png'
 import BorussiaDortmund from '../../imgs/stadium/BorussiaDortmund.png'
 import { Inputcustom } from '../Teams Matches/TeamsMatches';
 import HighlightOffOutlinedIcon from '@mui/icons-material/HighlightOffOutlined';
+import uplodimg from "../../imgs/stadium/uplodimg.jpg";
 
 const stadiumtoursdata = [
   {
@@ -281,9 +282,7 @@ const StadiumTours = () => {
     </>
   ) : (
     <img
-      src={
-        'https://assets.upload.io/website/blog_assets/icons/material/icons/add_photo_alternate_outlined.svg'
-      }
+      src={uplodimg}
       alt=""
       style={{ height: 200, width: 200 }}
     />
@@ -313,13 +312,13 @@ const StadiumTours = () => {
               </Grid>
             </Grid>
 
-          </Box>
+          </Box> 
         </Modal>
 
       </WhitecardBox>
 
 
-    </Box>
+     </Box>
 
   )
 }
