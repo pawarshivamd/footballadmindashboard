@@ -56,7 +56,12 @@ const ProfilePage = () => {
   return (
     <Box
       component="main"
-      sx={{ flexGrow: 1, my: 10, background: "transparent", height: "100%" }}
+      sx={{
+        flexGrow: 1,
+        my: 10,
+        background: "transparent",
+        height: "100%",
+      }}
     >
       <WhitecardBox>
         <Formik
@@ -68,7 +73,6 @@ const ProfilePage = () => {
           }}
           validationSchema={validationSchema}
           onSubmit={(values, { setSubmitting }) => {
-            console.log(values)
             const { password } = values
             if (!password) {
               delete values.password
@@ -78,7 +82,7 @@ const ProfilePage = () => {
             dispatch(updateUser(values))
           }}
         >
-          {({ errors, touched }) => (
+          {({ errors, touched, dirty }) => (
             <Form>
               <Grid container spacing={2}>
                 {/* Name Field */}
@@ -224,11 +228,15 @@ const ProfilePage = () => {
                     )}
                   </FormControl>
                 </Grid>
-
                 {/* Submit Button */}
                 <Grid item lg={12} md={12} sm={12} xs={12}>
                   <Typography sx={{ mt: 3, width: "80px", marginLeft: "auto" }}>
-                    <Button variant="contained" fullWidth type="submit">
+                    <Button
+                      variant="contained"
+                      fullWidth
+                      type="submit"
+                      disabled={!dirty}
+                    >
                       Save
                     </Button>
                   </Typography>

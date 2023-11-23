@@ -7,7 +7,6 @@ import MuiAppBar from "@mui/material/AppBar"
 import Toolbar from "@mui/material/Toolbar"
 import List from "@mui/material/List"
 import CssBaseline from "@mui/material/CssBaseline"
-import logo from "../../imgs/logo/logo.svg"
 import Divider from "@mui/material/Divider"
 import IconButton from "@mui/material/IconButton"
 import MenuIcon from "@mui/icons-material/Menu"
@@ -20,6 +19,7 @@ import ListItemText from "@mui/material/ListItemText"
 import Groups3OutlinedIcon from "@mui/icons-material/Groups3Outlined"
 import GroupOutlinedIcon from "@mui/icons-material/GroupOutlined"
 import JoinInnerOutlinedIcon from "@mui/icons-material/JoinInnerOutlined"
+import DynamicFeedIcon from "@mui/icons-material/DynamicFeed"
 import {
   Avatar,
   Button,
@@ -36,9 +36,8 @@ import {
 } from "@mui/material"
 import { Logout } from "@mui/icons-material"
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined"
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import { fetchUserProfile } from "../../actions/userActions"
-import Loader from "../common/loader/Loader"
 const smallScreenBreakpoint = 991
 const drawerWidth = 250
 
@@ -116,8 +115,6 @@ const Navbar = () => {
   const location = useLocation()
   const dispatch = useDispatch()
 
-  const { loading } = useSelector((state) => state.user)
-
   const [openlist, setOpenlist] = useState(true)
   const [openDialogbox, setOpenDialogbox] = useState(false)
   const [anchorEl, setAnchorEl] = useState(null)
@@ -161,8 +158,6 @@ const Navbar = () => {
     setOpenlist((prevOpenlist) => !prevOpenlist)
   }
 
-  // const [routes] = useState(SideMenuList);
-  if (loading) return <Loader />
   return (
     <Box>
       <CssBaseline />
@@ -403,6 +398,43 @@ const Navbar = () => {
               </ListItemIcon>
               <ListItemText
                 primary="Teams Matches"
+                sx={{ opacity: open ? 1 : 0, "& span ": { fontWeight: 600 } }}
+              />
+            </ListItemButton>
+          </ListItem>
+          <ListItem
+            disablePadding
+            sx={{
+              display: "block",
+              border: "none",
+              background:
+                location.pathname === "/dynamics" ? "#d8e9ff" : "transparent",
+            }}
+            onClick={() => {
+              navigate("/dynamics")
+              if (isScreenSmall) {
+                handleDrawerClose()
+              }
+            }}
+          >
+            <ListItemButton
+              sx={{
+                minHeight: 48,
+                justifyContent: open ? "initial" : "center",
+                px: 2.5,
+              }}
+            >
+              <ListItemIcon
+                sx={{
+                  minWidth: 0,
+                  mr: open ? 3 : "auto",
+                  justifyContent: "center",
+                }}
+              >
+                <DynamicFeedIcon color="primary" />
+              </ListItemIcon>
+              <ListItemText
+                primary="Dynamics"
                 sx={{ opacity: open ? 1 : 0, "& span ": { fontWeight: 600 } }}
               />
             </ListItemButton>

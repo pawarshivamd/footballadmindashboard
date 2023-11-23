@@ -5,6 +5,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles"
 import { Box } from "@mui/material"
 import MaybeShowNav from "./views/MaybeShowNav"
 import Loader from "./views/common/loader/Loader"
+import Dynamics from "./views/dynamics/Dynamics"
 
 // Lazy imports
 const Login = lazy(() => import("./views/login-page/Login"))
@@ -55,6 +56,7 @@ function App() {
               <Route path="/stadium-tours" element={<StadiumTours />} />
               <Route path="/teams-matches" element={<TeamsMatches />} />
               <Route path="/profile" element={<ProfilePage />} />
+              <Route path="/dynamics" element={<Dynamics />} />
               <Route path="*" element={<Navigate to="/" />} />
             </Routes>
           </Suspense>

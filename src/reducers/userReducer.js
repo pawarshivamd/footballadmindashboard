@@ -11,9 +11,18 @@ export const USER_UPDATE_BEGIN = "USER_UPDATE_BEGIN"
 export const USER_UPDATE_SUCCESS = "USER_UPDATE_SUCCESS"
 export const USER_UPDATE_FAILURE = "USER_UPDATE_FAILURE"
 
+export const GET_DYNAMICS_BEGIN = "GET_DYNAMICS_BEGIN"
+export const GET_DYNAMICS_SUCCESS = "GET_DYNAMICS_SUCCESS"
+export const GET_DYNAMICS_FAILURE = "GET_DYNAMICS_FAILURE"
+
+export const SET_DYNAMICS_BEGIN = "SET_DYNAMICS_BEGIN"
+export const SET_DYNAMICS_SUCCESS = "SET_DYNAMICS_SUCCESS"
+export const SET_DYNAMICS_FAILURE = "SET_DYNAMICS_FAILURE"
+
 const initialState = {
   userData: null,
   isAuthenticated: false,
+  dynamics: {},
   loading: false,
   error: null,
 }
@@ -49,6 +58,30 @@ const userReducer = (state = initialState, action) => {
     case USER_UPDATE_SUCCESS:
       return { ...state, loading: false, error: null }
     case USER_UPDATE_FAILURE:
+      return { ...state, loading: false, error: action.payload }
+    case GET_DYNAMICS_BEGIN:
+      return { ...state, loading: true, error: null }
+    case GET_DYNAMICS_SUCCESS:
+      // Assuming dynamics is part of userData
+      return {
+        ...state,
+        loading: false,
+        dynamics: action.payload,
+        error: null,
+      }
+    case GET_DYNAMICS_FAILURE:
+      return { ...state, loading: false, error: action.payload }
+
+    case SET_DYNAMICS_BEGIN:
+      return { ...state, loading: true, error: null }
+    case SET_DYNAMICS_SUCCESS:
+      // Assuming dynamics is part of userData
+      return {
+        ...state,
+        loading: false,
+        error: null,
+      }
+    case SET_DYNAMICS_FAILURE:
       return { ...state, loading: false, error: action.payload }
     default:
       return state
