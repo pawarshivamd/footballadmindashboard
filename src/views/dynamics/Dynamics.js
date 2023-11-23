@@ -10,6 +10,7 @@ import {
   InputAdornment,
   Button,
   FormHelperText,
+  Typography,
 } from "@mui/material"
 import EmailIcon from "@mui/icons-material/Email"
 import InstagramIcon from "@mui/icons-material/Instagram"
@@ -52,6 +53,13 @@ const Dynamics = () => {
       }}
     >
       <WhitecardBox>
+        <Typography
+          variant="h5"
+          color="primary"
+          sx={{ fontSize: "25px", fontWeight: "600", my: 1 }}
+        >
+          Dynamics
+        </Typography>
         <Formik
           initialValues={{
             ...dynamics,
