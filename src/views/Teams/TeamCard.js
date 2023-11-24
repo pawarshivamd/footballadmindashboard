@@ -89,7 +89,14 @@ const TeamCard = ({
             </Button>
           </Box>
           <Box sx={{ my: 1 }}>
-            <Button variant="contained" color="error" onClick={openDeletemodal}>
+            <Button
+              variant="contained"
+              color="error"
+              onClick={() => {
+                setactiveTeam(team)
+                openDeletemodal()
+              }}
+            >
               <DeleteOutlineOutlinedIcon />
             </Button>
           </Box>

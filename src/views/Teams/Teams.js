@@ -4,7 +4,7 @@ import { WhitecardBox } from "../Stadium Tours/StadiumTours"
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import DeleteConfirmationPopup from "../common/modal/Alert"
-import { fetchTeams } from "../../actions/teamsActions"
+import { deleteTeam, fetchTeams } from "../../actions/teamsActions"
 import Loader from "../common/loader/Loader"
 import CommonModal from "../common/modal/CommonModal"
 import TeamCard from "./TeamCard"
@@ -22,6 +22,19 @@ const Teams = () => {
     secondary_color: "",
     team_logo: "",
   })
+
+  const handleDelete = () => {
+    if (activeTeam?.id) {
+      dispatch(deleteTeam(activeTeam?.id))
+      setDeleteModal(false)
+      setactiveTeam({
+        name: "",
+        primary_color: "",
+        secondary_color: "",
+        team_logo: "",
+      })
+    }
+  }
 
   useEffect(() => {
     dispatch(fetchTeams())
@@ -83,7 +96,15 @@ const Teams = () => {
         </Box>
         <CommonModal open={modalOpen} handleClose={() => setModalOpen(false)}>
           <TeamForm
-            handleClose={() => setModalOpen(false)}
+            handleClose={() => {
+              setModalOpen(false)
+              setactiveTeam({
+                name: "",
+                primary_color: "",
+                secondary_color: "",
+                team_logo: "",
+              })
+            }}
             activeTeam={activeTeam}
             setactiveTeam={setactiveTeam}
           />
@@ -91,6 +112,7 @@ const Teams = () => {
         <DeleteConfirmationPopup
           open={deleteModal}
           onClose={() => setDeleteModal(false)}
+          onConfirm={handleDelete}
         />
       </WhitecardBox>
     </Box>

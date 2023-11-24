@@ -5,6 +5,8 @@ import { useEffect, useState } from "react"
 
 import { Formik, Form, Field } from "formik"
 import * as Yup from "yup"
+import { useDispatch } from "react-redux"
+import { createTeam, deleteTeam, updateTeam } from "../../actions/teamsActions"
 
 const style = {
   width: "min(100% - 0px , 400px)",
@@ -22,13 +24,19 @@ const validationSchema = Yup.object().shape({
 })
 
 const TeamForm = ({ handleClose, activeTeam, setactiveTeam }) => {
+  const dispatch = useDispatch()
+
   const [image, setImage] = useState(null)
   const [isImageSelected, setImageSelected] = useState(false)
+
   const changeImage = (e) => {
     const file = e.target.files[0]
     if (file) {
       const imageURL = URL.createObjectURL(file)
       setImage(imageURL)
+      setactiveTeam((oldState) => {
+        return { ...oldState, image: file }
+      })
       setImageSelected(true)
     }
   }
@@ -52,9 +60,22 @@ const TeamForm = ({ handleClose, activeTeam, setactiveTeam }) => {
           primary_color: `#${activeTeam?.primary_color}`,
           secondary_color: `#${activeTeam?.secondary_color}`,
         }}
+        enableReinitialize
         validationSchema={validationSchema}
         onSubmit={(values, { setSubmitting }) => {
-          console.log(values)
+          values.primary_color = values.primary_color.split("#")[1]
+          values.secondary_color = values.secondary_color.split("#")[1]
+          const formData = new FormData()
+          // Append all form values to formData
+          for (const key in values) {
+            if (values.hasOwnProperty(key)) {
+              formData.append(key, values[key])
+            }
+          }
+          activeTeam?.id
+            ? dispatch(updateTeam(formData))
+            : dispatch(createTeam(formData))
+          handleClose()
           setSubmitting(false)
         }}
       >
