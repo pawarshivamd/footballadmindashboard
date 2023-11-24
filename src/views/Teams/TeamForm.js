@@ -1,4 +1,11 @@
-import { Box, Button, FormControl, Grid, IconButton } from "@mui/material"
+import {
+  Box,
+  Button,
+  FormControl,
+  FormHelperText,
+  Grid,
+  IconButton,
+} from "@mui/material"
 import { Inputcustom } from "../Teams Matches/TeamsMatches"
 import HighlightOffOutlinedIcon from "@mui/icons-material/HighlightOffOutlined"
 import { useEffect, useState } from "react"
@@ -19,8 +26,13 @@ const style = {
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required("Team Name is required"),
-  primary_color: Yup.string().required("Primary color is required"),
-  secondary_color: Yup.string().required("Secondary color is required"),
+  primary_color: Yup.string()
+    .matches(/^#([A-Fa-f0-9]{6})$/, "Must be valid hex color")
+    .required("Primary color is required"),
+  secondary_color: Yup.string()
+    .matches(/^#([A-Fa-f0-9]{6})$/, "Must be valid hex color")
+    .required("Secondary color is required"),
+  image: Yup.string().required("Image is required"),
 })
 
 const TeamForm = ({ handleClose, activeTeam, setactiveTeam }) => {
@@ -35,7 +47,7 @@ const TeamForm = ({ handleClose, activeTeam, setactiveTeam }) => {
       const imageURL = URL.createObjectURL(file)
       setImage(imageURL)
       setactiveTeam((oldState) => {
-        return { ...oldState, image: file }
+        return { ...oldState, file: file, image: imageURL }
       })
       setImageSelected(true)
     }
@@ -65,6 +77,8 @@ const TeamForm = ({ handleClose, activeTeam, setactiveTeam }) => {
         onSubmit={(values, { setSubmitting }) => {
           values.primary_color = values.primary_color.split("#")[1]
           values.secondary_color = values.secondary_color.split("#")[1]
+          values.image = values.file
+          delete values.file
           const formData = new FormData()
           // Append all form values to formData
           for (const key in values) {
@@ -97,6 +111,7 @@ const TeamForm = ({ handleClose, activeTeam, setactiveTeam }) => {
                 >
                   <input
                     hidden
+                    name="image"
                     accept="image/*"
                     type="file"
                     onChange={changeImage}
@@ -131,9 +146,13 @@ const TeamForm = ({ handleClose, activeTeam, setactiveTeam }) => {
                       style={{ height: 200, width: 200 }}
                     />
                   )}
-                </IconButton>
+                </IconButton>{" "}
               </Grid>
-
+              <FormControl fullWidth>
+                <FormHelperText sx={{ color: "#d32f2f" }}>
+                  {errors.image && errors.image}
+                </FormHelperText>
+              </FormControl>
               <Grid item lg={12} xs={12}>
                 <FormControl fullWidth>
                   <Field
