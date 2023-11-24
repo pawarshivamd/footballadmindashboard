@@ -6,6 +6,7 @@ import apiReducer from "./reducers/apiReducer"
 import teamsReducer from "./reducers/teamsReducer"
 import stadiumReducer from "./reducers/stadiumReducer"
 import userReducer from "./reducers/userReducer"
+import matchesReducer from "./reducers/matchesReducer"
 
 const initialState = {}
 const middlewares = [thunk]
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   teams: teamsReducer,
   stadium: stadiumReducer,
   user: userReducer,
+  matches: matchesReducer,
   // other reducers...
 })
 
