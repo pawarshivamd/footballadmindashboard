@@ -3,7 +3,7 @@ import { Box, Button, Divider, Typography } from "@mui/material"
 import styled from "@emotion/styled"
 import AddIcon from "@mui/icons-material/Add"
 import { useDispatch, useSelector } from "react-redux"
-import { fetchStadiums } from "../../actions/stadiumActions"
+import { deleteStadium, fetchStadiums } from "../../actions/stadiumActions"
 import Loader from "../common/loader/Loader"
 import StadiumCard from "./StadiumCard"
 import DeleteConfirmationPopup from "../common/modal/Alert"
@@ -38,6 +38,12 @@ const StadiumTours = () => {
   useEffect(() => {
     dispatch(fetchStadiums())
   }, [dispatch])
+
+  const handleDelete = () => {
+    dispatch(deleteStadium(activeStadium?.id))
+    setactiveStadium({ number: "", photo: "", stadium: "", team: "" })
+    setDeleteModal(false)
+  }
 
   if (loading) return <Loader />
   return (
@@ -76,7 +82,10 @@ const StadiumTours = () => {
             <StadiumCard
               data={stadium}
               key={stadium.id}
-              openDeletemodal={() => setDeleteModal(true)}
+              openDeletemodal={() => {
+                setactiveStadium(stadium)
+                setDeleteModal(true)
+              }}
               openStadiumModal={() => {
                 setactiveStadium(stadium)
                 setModalOpen(true)
@@ -94,6 +103,7 @@ const StadiumTours = () => {
         <DeleteConfirmationPopup
           open={deleteModal}
           onClose={() => setDeleteModal(false)}
+          onConfirm={handleDelete}
         />
       </WhitecardBox>
     </Box>

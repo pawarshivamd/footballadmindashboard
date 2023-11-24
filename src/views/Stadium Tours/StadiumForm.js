@@ -1,10 +1,12 @@
+import React, { useState, useEffect } from "react"
 import { Box, Button, FormControl, Grid, IconButton } from "@mui/material"
 import { Inputcustom } from "../Teams Matches/TeamsMatches"
 import HighlightOffOutlinedIcon from "@mui/icons-material/HighlightOffOutlined"
-import { useEffect, useState } from "react"
 import { Formik, Form, Field, ErrorMessage } from "formik"
 import * as Yup from "yup"
 import uplodimg from "../../imgs/stadium/uplodimg.jpg"
+import { useDispatch } from "react-redux"
+import { createStadium, updateStadium } from "../../actions/stadiumActions"
 
 const style = {
   width: "min(100% - 0px , 400px)",
@@ -16,20 +18,25 @@ const style = {
 }
 
 const validationSchema = Yup.object().shape({
-  name: Yup.string().required("Stadium Name is required"),
   team: Yup.string().required("Team required"),
   stadium: Yup.string().required("Stadium is required"),
   number: Yup.string().required("Inquiry Number is required"),
 })
 
 const StadiumForm = ({ activeStadium, handleClose, setactiveStadium }) => {
+  const dispatch = useDispatch()
+
   const [image, setImage] = useState(null)
   const [isImageSelected, setImageSelected] = useState(false)
+
   const changeImage = (e) => {
     const file = e.target.files[0]
     if (file) {
       const imageURL = URL.createObjectURL(file)
       setImage(imageURL)
+      setactiveStadium((oldState) => {
+        return { ...oldState, file: file, image: imageURL }
+      })
       setImageSelected(true)
     }
   }
@@ -45,24 +52,38 @@ const StadiumForm = ({ activeStadium, handleClose, setactiveStadium }) => {
     }
   }, [])
 
-  console.log({ activeStadium })
   return (
     <Box sx={style}>
       <Formik
         initialValues={{
-          ...activeStadium,
+          name: activeStadium.name || "",
+          team: activeStadium.team || "",
+          stadium: activeStadium.stadium || "",
+          number: activeStadium.number || "",
         }}
         validationSchema={validationSchema}
         onSubmit={(values, { setSubmitting }) => {
-          console.log(values)
+          values.image = values.file
+          delete values.file
+          const formData = new FormData()
+          // Append all form values to formData
+          for (const key in values) {
+            if (values.hasOwnProperty(key)) {
+              formData.append(key, values[key])
+            }
+          }
+          activeStadium?.id
+            ? dispatch(updateStadium(formData))
+            : dispatch(createStadium(formData))
+          handleClose()
           setSubmitting(false)
         }}
       >
         {({ errors, touched, isSubmitting }) => (
           <Form>
+            {console.log({ errors })}
             <Grid container spacing={2}>
-              {/* Other Grid Items for Image Upload */}
-
+              {/* Image Upload and other fields... */}
               <Grid item lg={12} xs={12}>
                 <IconButton
                   color="primary"
@@ -110,45 +131,54 @@ const StadiumForm = ({ activeStadium, handleClose, setactiveStadium }) => {
                   )}
                 </IconButton>
               </Grid>
-
+              {/* Stadium Name Field */}
               <Grid item lg={12} xs={12}>
                 <FormControl fullWidth>
-                  <Inputcustom
-                    InputLabelProps={{ shrink: true }}
+                  <Field
+                    as={Inputcustom}
+                    name="stadium"
                     type="text"
-                    id="tema-name"
+                    label="Stadium Name :"
+                    placeholder="Enter Stadium Name"
+                    variant="filled"
+                    error={touched.stadium && errors.stadium}
+                    helperText={touched.stadium && errors.stadium}
+                  />
+                </FormControl>
+              </Grid>
+
+              {/* Team Name Field */}
+              <Grid item lg={12} xs={12}>
+                <FormControl fullWidth>
+                  <Field
+                    as={Inputcustom}
+                    name="team"
+                    type="text"
                     label="Team Name :"
                     placeholder="Enter Team Name"
                     variant="filled"
+                    error={touched.team && errors.team}
+                    helperText={touched.team && errors.team}
                   />
                 </FormControl>
               </Grid>
+
+              {/* Inquiry Number Field */}
               <Grid item lg={12} xs={12}>
                 <FormControl fullWidth>
                   <Field
-                    component={Inputcustom}
-                    name="PlaceName"
-                    type="text"
-                    label="Place Name :"
-                    placeholder="Enter Place Name"
-                    variant="filled"
-                  />
-                  <ErrorMessage name="PlaceName" component="div" />
-                </FormControl>
-              </Grid>
-              <Grid item lg={12} xs={12}>
-                <FormControl fullWidth>
-                  <Field
-                    component={Inputcustom}
-                    name="name"
+                    as={Inputcustom}
+                    name="number"
                     type="text"
                     label="Inquiry Number :"
                     placeholder="Enter Inquiry Number"
                     variant="filled"
+                    error={touched.number && errors.number}
+                    helperText={touched.number && errors.number}
                   />
-                  <ErrorMessage name="name" component="div" />
                 </FormControl>
               </Grid>
+
               {/* Buttons */}
               <Grid item lg={12} xs={12}>
                 <Box
