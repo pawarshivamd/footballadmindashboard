@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import { Box, Button, FormControl, Grid, IconButton } from "@mui/material"
 import { Inputcustom } from "../Teams Matches/TeamsMatches"
-import HighlightOffOutlinedIcon from "@mui/icons-material/HighlightOffOutlined"
-import { Formik, Form, Field, ErrorMessage } from "formik"
+import { Formik, Form, Field } from "formik"
 import * as Yup from "yup"
 import uplodimg from "../../imgs/stadium/uplodimg.jpg"
 import { useDispatch } from "react-redux"
-import { createStadium, updateStadium } from "../../actions/stadiumActions"
+import { createStadium } from "../../actions/stadiumActions"
+import CancelIcon from "@mui/icons-material/Cancel"
+import Cropper from "react-cropper"
 
 const style = {
   width: "min(100% - 0px , 400px)",
@@ -25,23 +26,42 @@ const validationSchema = Yup.object().shape({
 
 const StadiumForm = ({ activeStadium, handleClose, setactiveStadium }) => {
   const dispatch = useDispatch()
+  const cropperRef = useRef(null)
 
   const [image, setImage] = useState(null)
-  const [isImageSelected, setImageSelected] = useState(false)
+  const [newImage, setnewImage] = useState(false)
+  const [imgBlob, setimgBlob] = useState(null)
 
-  const changeImage = (e) => {
-    const file = e.target.files[0]
-    if (file) {
-      const imageURL = URL.createObjectURL(file)
-      setImage(imageURL)
-      setactiveStadium((oldState) => {
-        return { ...oldState, file: file, image: imageURL }
-      })
-      setImageSelected(true)
+  const changeImage = (file) => {
+    setnewImage(true)
+    setImage(URL.createObjectURL(file))
+  }
+
+  const onCrop = () => {
+    const cropper = cropperRef.current?.cropper
+    if (cropper) {
+      cropper.getCroppedCanvas().toBlob((blob) => {
+        // Ensure the blob is not null
+        if (blob) {
+          // Create a new File from the Blob
+          const croppedFile = new File([blob], "cropped_image.jpg", {
+            type: "image/jpeg",
+            lastModified: Date.now(),
+          })
+
+          // Set the File object to your state
+          setimgBlob(croppedFile)
+        }
+      }, "image/jpeg")
     }
   }
 
   useEffect(() => {
+    if (activeStadium && activeStadium.photo) {
+      setImage(
+        `https://football.jennypoint.com/api/resources/images/${activeStadium.photo}`
+      )
+    }
     return () => {
       setactiveStadium({
         number: "",
@@ -56,80 +76,99 @@ const StadiumForm = ({ activeStadium, handleClose, setactiveStadium }) => {
     <Box sx={style}>
       <Formik
         initialValues={{
-          name: activeStadium.name || "",
           team: activeStadium.team || "",
           stadium: activeStadium.stadium || "",
           number: activeStadium.number || "",
         }}
         validationSchema={validationSchema}
         onSubmit={(values, { setSubmitting }) => {
-          values.image = values.file
-          delete values.file
+          values.image = imgBlob
+          // delete values.file
+          values.team = 1
           const formData = new FormData()
-          // Append all form values to formData
+
           for (const key in values) {
             if (values.hasOwnProperty(key)) {
               formData.append(key, values[key])
             }
           }
-          activeStadium?.id
-            ? dispatch(updateStadium(formData))
-            : dispatch(createStadium(formData))
+
+          dispatch(createStadium(formData))
           handleClose()
           setSubmitting(false)
         }}
       >
         {({ errors, touched, isSubmitting }) => (
           <Form>
-            {console.log({ errors })}
             <Grid container spacing={2}>
-              {/* Image Upload and other fields... */}
               <Grid item lg={12} xs={12}>
-                <IconButton
-                  color="primary"
-                  aria-label="upload picture"
-                  component="label"
-                  style={{
-                    margin: "0 auto",
-                    display: "block",
-                    borderRadius: 0,
-                  }}
-                >
-                  <input
-                    hidden
-                    accept="image/*"
-                    type="file"
-                    onChange={changeImage}
+                {newImage ? (
+                  <Cropper
+                    aspectRatio={2}
+                    ref={cropperRef}
+                    src={image}
+                    guides={true}
+                    crop={onCrop}
                   />
-                  {image ? (
-                    <>
-                      {isImageSelected && (
-                        <HighlightOffOutlinedIcon
-                          sx={{
-                            position: "absolute",
-                            right: "0px",
-                            top: "0px",
-                          }}
-                          onClick={() => {
-                            setImage(null)
-                            setImageSelected(false)
-                          }}
-                        />
-                      )}
-                      <img
-                        src={image}
-                        alt="Selected"
-                        style={{ height: "auto", width: 120 }}
-                      />
-                    </>
-                  ) : (
+                ) : image ? (
+                  <>
+                    <IconButton
+                      aria-label="delete"
+                      sx={{
+                        position: "absolute",
+                        right: 32,
+                        marginTop: "12px",
+                        color: "#FFFFFF",
+                      }}
+                      onClick={() => {
+                        setImage(null)
+                      }}
+                    >
+                      <CancelIcon sx={{ path: { stroke: "black" } }} />
+                    </IconButton>
                     <img
-                      src={uplodimg}
+                      src={image}
                       alt=""
-                      style={{ height: 200, width: 200 }}
+                      style={{
+                        height: 200,
+                        width: "100%",
+                        borderRadius: "12px",
+                        marginTop: "13px",
+                      }}
                     />
-                  )}
-                </IconButton>
+                  </>
+                ) : (
+                  <>
+                    <IconButton
+                      aria-label="delete"
+                      sx={{
+                        height: "200px",
+                        width: "100%",
+                        margin: "13px 0",
+                        padding: 0,
+                      }}
+                      component="label"
+                      color="primary"
+                      variant="filledTonal"
+                    >
+                      <input
+                        hidden
+                        accept="image/*"
+                        type="file"
+                        onChange={(e) => changeImage(e.target.files[0])}
+                      />
+                      <img
+                        src={uplodimg}
+                        alt=""
+                        style={{
+                          height: "100%",
+                          width: "100%",
+                          borderRadius: 6,
+                        }}
+                      />
+                    </IconButton>
+                  </>
+                )}
               </Grid>
               {/* Stadium Name Field */}
               <Grid item lg={12} xs={12}>

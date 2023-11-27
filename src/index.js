@@ -5,6 +5,7 @@ import reportWebVitals from "./reportWebVitals"
 import { Provider } from "react-redux"
 import store from "./store"
 import "react-notifications/lib/notifications.css"
+import "cropperjs/dist/cropper.css"
 import { NotificationContainer } from "react-notifications"
 
 const root = ReactDOM.createRoot(document.getElementById("root"))
