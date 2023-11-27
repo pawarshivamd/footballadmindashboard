@@ -86,9 +86,7 @@ const TeamForm = ({ handleClose, activeTeam, setactiveTeam }) => {
               formData.append(key, values[key])
             }
           }
-          activeTeam?.id
-            ? dispatch(updateTeam(formData))
-            : dispatch(createTeam(formData))
+          dispatch(createTeam(formData))
           handleClose()
           setSubmitting(false)
         }}
