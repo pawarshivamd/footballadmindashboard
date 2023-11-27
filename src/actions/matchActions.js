@@ -1,5 +1,5 @@
 import api from "../API/api"
-import axios from "../apiConfig" // Adjust the import path as needed
+
 import {
   MATCHES_FETCH_BEGIN,
   MATCHES_FETCH_SUCCESS,
@@ -20,7 +20,7 @@ export const fetchMatches = () => {
   return async (dispatch) => {
     dispatch({ type: MATCHES_FETCH_BEGIN })
     try {
-      const { data } = await api.post("/adminGetMatch")
+      const { data } = await api.post("/adminGetMatches")
 
       const { data: teamsData, message, status } = data
       if (status) {

@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { WhitecardBox } from "../Stadium Tours/StadiumTours"
 import {
   Autocomplete,
@@ -12,57 +12,14 @@ import {
   Typography,
 } from "@mui/material"
 import AddIcon from "@mui/icons-material/Add"
-import ArsenalFC from "../../imgs/teamslogo/Arsenal.png"
-import chelsea from "../../imgs/teamslogo/chelsea.png"
 import vs from "../../imgs/icon/vs-png.webp.png"
 import EditIcon from "@mui/icons-material/Edit"
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined"
-import manchestercity from "../../imgs/teamslogo/manchestercity.png"
-import tottenhamhotspur from "../../imgs/teamslogo/tottenhamhotspur.png"
-import liverpool from "../../imgs/teamslogo/liverpool.png"
 import styled from "styled-components"
+import { useDispatch, useSelector } from "react-redux"
+import { fetchMatches } from "../../actions/matchActions"
+import Loader from "../common/loader/Loader"
 
-const teamsvsapi = [
-  {
-    id: 0,
-    teamimg1: chelsea,
-    teamimg1Alt: "chelsea",
-    teamName1: "Chelsea",
-    teamimg2: ArsenalFC,
-    teamimg2Alt: "ArsenalFC",
-    teamName2: "ArsenalFC",
-    leagueName: "Europ League",
-    date: "Saturday 16th September",
-    time: "15:00",
-    inquiryNumber: "545454421",
-  },
-  {
-    id: 1,
-    teamimg1: manchestercity,
-    teamimg1Alt: "manchestercity ",
-    teamName1: "Manchester City ",
-    teamimg2: tottenhamhotspur,
-    teamimg2Alt: "tottenhamhotspur",
-    teamName2: "Tottenham Hotspur",
-    leagueName: "Europ League",
-    date: "Saturday 16th September",
-    time: "15:00",
-    inquiryNumber: "545454421",
-  },
-  {
-    id: 2,
-    teamimg1: chelsea,
-    teamimg1Alt: "chelsea",
-    teamName1: "Chelsea",
-    teamimg2: liverpool,
-    teamimg2Alt: "liverpool",
-    teamName2: "Liverpool",
-    leagueName: "Europ League",
-    date: "Saturday 16th September",
-    time: "15:00",
-    inquiryNumber: "545454421",
-  },
-]
 export const Inputcustom = styled(TextField)`
   input[type="color" i] {
     borderradius: none;
@@ -115,9 +72,19 @@ const style = {
 }
 
 const TeamsMatches = () => {
+  const dispatch = useDispatch()
+
+  const { matches, loading } = useSelector((state) => state.matches)
+
   const [open, setOpen] = useState(false)
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
+
+  useEffect(() => {
+    dispatch(fetchMatches())
+  }, [dispatch])
+
+  if (loading) return <Loader />
 
   return (
     <Box
@@ -153,18 +120,17 @@ const TeamsMatches = () => {
 
         <Box sx={{ py: 1, my: 2 }}>
           <Grid container spacing={2}>
-            {teamsvsapi.map((curEle, i) => {
+            {matches.map((curEle, i) => {
               const {
-                teamimg1,
-                teamimg1Alt,
-                teamimg2,
-                teamimg2Alt,
-                teamName1,
-                teamName2,
-                leagueName,
                 date,
+                host,
+                host_logo,
+                id,
+                league,
+                opponent,
+                opponent_logo,
                 time,
-                inquiryNumber,
+                leagueleague,
               } = curEle
               return (
                 <Grid item lg={12} sx={{ my: 1 }} key={i}>
@@ -174,8 +140,8 @@ const TeamsMatches = () => {
                         <Grid item lg={4} sm={3} xs={3}>
                           <Box>
                             <img
-                              src={teamimg1}
-                              alt={teamimg1Alt}
+                              src={`https://football.jennypoint.com/api/resources/images/${host_logo}`}
+                              alt={host}
                               width="100%"
                               height="70px"
                               style={{ objectFit: "contain" }}
@@ -185,7 +151,7 @@ const TeamsMatches = () => {
                             sx={{ textAlign: "center", fontWeight: "600" }}
                             color="primary"
                           >
-                            {teamName1}
+                            {host}
                           </Typography>
                         </Grid>
                         <Grid item lg={4} sm={3} xs={3}>
@@ -200,8 +166,8 @@ const TeamsMatches = () => {
                         <Grid item lg={4} sm={3} xs={3}>
                           <Box>
                             <img
-                              src={teamimg2}
-                              alt={teamimg2Alt}
+                              src={`https://football.jennypoint.com/api/resources/images/${opponent_logo}`}
+                              alt={opponent}
                               width="100%"
                               height="70px"
                               style={{ objectFit: "contain" }}
@@ -211,7 +177,7 @@ const TeamsMatches = () => {
                             sx={{ textAlign: "center", fontWeight: "600" }}
                             color="primary"
                           >
-                            {teamName2}
+                            {opponent}
                           </Typography>
                         </Grid>
                       </Grid>
@@ -235,7 +201,7 @@ const TeamsMatches = () => {
                             sx={{ fontWeight: 600, mb: 1 }}
                             color="primary"
                           >
-                            League Name : <span>{leagueName}</span>
+                            League Name : <span>{league}</span>
                           </Typography>
                           <Typography
                             sx={{ fontWeight: 600, mb: 1 }}
@@ -263,7 +229,7 @@ const TeamsMatches = () => {
                             sx={{ fontWeight: 600, mb: 1 }}
                             color="primary"
                           >
-                            Inquiry Number : <span>{inquiryNumber}</span>
+                            Inquiry Number : <span>{league}</span>
                           </Typography>
                         </Grid>
                       </Grid>
