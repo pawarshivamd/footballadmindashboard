@@ -1,8 +1,12 @@
-import { Autocomplete, TextField } from "@mui/material"
+import { Autocomplete } from "@mui/material"
 import { useState } from "react"
 import Inputcustom from "./Inputcustom"
+import { useFormikContext } from "formik"
 
-const TeamSelect = () => {
+const TeamSelect = ({ field, ...otherProps }) => {
+  const { name } = field
+  const { setFieldValue } = useFormikContext()
+
   const [value, setValue] = useState(null)
   const team1 = [
     { label: "Chelsea", value: 1 },
@@ -12,12 +16,17 @@ const TeamSelect = () => {
     { label: "Liverpool", value: 5 },
   ]
 
+  const handleChange = (event, newValue) => {
+    console.log({ name, newValue })
+    setFieldValue(name, newValue)
+    setValue(newValue)
+  }
   return (
     <Autocomplete
+      {...field}
+      {...otherProps}
       value={value}
-      onChange={(event, newValue) => {
-        setValue(newValue)
-      }}
+      onChange={handleChange}
       options={team1}
       getOptionLabel={(option) => option.label}
       fullWidth

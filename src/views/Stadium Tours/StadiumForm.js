@@ -198,10 +198,15 @@ const StadiumForm = ({ activeStadium, handleClose, setactiveStadium }) => {
               {/* Team Name Field */}
               <Grid item lg={12} xs={12}>
                 <FormControl fullWidth>
-                  <TeamSelect />
+                  {/* <TeamSelect />
                   {touched.team && errors.team && (
                     <FormHelperText>{errors.team}</FormHelperText>
-                  )}
+                  )} */}
+                  <Field
+                    name="team"
+                    component={TeamSelect}
+                    label="Select Team"
+                  />
                 </FormControl>
               </Grid>
 
