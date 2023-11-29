@@ -6,7 +6,7 @@ import {
   Grid,
   IconButton,
 } from "@mui/material"
-import { Inputcustom } from "../Teams Matches/TeamsMatches"
+
 import { useEffect, useRef, useState } from "react"
 
 import { Formik, Form, Field } from "formik"
@@ -16,6 +16,7 @@ import { createTeam } from "../../actions/teamsActions"
 import CancelIcon from "@mui/icons-material/Cancel"
 import Cropper from "react-cropper"
 import uplodimg from "../../imgs/teamslogo/team_upload.png"
+import Inputcustom from "../common/fields/Inputcustom"
 
 const style = {
   width: "min(100% - 0px , 400px)",
@@ -34,7 +35,7 @@ const validationSchema = Yup.object().shape({
   secondary_color: Yup.string()
     .matches(/^#([A-Fa-f0-9]{6})$/, "Must be valid hex color")
     .required("Secondary color is required"),
-  team_logo: Yup.string().required("Image is required"),
+  // team_logo: Yup.string().required("Image is required"),
 })
 
 const TeamForm = ({ handleClose, activeTeam, setactiveTeam }) => {
@@ -100,6 +101,7 @@ const TeamForm = ({ handleClose, activeTeam, setactiveTeam }) => {
           values.primary_color = values.primary_color.split("#")[1]
           values.secondary_color = values.secondary_color.split("#")[1]
           values.image = imgBlob
+          if (!values.image) delete values.image
 
           const formData = new FormData()
           // Append all form values to formData
@@ -117,7 +119,7 @@ const TeamForm = ({ handleClose, activeTeam, setactiveTeam }) => {
           <Form>
             <Grid container spacing={2}>
               {/* Other Grid Items for Image Upload */}
-
+              {console.log({ errors })}
               <Grid item lg={12} xs={12}>
                 {newImage ? (
                   <Cropper

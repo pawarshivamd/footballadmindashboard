@@ -1,6 +1,13 @@
 import React, { useState, useEffect, useRef } from "react"
-import { Box, Button, FormControl, Grid, IconButton } from "@mui/material"
-import { Inputcustom } from "../Teams Matches/TeamsMatches"
+import {
+  Box,
+  Button,
+  FormControl,
+  Grid,
+  IconButton,
+  TextField,
+  FormHelperText,
+} from "@mui/material"
 import { Formik, Form, Field } from "formik"
 import * as Yup from "yup"
 import uplodimg from "../../imgs/stadium/uplodimg.jpg"
@@ -8,6 +15,8 @@ import { useDispatch } from "react-redux"
 import { createStadium } from "../../actions/stadiumActions"
 import CancelIcon from "@mui/icons-material/Cancel"
 import Cropper from "react-cropper"
+import Inputcustom from "../common/fields/Inputcustom"
+import TeamSelect from "../common/fields/TeamSelect "
 
 const style = {
   width: "min(100% - 0px , 400px)",
@@ -189,16 +198,10 @@ const StadiumForm = ({ activeStadium, handleClose, setactiveStadium }) => {
               {/* Team Name Field */}
               <Grid item lg={12} xs={12}>
                 <FormControl fullWidth>
-                  <Field
-                    as={Inputcustom}
-                    name="team"
-                    type="text"
-                    label="Team Name :"
-                    placeholder="Enter Team Name"
-                    variant="filled"
-                    error={touched.team && errors.team}
-                    helperText={touched.team && errors.team}
-                  />
+                  <TeamSelect />
+                  {touched.team && errors.team && (
+                    <FormHelperText>{errors.team}</FormHelperText>
+                  )}
                 </FormControl>
               </Grid>
 

@@ -29,7 +29,7 @@ export const fetchStadiums = () => {
     try {
       const { data } = await api.post("/adminGetStadiums", {
         start: 0,
-        count: 5,
+        count: 10,
       })
       const { message, status, data: stadiums } = data
       if (status) {
