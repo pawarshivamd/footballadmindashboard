@@ -20,12 +20,14 @@ export const fetchMatches = () => {
   return async (dispatch) => {
     dispatch({ type: MATCHES_FETCH_BEGIN })
     try {
-      const { data } = await api.post("/adminGetMatches")
+      const { data } = await api.post("/adminGetMatches", {
+        start: 0,
+        count: 10,
+      })
 
       const { data: teamsData, message, status } = data
       if (status) {
         dispatch({ type: MATCHES_FETCH_SUCCESS, payload: teamsData })
-        Notification("success", message)
       } else {
         Notification("error", message)
         dispatch({ type: MATCHES_FETCH_FAILURE, payload: message })
@@ -41,12 +43,13 @@ export const createMatch = (matchData) => {
   return async (dispatch) => {
     dispatch({ type: MATCH_CREATE_BEGIN })
     try {
-      const { data } = await api.post("/createMatch", matchData)
+      const { data } = await api.post("/adminAddMatch", matchData)
 
-      const { message, status, data: newMatch } = data
+      const { message, status } = data
       if (status) {
-        dispatch({ type: MATCH_CREATE_SUCCESS, payload: newMatch })
         Notification("success", message)
+        dispatch(fetchMatches())
+        dispatch({ type: MATCH_CREATE_SUCCESS })
       } else {
         Notification("error", message)
         dispatch({ type: MATCH_CREATE_FAILURE, payload: message })

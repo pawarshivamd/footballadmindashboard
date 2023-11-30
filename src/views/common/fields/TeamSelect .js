@@ -1,38 +1,53 @@
 import { Autocomplete } from "@mui/material"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Inputcustom from "./Inputcustom"
 import { useFormikContext } from "formik"
+import { useDispatch, useSelector } from "react-redux"
+import { fetchTeams } from "../../../actions/teamsActions"
 
 const TeamSelect = ({ field, ...otherProps }) => {
   const { name } = field
-  const { setFieldValue } = useFormikContext()
+  const dispatch = useDispatch()
+  const { setFieldValue, values } = useFormikContext()
+  const [teamsOption, setTeamsOption] = useState([])
 
-  const [value, setValue] = useState(null)
-  const team1 = [
-    { label: "Chelsea", value: 1 },
-    { label: "ArsenalFC", value: 2 },
-    { label: "Manchester City", value: 3 },
-    { label: "Tottenham Hotspur", value: 4 },
-    { label: "Liverpool", value: 5 },
-  ]
+  const [selectedTeam, setselectedTeam] = useState(null)
+
+  const { teamsData, loading } = useSelector((state) => state.teams)
+
+  useEffect(() => {
+    dispatch(fetchTeams())
+  }, [dispatch])
+
+  useEffect(() => {
+    if (teamsData && teamsData.length) {
+      setTeamsOption(
+        teamsData.map((team) => {
+          return { label: team.name, value: team.id }
+        })
+      )
+    }
+    const team = teamsData.find((elem) => elem.id === values.team_id)
+    if (team) setselectedTeam({ label: team.name, value: team.id })
+  }, [teamsData])
 
   const handleChange = (event, newValue) => {
-    console.log({ name, newValue })
-    setFieldValue(name, newValue)
-    setValue(newValue)
+    setFieldValue(name, newValue?.value)
+    setselectedTeam(newValue)
   }
   return (
     <Autocomplete
       {...field}
       {...otherProps}
-      value={value}
+      value={selectedTeam}
       onChange={handleChange}
-      options={team1}
+      options={teamsOption}
       getOptionLabel={(option) => option.label}
       fullWidth
       disablePortal
       id="team2"
       variant="outlined"
+      disabled={loading}
       renderInput={(params) => (
         <Inputcustom
           {...params}

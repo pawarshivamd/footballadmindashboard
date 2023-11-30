@@ -65,7 +65,7 @@ const TeamsMatches = () => {
           </Grid>
         </Box>
         <CommonModal open={modalOpen} handleClose={() => setModalOpen(false)}>
-          <MatchForm />
+          <MatchForm handleClose={() => setModalOpen(false)} />
         </CommonModal>
       </WhitecardBox>
     </Box>

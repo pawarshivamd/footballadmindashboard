@@ -5,6 +5,8 @@ import Inputcustom from "../common/fields/Inputcustom"
 import { Formik, Form, Field, ErrorMessage } from "formik"
 import * as Yup from "yup"
 import TeamSelect from "../common/fields/TeamSelect "
+import { useDispatch } from "react-redux"
+import { createMatch } from "../../actions/matchActions"
 
 const style = {
   position: "absolute",
@@ -19,29 +21,32 @@ const style = {
 }
 
 const validationSchema = Yup.object().shape({
-  leagueName: Yup.string().required("League Name is required"),
-  inquiryNumber: Yup.string().required("Inquiry Number is required"),
+  league: Yup.string().required("League Name is required"),
+  whatsapp: Yup.string().required("Inquiry Number is required"),
   date: Yup.date().required("Date is required").nullable(),
   time: Yup.string().required("Time is required"),
-  team1: Yup.string().required("Team selection is required"),
-  team2: Yup.string().required("Team selection is required"),
+  host: Yup.string().required("Team selection is required"),
+  opponent: Yup.string().required("Team selection is required"),
 })
 
-const MatchForm = () => {
+const MatchForm = ({ handleClose }) => {
+  const dispatch = useDispatch()
   return (
     <Formik
       initialValues={{
-        leagueName: "",
-        inquiryNumber: "",
+        league: "",
+        whatsapp: "",
         date: "",
         time: "",
-        team1: "",
-        team2: "",
+        host: "",
+        opponent: "",
       }}
       validationSchema={validationSchema}
       onSubmit={(values, { setSubmitting }) => {
         console.log(values)
+        dispatch(createMatch(values))
         setSubmitting(false)
+        handleClose()
         // Handle form submission here
       }}
     >
@@ -50,25 +55,21 @@ const MatchForm = () => {
           <Box sx={style}>
             <Grid container spacing={2}>
               <Grid item lg={6} xs={12}>
-                <Field
-                  name="team1"
-                  component={TeamSelect}
-                  label="Select Team 1"
-                />
+                <Field name="host" component={TeamSelect} label="Select Host" />
                 <ErrorMessage
-                  name="team1"
+                  name="host"
                   component="div"
                   style={{ color: "#d32f2f" }}
                 />
               </Grid>
               <Grid item lg={6} xs={12}>
                 <Field
-                  name="team2"
+                  name="opponent"
                   component={TeamSelect}
-                  label="Select Team 2"
+                  label="Select Team Opponent"
                 />
                 <ErrorMessage
-                  name="team2"
+                  name="opponent"
                   component="div"
                   style={{ color: "#d32f2f" }}
                 />
@@ -78,13 +79,13 @@ const MatchForm = () => {
                   <Field
                     as={Inputcustom}
                     type="text"
-                    name="leagueName"
+                    name="league"
                     label="League Name :"
                     variant="filled"
                     placeholder="Enter League Name"
                   />
                   <ErrorMessage
-                    name="leagueName"
+                    name="league"
                     component="div"
                     style={{ color: "#d32f2f" }}
                   />
@@ -95,13 +96,13 @@ const MatchForm = () => {
                   <Field
                     as={Inputcustom}
                     type="text"
-                    name="inquiryNumber"
+                    name="whatsapp"
                     label="Inquiry Number :"
                     placeholder="Enter Inquiry Number"
                     variant="filled"
                   />
                   <ErrorMessage
-                    name="inquiryNumber"
+                    name="whatsapp"
                     component="div"
                     style={{ color: "#d32f2f" }}
                   />
@@ -157,9 +158,7 @@ const MatchForm = () => {
                       fontWeight: "600",
                       textTransform: "capitalize",
                     }}
-                    onClick={
-                      () => {} /* Replace with your actual event handler */
-                    }
+                    onClick={handleClose}
                   >
                     Cancel
                   </Button>

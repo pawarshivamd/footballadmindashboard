@@ -93,7 +93,7 @@ export const deleteStadium = (stadiumId) => {
   return async (dispatch) => {
     dispatch({ type: STADIUM_DELETE_BEGIN })
     try {
-      const { data } = await api.delete(`/deleteStadium/${stadiumId}`)
+      const { data } = await api.post(`/adminDeleteStadium`, { id: stadiumId })
       const { message, status } = data
       if (status) {
         dispatch({ type: STADIUM_DELETE_SUCCESS, payload: { id: stadiumId } })

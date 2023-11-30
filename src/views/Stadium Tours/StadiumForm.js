@@ -28,7 +28,7 @@ const style = {
 }
 
 const validationSchema = Yup.object().shape({
-  team: Yup.string().required("Team required"),
+  team: Yup.number().required("Team required"),
   stadium: Yup.string().required("Stadium is required"),
   number: Yup.string().required("Inquiry Number is required"),
 })
@@ -85,15 +85,16 @@ const StadiumForm = ({ activeStadium, handleClose, setactiveStadium }) => {
     <Box sx={style}>
       <Formik
         initialValues={{
+          ...activeStadium,
           team: activeStadium.team || "",
           stadium: activeStadium.stadium || "",
           number: activeStadium.number || "",
         }}
         validationSchema={validationSchema}
         onSubmit={(values, { setSubmitting }) => {
-          values.image = imgBlob
+          if (imgBlob) values.image = imgBlob
           // delete values.file
-          values.team = 1
+          // delete values.team_id
           const formData = new FormData()
 
           for (const key in values) {
@@ -109,6 +110,7 @@ const StadiumForm = ({ activeStadium, handleClose, setactiveStadium }) => {
       >
         {({ errors, touched, isSubmitting }) => (
           <Form>
+            {console.log({ errors })}
             <Grid container spacing={2}>
               <Grid item lg={12} xs={12}>
                 {newImage ? (

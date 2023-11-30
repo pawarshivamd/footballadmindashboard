@@ -32,30 +32,8 @@ const matchesReducer = (state = initialState, action) => {
       return { ...state, matches: action.payload, loading: false }
 
     case MATCH_CREATE_SUCCESS:
-      return {
-        ...state,
-        matches: [...state.matches, action.payload],
-        loading: false,
-      }
-
     case MATCH_UPDATE_SUCCESS:
-      return {
-        ...state,
-        matches: state.matches.map((match) =>
-          match.id === action.payload.id ? action.payload : match
-        ),
-        loading: false,
-      }
-
     case MATCH_DELETE_SUCCESS:
-      return {
-        ...state,
-        matches: state.matches.filter(
-          (match) => match.id !== action.payload.id
-        ),
-        loading: false,
-      }
-
     case MATCHES_FETCH_FAILURE:
     case MATCH_CREATE_FAILURE:
     case MATCH_UPDATE_FAILURE:

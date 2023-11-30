@@ -3,6 +3,7 @@ import { Box, Button, Divider, Grid, Typography } from "@mui/material"
 import vs from "../../imgs/icon/vs-png.webp.png"
 import EditIcon from "@mui/icons-material/Edit"
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined"
+import { useDispatch } from "react-redux"
 
 const MatchBox = ({ match, setModalOpen }) => {
   const {
