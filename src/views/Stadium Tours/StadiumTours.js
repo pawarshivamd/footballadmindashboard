@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react"
-import { Box, Button, Divider, Typography } from "@mui/material"
-import styled from "@emotion/styled"
-import AddIcon from "@mui/icons-material/Add"
-import { useDispatch, useSelector } from "react-redux"
-import { deleteStadium, fetchStadiums } from "../../actions/stadiumActions"
-import Loader from "../common/loader/Loader"
-import StadiumCard from "./StadiumCard"
-import DeleteConfirmationPopup from "../common/modal/Alert"
-import CommonModal from "../common/modal/CommonModal"
-import StadiumForm from "./StadiumForm"
+import React, { useEffect, useState } from "react";
+import { Box, Button, Divider, Pagination, Typography } from "@mui/material";
+import styled from "@emotion/styled";
+import AddIcon from "@mui/icons-material/Add";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteStadium, fetchStadiums } from "../../actions/stadiumActions";
+import Loader from "../common/loader/Loader";
+import StadiumCard from "./StadiumCard";
+import DeleteConfirmationPopup from "../common/modal/Alert";
+import CommonModal from "../common/modal/CommonModal";
+import StadiumForm from "./StadiumForm";
 
 export const WhitecardBox = styled(Box)(() => ({
   background: "#ffffff",
@@ -20,32 +20,55 @@ export const WhitecardBox = styled(Box)(() => ({
   "@media (max-width: 768px)": {
     marginInline: "16px",
   },
-}))
+}));
 
 const StadiumTours = () => {
-  const dispatch = useDispatch()
-  const { stadiumData, loading } = useSelector((state) => state.stadium)
+  const dispatch = useDispatch();
+  const { stadiumData, loading } = useSelector((state) => state.stadium);
+  const [currentPage, setCurrentPage] = useState(1);
+  const stadiumsPerPage = 5;
 
-  const [modalOpen, setModalOpen] = useState(false)
-  const [deleteModal, setDeleteModal] = useState(false)
+  const [modalOpen, setModalOpen] = useState(false);
+  const [deleteModal, setDeleteModal] = useState(false);
   const [activeStadium, setactiveStadium] = useState({
     number: "",
     photo: "",
     stadium: "",
     team: "",
-  })
+  });
 
+  // useEffect(() => {
+  //   dispatch(
+  //     fetchStadiums({
+  //       start: 0,
+  //       count: 5,
+  //     })
+  //   );
+  // }, [dispatch]);
   useEffect(() => {
-    dispatch(fetchStadiums())
-  }, [dispatch])
+    fetchStadiumData();
+  }, [currentPage]);
+
+  const fetchStadiumData = () => {
+    const start = (currentPage - 1) * stadiumsPerPage;
+    dispatch(
+      fetchStadiums({
+        start,
+        count: stadiumsPerPage,
+      })
+    );
+  };
 
   const handleDelete = () => {
-    dispatch(deleteStadium(activeStadium?.id))
-    setactiveStadium({ number: "", photo: "", stadium: "", team: "" })
-    setDeleteModal(false)
-  }
+    dispatch(deleteStadium(activeStadium?.id));
+    setactiveStadium({ number: "", photo: "", stadium: "", team: "" });
+    setDeleteModal(false);
+  };
+  const handlePageChange = (event, page) => {
+    setCurrentPage(page);
+  };
 
-  if (loading) return <Loader />
+  if (loading) return <Loader />;
   return (
     <Box
       component="main"
@@ -78,21 +101,29 @@ const StadiumTours = () => {
         </Box>
         <Divider />
         <Box>
-          {stadiumData.map((stadium) => (
+          {stadiumData?.stadiums?.map((stadium) => (
             <StadiumCard
               data={stadium}
               key={stadium.id}
               openDeletemodal={() => {
-                setactiveStadium(stadium)
-                setDeleteModal(true)
+                setactiveStadium(stadium);
+                setDeleteModal(true);
               }}
               openStadiumModal={() => {
-                setactiveStadium(stadium)
-                setModalOpen(true)
+                setactiveStadium(stadium);
+                setModalOpen(true);
               }}
             />
           ))}
         </Box>
+        <Pagination
+          count={Math.ceil(stadiumData?.total / stadiumsPerPage)}
+          page={currentPage}
+          variant="outlined"
+          shape="rounded"
+          onChange={handlePageChange}
+          sx={{ display: "flex", justifyContent: "end", marginTop: "8px" }}
+        />
         <CommonModal open={modalOpen} handleClose={() => setModalOpen(false)}>
           <StadiumForm
             handleClose={() => setModalOpen(false)}
@@ -107,7 +138,7 @@ const StadiumTours = () => {
         />
       </WhitecardBox>
     </Box>
-  )
-}
+  );
+};
 
-export default StadiumTours
+export default StadiumTours;
