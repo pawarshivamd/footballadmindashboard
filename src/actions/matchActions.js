@@ -21,7 +21,6 @@ export const fetchMatches = (matches) => {
     dispatch({ type: MATCHES_FETCH_BEGIN });
     try {
       const { data } = await api.post("/adminGetMatches", matches);
-
       const { data: teamsData, message, status, total } = data;
       if (status) {
         dispatch({
@@ -44,7 +43,6 @@ export const createMatch = (matchData) => {
     dispatch({ type: MATCH_CREATE_BEGIN });
     try {
       const { data } = await api.post("/adminAddMatch", matchData);
-
       const { message, status } = data;
       if (status) {
         Notification("success", message);
@@ -66,7 +64,6 @@ export const updateMatch = (matchId, updateData) => {
     dispatch({ type: MATCH_UPDATE_BEGIN });
     try {
       const { data } = await api.put(`/updateMatch/${matchId}`, updateData);
-
       const { message, status, data: updatedData } = data;
       if (status) {
         dispatch({ type: MATCH_UPDATE_SUCCESS, payload: updatedData });
@@ -87,7 +84,6 @@ export const deleteMatch = (matchId) => {
     dispatch({ type: MATCH_DELETE_BEGIN });
     try {
       const { data } = await api.delete(`/deleteMatch/${matchId}`);
-
       const { message, status } = data;
       if (status) {
         dispatch({ type: MATCH_DELETE_SUCCESS, payload: { id: matchId } });

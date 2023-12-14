@@ -1,12 +1,12 @@
-import React from "react"
-import { Box, Button, FormControl, Grid } from "@mui/material"
-import Inputcustom from "../common/fields/Inputcustom"
+import React from "react";
+import { Box, Button, FormControl, Grid } from "@mui/material";
+import Inputcustom from "../common/fields/Inputcustom";
 
-import { Formik, Form, Field, ErrorMessage } from "formik"
-import * as Yup from "yup"
-import TeamSelect from "../common/fields/TeamSelect "
-import { useDispatch } from "react-redux"
-import { createMatch } from "../../actions/matchActions"
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import TeamSelect from "../common/fields/TeamSelect ";
+import { useDispatch } from "react-redux";
+import { createMatch } from "../../actions/matchActions";
 
 const style = {
   position: "absolute",
@@ -18,19 +18,36 @@ const style = {
   borderRadius: "12px",
   boxShadow: 24,
   padding: "40px 30px",
-}
+};
 
 const validationSchema = Yup.object().shape({
   league: Yup.string().required("League Name is required"),
   whatsapp: Yup.string().required("Inquiry Number is required"),
-  date: Yup.date().required("Date is required").nullable(),
+  date: Yup.date()
+    .required("Date is required")
+    .nullable()
+    .min(
+      new Date(new Date().getTime() - 24 * 60 * 60 * 1000), // Set the minimum date to one day before today
+      "Date must not be older than today's date"
+    ),
+  // .min(new Date(), "Date must not be older than a today's date"),
   time: Yup.string().required("Time is required"),
   host: Yup.string().required("Team selection is required"),
   opponent: Yup.string().required("Team selection is required"),
-})
+});
 
 const MatchForm = ({ handleClose }) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const formatDate = (date) => {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    console.log(`${day - 1}-${month}-${year}`);
+    return `${day - 1}-${month}-${year}`;
+  };
+
+  const today = new Date();
+  const minDate = formatDate(today);
   return (
     <Formik
       initialValues={{
@@ -43,10 +60,10 @@ const MatchForm = ({ handleClose }) => {
       }}
       validationSchema={validationSchema}
       onSubmit={(values, { setSubmitting }) => {
-        console.log(values)
-        dispatch(createMatch(values))
-        setSubmitting(false)
-        handleClose()
+        console.log(values);
+        dispatch(createMatch(values));
+        setSubmitting(false);
+        handleClose();
         // Handle form submission here
       }}
     >
@@ -114,8 +131,11 @@ const MatchForm = ({ handleClose }) => {
                     as={Inputcustom}
                     type="date"
                     name="date"
+                    // min={minDate}
+                    readOnly={true}
                     label="Date :"
                     variant="filled"
+                    // min={new Date().toISOString().split("T")[0]}
                   />
                   <ErrorMessage
                     name="date"
@@ -182,7 +202,7 @@ const MatchForm = ({ handleClose }) => {
         </Form>
       )}
     </Formik>
-  )
-}
+  );
+};
 
-export default MatchForm
+export default MatchForm;

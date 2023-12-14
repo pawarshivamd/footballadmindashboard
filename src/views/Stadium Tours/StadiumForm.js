@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react"
+import React, { useState, useEffect, useRef } from "react";
 import {
   Box,
   Button,
@@ -7,16 +7,16 @@ import {
   IconButton,
   TextField,
   FormHelperText,
-} from "@mui/material"
-import { Formik, Form, Field } from "formik"
-import * as Yup from "yup"
-import uplodimg from "../../imgs/stadium/uplodimg.jpg"
-import { useDispatch } from "react-redux"
-import { createStadium } from "../../actions/stadiumActions"
-import CancelIcon from "@mui/icons-material/Cancel"
-import Cropper from "react-cropper"
-import Inputcustom from "../common/fields/Inputcustom"
-import TeamSelect from "../common/fields/TeamSelect "
+} from "@mui/material";
+import { Formik, Form, Field } from "formik";
+import * as Yup from "yup";
+import uplodimg from "../../imgs/stadium/uplodimg.jpg";
+import { useDispatch } from "react-redux";
+import { createStadium } from "../../actions/stadiumActions";
+import CancelIcon from "@mui/icons-material/Cancel";
+import Cropper from "react-cropper";
+import Inputcustom from "../common/fields/Inputcustom";
+import TeamSelect from "../common/fields/TeamSelect ";
 
 const style = {
   width: "min(100% - 0px , 400px)",
@@ -25,29 +25,29 @@ const style = {
   borderRadius: "12px",
   boxShadow: 24,
   padding: "10px 30px",
-}
+};
 
 const validationSchema = Yup.object().shape({
   team: Yup.number().required("Team required"),
   stadium: Yup.string().required("Stadium is required"),
   number: Yup.string().required("Inquiry Number is required"),
-})
+});
 
 const StadiumForm = ({ activeStadium, handleClose, setactiveStadium }) => {
-  const dispatch = useDispatch()
-  const cropperRef = useRef(null)
+  const dispatch = useDispatch();
+  const cropperRef = useRef(null);
 
-  const [image, setImage] = useState(null)
-  const [newImage, setnewImage] = useState(false)
-  const [imgBlob, setimgBlob] = useState(null)
+  const [image, setImage] = useState(null);
+  const [newImage, setnewImage] = useState(false);
+  const [imgBlob, setimgBlob] = useState(null);
 
   const changeImage = (file) => {
-    setnewImage(true)
-    setImage(URL.createObjectURL(file))
-  }
+    setnewImage(true);
+    setImage(URL.createObjectURL(file));
+  };
 
   const onCrop = () => {
-    const cropper = cropperRef.current?.cropper
+    const cropper = cropperRef.current?.cropper;
     if (cropper) {
       cropper.getCroppedCanvas().toBlob((blob) => {
         // Ensure the blob is not null
@@ -56,20 +56,20 @@ const StadiumForm = ({ activeStadium, handleClose, setactiveStadium }) => {
           const croppedFile = new File([blob], "cropped_image.jpg", {
             type: "image/jpeg",
             lastModified: Date.now(),
-          })
+          });
 
           // Set the File object to your state
-          setimgBlob(croppedFile)
+          setimgBlob(croppedFile);
         }
-      }, "image/jpeg")
+      }, "image/jpeg");
     }
-  }
+  };
 
   useEffect(() => {
     if (activeStadium && activeStadium.photo) {
       setImage(
         `https://football.jennypoint.com/api/resources/images/${activeStadium.photo}`
-      )
+      );
     }
     return () => {
       setactiveStadium({
@@ -77,9 +77,9 @@ const StadiumForm = ({ activeStadium, handleClose, setactiveStadium }) => {
         photo: "",
         stadium: "",
         team: "",
-      })
-    }
-  }, [])
+      });
+    };
+  }, []);
 
   return (
     <Box sx={style}>
@@ -92,20 +92,20 @@ const StadiumForm = ({ activeStadium, handleClose, setactiveStadium }) => {
         }}
         validationSchema={validationSchema}
         onSubmit={(values, { setSubmitting }) => {
-          if (imgBlob) values.image = imgBlob
+          if (imgBlob) values.image = imgBlob;
           // delete values.file
           // delete values.team_id
-          const formData = new FormData()
+          const formData = new FormData();
 
           for (const key in values) {
             if (values.hasOwnProperty(key)) {
-              formData.append(key, values[key])
+              formData.append(key, values[key]);
             }
           }
 
-          dispatch(createStadium(formData))
-          handleClose()
-          setSubmitting(false)
+          dispatch(createStadium(formData));
+          handleClose();
+          setSubmitting(false);
         }}
       >
         {({ errors, touched, isSubmitting }) => (
@@ -132,7 +132,7 @@ const StadiumForm = ({ activeStadium, handleClose, setactiveStadium }) => {
                         color: "#FFFFFF",
                       }}
                       onClick={() => {
-                        setImage(null)
+                        setImage(null);
                       }}
                     >
                       <CancelIcon sx={{ path: { stroke: "black" } }} />
@@ -271,7 +271,7 @@ const StadiumForm = ({ activeStadium, handleClose, setactiveStadium }) => {
         )}
       </Formik>
     </Box>
-  )
-}
+  );
+};
 
-export default StadiumForm
+export default StadiumForm;

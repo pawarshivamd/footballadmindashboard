@@ -69,7 +69,7 @@ const TeamsMatches = () => {
             color="primary"
             sx={{ fontSize: "25px", fontWeight: "600" }}
           >
-            Temas Matches
+            Teams Matches
           </Typography>
           <Button
             variant="contained"

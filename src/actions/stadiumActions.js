@@ -31,7 +31,7 @@ export const fetchStadiums = (stadium) => {
       const { message, status, data: stadiums, total } = data;
       if (status) {
         dispatch({ type: STADIUM_CALL_SUCCESS, payload: { stadiums, total } });
-        Notification("success", message);
+        // Notification("success", message);
       } else {
         dispatch({ type: STADIUM_CALL_FAILURE, payload: message });
         Notification("error", message);

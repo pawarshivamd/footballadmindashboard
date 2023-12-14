@@ -18,6 +18,9 @@ const MatchBox = ({ match, setModalOpen }) => {
     leagueleague,
   } = match
 
+  
+
+
   return (
     <Grid item lg={12} sx={{ my: 1 }} key={id}>
       <Grid container>

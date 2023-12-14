@@ -1,39 +1,39 @@
-import React from "react"
-import { Formik, Form, Field } from "formik"
-import * as Yup from "yup"
-import Typography from "@mui/material/Typography"
-import Card from "@mui/material/Card"
-import Box from "@mui/material/Box"
-import FormControl from "@mui/material/FormControl"
-import InputLabel from "@mui/material/InputLabel"
-import OutlinedInput from "@mui/material/OutlinedInput"
-import InputAdornment from "@mui/material/InputAdornment"
-import IconButton from "@mui/material/IconButton"
-import Visibility from "@mui/icons-material/Visibility"
-import VisibilityOff from "@mui/icons-material/VisibilityOff"
-import bg from "../../imgs/login bg/bg.png"
-import logo from "../../imgs/logo/logo.svg"
-import { Link, Link as RouterLink } from "react-router-dom"
-import { Button } from "@mui/material"
-import { loginUser } from "../../actions/userActions"
-import { useDispatch } from "react-redux"
+import React from "react";
+import { Formik, Form, Field } from "formik";
+import * as Yup from "yup";
+import Typography from "@mui/material/Typography";
+import Card from "@mui/material/Card";
+import Box from "@mui/material/Box";
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import InputAdornment from "@mui/material/InputAdornment";
+import IconButton from "@mui/material/IconButton";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import bg from "../../imgs/login bg/bg.png";
+import logo from "../../imgs/logo/logo.svg";
+import { Link, Link as RouterLink } from "react-router-dom";
+import { Button } from "@mui/material";
+import { loginUser } from "../../actions/userActions";
+import { useDispatch } from "react-redux";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Required"),
   password: Yup.string().required("Required"),
-})
+});
 
 const Login = () => {
-  const dispatch = useDispatch()
-  const [showPassword, setShowPassword] = React.useState(false)
+  const dispatch = useDispatch();
+  const [showPassword, setShowPassword] = React.useState(false);
 
   const handleClickShowPassword = () => {
-    setShowPassword(!showPassword)
-  }
+    setShowPassword(!showPassword);
+  };
 
   const handleMouseDownPassword = (event) => {
-    event.preventDefault()
-  }
+    event.preventDefault();
+  };
 
   return (
     <Typography
@@ -76,15 +76,15 @@ const Login = () => {
           initialValues={{ email: "", password: "" }}
           validationSchema={validationSchema}
           onSubmit={(values, { setSubmitting }) => {
-            console.log(values)
-            setSubmitting(false)
-            dispatch(loginUser(values))
+            console.log(values);
+            setSubmitting(false);
+            dispatch(loginUser(values));
             // Add your login logic here
           }}
         >
           {({ errors, touched }) => (
             <Form>
-              <FormControl sx={{ mt: 3 }} variant="outlined" fullWidth>
+              <FormControl sx={{ mt: 3 }} variant="filled" fullWidth>
                 <InputLabel htmlFor="outlined-adornment-Email">
                   Email
                 </InputLabel>
@@ -102,7 +102,7 @@ const Login = () => {
                   </Typography>
                 )}
               </FormControl>
-              <FormControl sx={{ mt: 3 }} variant="outlined" fullWidth>
+              <FormControl sx={{ mt: 3 }} variant="filled" fullWidth>
                 <InputLabel htmlFor="outlined-adornment-password">
                   Password
                 </InputLabel>
@@ -158,7 +158,7 @@ const Login = () => {
         </Formik>
       </Card>
     </Typography>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
