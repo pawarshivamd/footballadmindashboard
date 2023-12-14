@@ -205,6 +205,7 @@ const TeamForm = ({ handleClose, activeTeam, setactiveTeam }) => {
                     variant="filled"
                     error={touched.name && errors.name}
                     helperText={touched.name && errors.name}
+                    InputLabelProps={{ shrink: true }}
                   />
                 </FormControl>
               </Grid>

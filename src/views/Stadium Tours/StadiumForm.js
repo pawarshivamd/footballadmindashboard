@@ -193,10 +193,10 @@ const StadiumForm = ({ activeStadium, handleClose, setactiveStadium }) => {
                     variant="filled"
                     error={touched.stadium && errors.stadium}
                     helperText={touched.stadium && errors.stadium}
+                    InputLabelProps={{ shrink: true }}
                   />
                 </FormControl>
               </Grid>
-
               {/* Team Name Field */}
               <Grid item lg={12} xs={12}>
                 <FormControl fullWidth>
@@ -224,6 +224,7 @@ const StadiumForm = ({ activeStadium, handleClose, setactiveStadium }) => {
                     variant="filled"
                     error={touched.number && errors.number}
                     helperText={touched.number && errors.number}
+                    InputLabelProps={{ shrink: true }}
                   />
                 </FormControl>
               </Grid>

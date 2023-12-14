@@ -100,6 +100,7 @@ const MatchForm = ({ handleClose }) => {
                     label="League Name :"
                     variant="filled"
                     placeholder="Enter League Name"
+                    InputLabelProps={{ shrink: true }}
                   />
                   <ErrorMessage
                     name="league"
@@ -117,6 +118,7 @@ const MatchForm = ({ handleClose }) => {
                     label="Inquiry Number :"
                     placeholder="Enter Inquiry Number"
                     variant="filled"
+                    InputLabelProps={{ shrink: true }}
                   />
                   <ErrorMessage
                     name="whatsapp"
