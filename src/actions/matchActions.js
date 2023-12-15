@@ -83,7 +83,7 @@ export const deleteMatch = (matchId) => {
   return async (dispatch) => {
     dispatch({ type: MATCH_DELETE_BEGIN });
     try {
-      const { data } = await api.delete(`/deleteMatch/${matchId}`);
+      const { data } = await api.post(`/adminDeleteMatch/${matchId}`);
       const { message, status } = data;
       if (status) {
         dispatch({ type: MATCH_DELETE_SUCCESS, payload: { id: matchId } });

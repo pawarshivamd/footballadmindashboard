@@ -1,10 +1,12 @@
-import React from "react"
-import { Box, Button, Divider, Grid, Typography } from "@mui/material"
-import vs from "../../imgs/icon/vs-png.webp.png"
-import EditIcon from "@mui/icons-material/Edit"
-import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined"
-import { useDispatch } from "react-redux"
-
+import React from "react";
+import { Box, Button, Divider, Grid, Typography } from "@mui/material";
+import vs from "../../imgs/icon/vs-png.webp.png";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import Notification from "../common/Notifications";
 const MatchBox = ({ match, setModalOpen }) => {
   const {
     date,
@@ -16,10 +18,45 @@ const MatchBox = ({ match, setModalOpen }) => {
     opponent_logo,
     time,
     leagueleague,
-  } = match
+  } = match;
+  const baseUrl = "https://football.jennypoint.com/api/public/api";
+  const navigate = useNavigate();
 
-  
+  console.log(match);
+  const handleDelete = () => {
+    // try {
+    //   const data = await api.delete(`/adminDeleteMatch`, { id });
+    //   console.log(data);
+    // } catch (error) {
+    //   console.log(error);
+    // }
 
+    try {
+      axios
+        .post(
+          `${baseUrl}/adminDeleteMatch`,
+          { id },
+          {
+            headers: {
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Origin": "*",
+              Authorization: `Bearer ${localStorage.getItem("auth_token")}`,
+            },
+          }
+        )
+        .then((res) => {
+          console.log(res.data.message);
+          // Notification(res.data.message);
+          Notification("success", res.data.message);
+          navigate("teams-matches");
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <Grid item lg={12} sx={{ my: 1 }} key={id}>
@@ -128,7 +165,7 @@ const MatchBox = ({ match, setModalOpen }) => {
               </Button>
             </Box>
             <Box sx={{ my: 1 }}>
-              <Button variant="outlined">
+              <Button variant="outlined" onClick={handleDelete}>
                 <DeleteOutlineOutlinedIcon />
               </Button>
             </Box>
@@ -137,7 +174,7 @@ const MatchBox = ({ match, setModalOpen }) => {
       </Grid>
       <Divider sx={{ mt: 2 }} />
     </Grid>
-  )
-}
+  );
+};
 
-export default MatchBox
+export default MatchBox;
