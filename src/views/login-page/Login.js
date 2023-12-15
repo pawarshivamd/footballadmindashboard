@@ -84,12 +84,13 @@ const Login = () => {
         >
           {({ errors, touched }) => (
             <Form>
-              <FormControl sx={{ mt: 3 }} variant="filled" fullWidth>
+              <FormControl sx={{ mt: 3 }} variant="outlined" fullWidth>
                 <InputLabel htmlFor="outlined-adornment-Email">
                   Email
                 </InputLabel>
                 <Field
                   as={OutlinedInput}
+                  label="Email"
                   name="email"
                   placeholder="Enter your Email"
                   id="outlined-adornment-Email"
@@ -102,12 +103,13 @@ const Login = () => {
                   </Typography>
                 )}
               </FormControl>
-              <FormControl sx={{ mt: 3 }} variant="filled" fullWidth>
+              <FormControl sx={{ mt: 3 }} variant="outlined" fullWidth>
                 <InputLabel htmlFor="outlined-adornment-password">
                   Password
                 </InputLabel>
                 <Field
                   as={OutlinedInput}
+                  label="Password"
                   name="password"
                   placeholder="Enter your Password"
                   id="outlined-adornment-password"
