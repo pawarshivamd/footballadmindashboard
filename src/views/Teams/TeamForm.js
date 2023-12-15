@@ -120,7 +120,7 @@ const TeamForm = ({ handleClose, activeTeam, setactiveTeam }) => {
             <Grid container spacing={2}>
               {/* Other Grid Items for Image Upload */}
               {console.log({ errors })}
-              <Grid item lg={12} xs={12}>
+              <Grid item lg={12} xs={12} sx={{position:"relative"}}>
                 {newImage ? (
                   <Cropper
                     aspectRatio={1}
@@ -135,7 +135,7 @@ const TeamForm = ({ handleClose, activeTeam, setactiveTeam }) => {
                       aria-label="delete"
                       sx={{
                         position: "absolute",
-                        right: 32,
+                        right: 0,
                         marginTop: "12px",
                         color: "#FFFFFF",
                       }}

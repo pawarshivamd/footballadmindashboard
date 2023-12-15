@@ -112,7 +112,7 @@ const StadiumForm = ({ activeStadium, handleClose, setactiveStadium }) => {
           <Form>
             {console.log({ errors })}
             <Grid container spacing={2}>
-              <Grid item lg={12} xs={12}>
+              <Grid item lg={12} xs={12} sx={{position:"relative"}}>
                 {newImage ? (
                   <Cropper
                     aspectRatio={2}
@@ -127,7 +127,7 @@ const StadiumForm = ({ activeStadium, handleClose, setactiveStadium }) => {
                       aria-label="delete"
                       sx={{
                         position: "absolute",
-                        right: 32,
+                        right: 0,
                         marginTop: "12px",
                         color: "#FFFFFF",
                       }}

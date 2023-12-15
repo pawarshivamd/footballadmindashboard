@@ -46,10 +46,9 @@ const Dynamics = () => {
       component="main"
       sx={{
         flexGrow: 1,
-        p: 3,
+        my: 10,
         background: "transparent",
         height: "100%",
-        mt: "64px",
       }}
     >
       <WhitecardBox>
