@@ -36,7 +36,7 @@ const validationSchema = Yup.object().shape({
   opponent: Yup.string().required("Team selection is required"),
 });
 
-const MatchForm = ({ handleClose }) => {
+const MatchForm = ({ handleClose, editData }) => {
   const dispatch = useDispatch();
   const formatDate = (date) => {
     const year = date.getFullYear();
@@ -47,16 +47,17 @@ const MatchForm = ({ handleClose }) => {
   };
 
   const today = new Date();
+  console.log("editData", editData);
   const minDate = formatDate(today);
   return (
     <Formik
       initialValues={{
-        league: "",
-        whatsapp: "",
-        date: "",
-        time: "",
-        host: "",
-        opponent: "",
+        league: editData.league ? editData.league : "",
+        whatsapp: editData.whatsapp ? editData.whatsapp : "",
+        date: editData.date ? editData.date : "",
+        time: editData.time ? editData.time : "",
+        host: editData.host ? editData.host : "",
+        opponent: editData.opponent ? editData.opponent : "",
       }}
       validationSchema={validationSchema}
       onSubmit={(values, { setSubmitting }) => {

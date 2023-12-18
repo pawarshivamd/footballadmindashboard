@@ -26,6 +26,7 @@ const TeamsMatches = () => {
 
   const [modalOpen, setModalOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+  const [editData, setEditData] = useState([]);
   const stadiumsPerPage = 5;
 
   // useEffect(() => {
@@ -84,7 +85,13 @@ const TeamsMatches = () => {
         <Box sx={{ py: 1, my: 2 }}>
           <Grid container spacing={2}>
             {matches?.teamsData?.map((curEle, i) => {
-              return <MatchBox match={curEle} setModalOpen={setModalOpen} />;
+              return (
+                <MatchBox
+                  match={curEle}
+                  setModalOpen={setModalOpen}
+                  setEditData={setEditData}
+                />
+              );
             })}
           </Grid>
         </Box>
@@ -97,7 +104,10 @@ const TeamsMatches = () => {
           sx={{ display: "flex", justifyContent: "end", marginTop: "8px" }}
         />
         <CommonModal open={modalOpen} handleClose={() => setModalOpen(false)}>
-          <MatchForm handleClose={() => setModalOpen(false)} />
+          <MatchForm
+            handleClose={() => setModalOpen(false)}
+            editData={editData}
+          />
         </CommonModal>
       </WhitecardBox>
     </Box>

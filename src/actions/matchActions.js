@@ -80,10 +80,12 @@ export const updateMatch = (matchId, updateData) => {
 };
 
 export const deleteMatch = (matchId) => {
+  console.log("matchId", matchId);
   return async (dispatch) => {
     dispatch({ type: MATCH_DELETE_BEGIN });
     try {
-      const { data } = await api.post(`/adminDeleteMatch/${matchId}`);
+      // const { data } = await api.post(`/adminDeleteMatch/${matchId}`);
+      const { data } = await api.post(`/adminDeleteMatch`, { id: matchId });
       const { message, status } = data;
       if (status) {
         dispatch({ type: MATCH_DELETE_SUCCESS, payload: { id: matchId } });

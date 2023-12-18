@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Box, Button, Divider, Grid, Typography } from "@mui/material";
 import vs from "../../imgs/icon/vs-png.webp.png";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { deleteMatch } from "../../actions/matchActions";
 import axios from "axios";
 import Notification from "../common/Notifications";
-const MatchBox = ({ match, setModalOpen }) => {
+const MatchBox = ({ match, setModalOpen, setEditData }) => {
+  console.log(match);
   const {
     date,
     host,
@@ -17,45 +19,20 @@ const MatchBox = ({ match, setModalOpen }) => {
     opponent,
     opponent_logo,
     time,
-    leagueleague,
+    whatsapp,
   } = match;
+
   const baseUrl = "https://football.jennypoint.com/api/public/api";
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    setEditData(match);
+  }, []);
 
   console.log(match);
   const handleDelete = () => {
-    // try {
-    //   const data = await api.delete(`/adminDeleteMatch`, { id });
-    //   console.log(data);
-    // } catch (error) {
-    //   console.log(error);
-    // }
-
-    try {
-      axios
-        .post(
-          `${baseUrl}/adminDeleteMatch`,
-          { id },
-          {
-            headers: {
-              "Content-Type": "application/json",
-              "Access-Control-Allow-Origin": "*",
-              Authorization: `Bearer ${localStorage.getItem("auth_token")}`,
-            },
-          }
-        )
-        .then((res) => {
-          console.log(res.data.message);
-          // Notification(res.data.message);
-          Notification("success", res.data.message);
-          navigate("teams-matches");
-        })
-        .catch((err) => {
-          console.error(err);
-        });
-    } catch (error) {
-      console.log(error);
-    }
+    dispatch(deleteMatch(id));
   };
 
   return (
@@ -143,7 +120,7 @@ const MatchBox = ({ match, setModalOpen }) => {
                 Time : <span>{time}</span>
               </Typography>
               <Typography sx={{ fontWeight: 600, mb: 1 }} color="primary">
-                Inquiry Number : <span>{league}</span>
+                Inquiry Number : <span>{whatsapp}</span>
               </Typography>
             </Grid>
           </Grid>
@@ -165,7 +142,7 @@ const MatchBox = ({ match, setModalOpen }) => {
               </Button>
             </Box>
             <Box sx={{ my: 1 }}>
-              <Button variant="outlined" onClick={handleDelete}>
+              <Button variant="outlined" onClick={() => handleDelete()}>
                 <DeleteOutlineOutlinedIcon />
               </Button>
             </Box>
