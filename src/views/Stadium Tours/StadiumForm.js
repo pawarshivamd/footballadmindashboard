@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import uplodimg from "../../imgs/stadium/uplodimg.jpg";
+import uplodimg from "../../imgs/stadium/uplodimg.png";
 import { useDispatch } from "react-redux";
 import { createStadium } from "../../actions/stadiumActions";
 import CancelIcon from "@mui/icons-material/Cancel";
