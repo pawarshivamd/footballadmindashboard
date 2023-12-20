@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Box, Button, FormControl, Grid } from "@mui/material";
 import Inputcustom from "../common/fields/Inputcustom";
 
@@ -6,7 +6,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import TeamSelect from "../common/fields/TeamSelect ";
 import { useDispatch } from "react-redux";
-import { createMatch } from "../../actions/matchActions";
+import { createMatch, updateMatch } from "../../actions/matchActions";
 
 const style = {
   position: "absolute",
@@ -22,7 +22,11 @@ const style = {
 
 const validationSchema = Yup.object().shape({
   league: Yup.string().required("League Name is required"),
-  whatsapp: Yup.string().required("Inquiry Number is required"),
+  whatsapp: Yup.string()
+    .matches(/^[0-9]+$/, "Please enter a valid number")
+    .required("Please enter a valid number")
+    .max(10, "Inquiry Number must be exactly 10 digits")
+    .min(10, "Inquiry Number must be exactly 10 digits"),
   date: Yup.date()
     .required("Date is required")
     .nullable()
@@ -33,10 +37,16 @@ const validationSchema = Yup.object().shape({
   // .min(new Date(), "Date must not be older than a today's date"),
   time: Yup.string().required("Time is required"),
   host: Yup.string().required("Team selection is required"),
-  opponent: Yup.string().required("Team selection is required"),
+  opponent: Yup.string()
+    .required("Team selection is required")
+    .test("notEqual", "Teams cannot be same", function (value) {
+      return value !== this.parent.host;
+    }),
 });
 
 const MatchForm = ({ handleClose, editData }) => {
+  let opponent;
+  let host;
   const dispatch = useDispatch();
   const formatDate = (date) => {
     const year = date.getFullYear();
@@ -46,22 +56,31 @@ const MatchForm = ({ handleClose, editData }) => {
     return `${day - 1}-${month}-${year}`;
   };
 
+  useEffect(() => {
+    if (editData.id) {
+      opponent = {
+        label: editData.opponent,
+        value: editData.opponent_id,
+      };
+      host = { label: editData.host, value: editData.host_id };
+    }
+  }, []);
+
   const today = new Date();
-  console.log("editData", editData);
-  const minDate = formatDate(today);
   return (
     <Formik
       initialValues={{
-        league: editData.league ? editData.league : "",
-        whatsapp: editData.whatsapp ? editData.whatsapp : "",
-        date: editData.date ? editData.date : "",
-        time: editData.time ? editData.time : "",
-        host: editData.host ? editData.host : "",
-        opponent: editData.opponent ? editData.opponent : "",
+        league: editData?.league ? editData.league : "",
+        whatsapp: editData?.whatsapp ? editData.whatsapp : "",
+        date: editData?.date ? editData.date : "",
+        time: editData?.time ? editData.time : "",
+        host: editData?.host_id ? editData.host_id : "",
+        opponent: editData?.opponent_id ? editData.opponent_id : "",
+        ...(editData?.id && { id: editData.id }),
       }}
       validationSchema={validationSchema}
       onSubmit={(values, { setSubmitting }) => {
-        console.log(values);
+        console.log("values", values);
         dispatch(createMatch(values));
         setSubmitting(false);
         handleClose();
@@ -73,7 +92,12 @@ const MatchForm = ({ handleClose, editData }) => {
           <Box sx={style}>
             <Grid container spacing={2}>
               <Grid item lg={6} xs={12}>
-                <Field name="host" component={TeamSelect} label="Select Host" />
+                <Field
+                  name="host"
+                  component={TeamSelect}
+                  label="Select Host"
+                  value={editData?.host_id}
+                />
                 <ErrorMessage
                   name="host"
                   component="div"
@@ -85,6 +109,7 @@ const MatchForm = ({ handleClose, editData }) => {
                   name="opponent"
                   component={TeamSelect}
                   label="Select Team Opponent"
+                  value={editData?.opponent_id}
                 />
                 <ErrorMessage
                   name="opponent"
@@ -114,12 +139,13 @@ const MatchForm = ({ handleClose, editData }) => {
                 <FormControl fullWidth>
                   <Field
                     as={Inputcustom}
-                    type="text"
+                    type="number"
                     name="whatsapp"
                     label="Inquiry Number :"
                     placeholder="Enter Inquiry Number"
                     variant="filled"
                     InputLabelProps={{ shrink: true }}
+                    // inputProps={{ maxContentLength: 10 }}
                   />
                   <ErrorMessage
                     name="whatsapp"

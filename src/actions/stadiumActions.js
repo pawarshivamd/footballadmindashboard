@@ -92,9 +92,10 @@ export const deleteStadium = (stadiumId) => {
     try {
       const { data } = await api.post(`/adminDeleteStadium`, { id: stadiumId });
       const { message, status } = data;
+      console.log("message", message);
       if (status) {
         dispatch({ type: STADIUM_DELETE_SUCCESS, payload: { id: stadiumId } });
-        dispatch(fetchStadiums());
+        await dispatch(fetchStadiums());
         Notification("success", message);
       } else {
         dispatch({ type: STADIUM_DELETE_FAILURE, payload: message });

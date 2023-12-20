@@ -9,7 +9,7 @@ import { deleteMatch } from "../../actions/matchActions";
 import axios from "axios";
 import Notification from "../common/Notifications";
 const MatchBox = ({ match, setModalOpen, setEditData }) => {
-  console.log(match);
+  console.log("match", match);
   const {
     date,
     host,
@@ -20,19 +20,26 @@ const MatchBox = ({ match, setModalOpen, setEditData }) => {
     opponent_logo,
     time,
     whatsapp,
+    opponent_id,
+    host_id,
   } = match;
 
   const baseUrl = "https://football.jennypoint.com/api/public/api";
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    setEditData(match);
-  }, []);
+  // useEffect(() => {
+
+  // }, []);
 
   console.log(match);
   const handleDelete = () => {
     dispatch(deleteMatch(id));
+  };
+
+  const handleModalData = () => {
+    setModalOpen(true);
+    setEditData(match);
   };
 
   return (
@@ -137,7 +144,7 @@ const MatchBox = ({ match, setModalOpen, setEditData }) => {
             }}
           >
             <Box sx={{ my: 1 }}>
-              <Button variant="outlined" onClick={() => setModalOpen(true)}>
+              <Button variant="outlined" onClick={() => handleModalData()}>
                 <EditIcon />
               </Button>
             </Box>

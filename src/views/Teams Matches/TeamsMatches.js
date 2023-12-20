@@ -104,10 +104,23 @@ const TeamsMatches = () => {
           sx={{ display: "flex", justifyContent: "end", marginTop: "8px" }}
         />
         <CommonModal open={modalOpen} handleClose={() => setModalOpen(false)}>
-          <MatchForm
-            handleClose={() => setModalOpen(false)}
-            editData={editData}
-          />
+          {/* <MatchForm handleClose={() => setModalOpen(false)} /> */}
+          {editData ? (
+            <MatchForm
+              handleClose={() => {
+                setModalOpen(false);
+                setEditData([]);
+              }}
+              editData={editData}
+            />
+          ) : (
+            <MatchForm
+              handleClose={() => {
+                setModalOpen(false);
+                setEditData([]);
+              }}
+            />
+          )}
         </CommonModal>
       </WhitecardBox>
     </Box>

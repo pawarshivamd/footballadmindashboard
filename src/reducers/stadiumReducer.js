@@ -35,25 +35,35 @@ const stadiumReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        stadiumData: [...state.stadiumData, action.payload],
+        // stadiumData: [...state.stadiumData, action.payload],
+        stadiumData: Array.isArray(state.stadiumData)
+          ? [...state.stadiumData, action.payload]
+          : state.stadiumData,
+        successMessage: "Stadium created successfully!",
       };
 
     case STADIUM_UPDATE_SUCCESS:
       return {
         ...state,
         loading: false,
-        stadiumData: state.stadiumData.map((stadium) =>
-          stadium.id === action.payload.id ? action.payload : stadium
-        ),
+        stadiumData: Array.isArray(state.stadiumData)
+          ? state.stadiumData.map((stadium) =>
+              stadium.id === action.payload.id ? action.payload : stadium
+            )
+          : state.stadiumData,
+        successMessage: "Stadium Updated successfully!",
       };
 
     case STADIUM_DELETE_SUCCESS:
       return {
         ...state,
         loading: false,
-        stadiumData: state.stadiumData.filter(
-          (stadium) => stadium.id !== action.payload.id
-        ),
+        stadiumData: Array.isArray(state.stadiumData)
+          ? state.stadiumData.filter(
+              (stadium) => stadium.id !== action.payload.id
+            )
+          : state.stadiumData,
+        successMessage: "Stadium deleted successfully!",
       };
 
     case STADIUM_CALL_FAILURE:
