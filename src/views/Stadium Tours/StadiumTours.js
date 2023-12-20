@@ -85,7 +85,7 @@ const StadiumTours = () => {
           }}
         >
           <Typography
-            variant="h5"
+            variant="h5"x
             color="primary"
             sx={{ fontSize: "25px", fontWeight: "600" }}
           >

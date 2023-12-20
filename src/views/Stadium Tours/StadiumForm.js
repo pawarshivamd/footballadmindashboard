@@ -8,7 +8,7 @@ import {
   TextField,
   FormHelperText,
 } from "@mui/material";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import uplodimg from "../../imgs/stadium/uplodimg.jpg";
 import { useDispatch } from "react-redux";
@@ -17,6 +17,7 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import Cropper from "react-cropper";
 import Inputcustom from "../common/fields/Inputcustom";
 import TeamSelect from "../common/fields/TeamSelect ";
+import Notification from "../common/Notifications";
 
 const style = {
   width: "min(100% - 0px , 400px)",
@@ -34,6 +35,7 @@ const validationSchema = Yup.object().shape({
 });
 
 const StadiumForm = ({ activeStadium, handleClose, setactiveStadium }) => {
+  console.log(activeStadium);
   const dispatch = useDispatch();
   const cropperRef = useRef(null);
 
@@ -86,15 +88,13 @@ const StadiumForm = ({ activeStadium, handleClose, setactiveStadium }) => {
       <Formik
         initialValues={{
           ...activeStadium,
-          team: activeStadium.team || "",
+          team: activeStadium.team_id || "",
           stadium: activeStadium.stadium || "",
           number: activeStadium.number || "",
         }}
         validationSchema={validationSchema}
         onSubmit={(values, { setSubmitting }) => {
           if (imgBlob) values.image = imgBlob;
-          // delete values.file
-          // delete values.team_id
           const formData = new FormData();
 
           for (const key in values) {
@@ -102,17 +102,21 @@ const StadiumForm = ({ activeStadium, handleClose, setactiveStadium }) => {
               formData.append(key, values[key]);
             }
           }
-
-          dispatch(createStadium(formData));
-          handleClose();
-          setSubmitting(false);
+          if (values.image) {
+            dispatch(createStadium(formData));
+            handleClose();
+            setSubmitting(false);
+          } else {
+            Notification("error", "Please Fill All the required fields");
+            setSubmitting(false);
+          }
         }}
       >
         {({ errors, touched, isSubmitting }) => (
           <Form>
             {console.log({ errors })}
             <Grid container spacing={2}>
-              <Grid item lg={12} xs={12} sx={{position:"relative"}}>
+              <Grid item lg={12} xs={12} sx={{ position: "relative" }}>
                 {newImage ? (
                   <Cropper
                     aspectRatio={2}
@@ -208,6 +212,11 @@ const StadiumForm = ({ activeStadium, handleClose, setactiveStadium }) => {
                     name="team"
                     component={TeamSelect}
                     label="Select Team"
+                  />
+                  <ErrorMessage
+                    name="team"
+                    component="div"
+                    style={{ color: "#d32f2f" }}
                   />
                 </FormControl>
               </Grid>

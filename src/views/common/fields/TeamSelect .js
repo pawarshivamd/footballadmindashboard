@@ -7,7 +7,6 @@ import { fetchTeams } from "../../../actions/teamsActions";
 
 const TeamSelect = ({ field, ...otherProps }) => {
   const { name } = field;
-  console.log(field);
   const dispatch = useDispatch();
   const { setFieldValue, values } = useFormikContext();
   const [teamsOption, setTeamsOption] = useState([]);

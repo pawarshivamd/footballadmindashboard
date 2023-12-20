@@ -5,18 +5,19 @@ import {
   FormHelperText,
   Grid,
   IconButton,
-} from "@mui/material"
+} from "@mui/material";
 
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react";
 
-import { Formik, Form, Field } from "formik"
-import * as Yup from "yup"
-import { useDispatch } from "react-redux"
-import { createTeam } from "../../actions/teamsActions"
-import CancelIcon from "@mui/icons-material/Cancel"
-import Cropper from "react-cropper"
-import uplodimg from "../../imgs/teamslogo/team_upload.png"
-import Inputcustom from "../common/fields/Inputcustom"
+import { Formik, Form, Field } from "formik";
+import * as Yup from "yup";
+import { useDispatch } from "react-redux";
+import { createTeam } from "../../actions/teamsActions";
+import CancelIcon from "@mui/icons-material/Cancel";
+import Cropper from "react-cropper";
+import uplodimg from "../../imgs/teamslogo/team_upload.png";
+import Inputcustom from "../common/fields/Inputcustom";
+import Notification from "../common/Notifications";
 
 const style = {
   width: "min(100% - 0px , 400px)",
@@ -25,7 +26,7 @@ const style = {
   borderRadius: "12px",
   boxShadow: 24,
   padding: "10px 30px",
-}
+};
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required("Team Name is required"),
@@ -36,23 +37,23 @@ const validationSchema = Yup.object().shape({
     .matches(/^#([A-Fa-f0-9]{6})$/, "Must be valid hex color")
     .required("Secondary color is required"),
   // team_logo: Yup.string().required("Image is required"),
-})
+});
 
 const TeamForm = ({ handleClose, activeTeam, setactiveTeam }) => {
-  const dispatch = useDispatch()
-  const cropperRef = useRef(null)
+  const dispatch = useDispatch();
+  const cropperRef = useRef(null);
 
-  const [image, setImage] = useState(null)
-  const [imgBlob, setimgBlob] = useState(null)
-  const [newImage, setnewImage] = useState(false)
+  const [image, setImage] = useState(null);
+  const [imgBlob, setimgBlob] = useState(null);
+  const [newImage, setnewImage] = useState(false);
 
   const changeImage = (file) => {
-    setnewImage(true)
-    setImage(URL.createObjectURL(file))
-  }
+    setnewImage(true);
+    setImage(URL.createObjectURL(file));
+  };
 
   const onCrop = () => {
-    const cropper = cropperRef.current?.cropper
+    const cropper = cropperRef.current?.cropper;
     if (cropper) {
       cropper.getCroppedCanvas().toBlob((blob) => {
         // Ensure the blob is not null
@@ -61,20 +62,20 @@ const TeamForm = ({ handleClose, activeTeam, setactiveTeam }) => {
           const croppedFile = new File([blob], "cropped_image.jpg", {
             type: "image/jpeg",
             lastModified: Date.now(),
-          })
+          });
 
           // Set the File object to your state
-          setimgBlob(croppedFile)
+          setimgBlob(croppedFile);
         }
-      }, "image/jpeg")
+      }, "image/jpeg");
     }
-  }
+  };
 
   useEffect(() => {
     if (activeTeam && activeTeam.team_logo) {
       setImage(
         `https://football.jennypoint.com/api/resources/images/${activeTeam.team_logo}`
-      )
+      );
     }
 
     return () => {
@@ -83,9 +84,9 @@ const TeamForm = ({ handleClose, activeTeam, setactiveTeam }) => {
         primary_color: "",
         secondary_color: "",
         team_logo: "",
-      })
-    }
-  }, [])
+      });
+    };
+  }, []);
 
   return (
     <Box sx={style}>
@@ -98,21 +99,27 @@ const TeamForm = ({ handleClose, activeTeam, setactiveTeam }) => {
         enableReinitialize
         validationSchema={validationSchema}
         onSubmit={(values, { setSubmitting }) => {
-          values.primary_color = values.primary_color.split("#")[1]
-          values.secondary_color = values.secondary_color.split("#")[1]
-          values.image = imgBlob
-          if (!values.image) delete values.image
+          values.primary_color = values.primary_color.split("#")[1];
+          values.secondary_color = values.secondary_color.split("#")[1];
+          values.image = imgBlob;
+          if (!values.image) delete values.image;
 
-          const formData = new FormData()
+          const formData = new FormData();
           // Append all form values to formData
           for (const key in values) {
             if (values.hasOwnProperty(key)) {
-              formData.append(key, values[key])
+              formData.append(key, values[key]);
             }
           }
-          dispatch(createTeam(formData))
-          handleClose()
-          setSubmitting(false)
+
+          if (values.image) {
+            dispatch(createTeam(formData));
+            handleClose();
+            setSubmitting(false);
+          } else {
+            Notification("error", "Please Insert Image");
+            setSubmitting(false);
+          }
         }}
       >
         {({ errors, touched, isSubmitting, dirty }) => (
@@ -120,7 +127,7 @@ const TeamForm = ({ handleClose, activeTeam, setactiveTeam }) => {
             <Grid container spacing={2}>
               {/* Other Grid Items for Image Upload */}
               {console.log({ errors })}
-              <Grid item lg={12} xs={12} sx={{position:"relative"}}>
+              <Grid item lg={12} xs={12} sx={{ position: "relative" }}>
                 {newImage ? (
                   <Cropper
                     aspectRatio={1}
@@ -140,7 +147,7 @@ const TeamForm = ({ handleClose, activeTeam, setactiveTeam }) => {
                         color: "#FFFFFF",
                       }}
                       onClick={() => {
-                        setImage(null)
+                        setImage(null);
                       }}
                     >
                       <CancelIcon sx={{ path: { stroke: "black" } }} />
@@ -282,7 +289,7 @@ const TeamForm = ({ handleClose, activeTeam, setactiveTeam }) => {
         )}
       </Formik>
     </Box>
-  )
-}
+  );
+};
 
-export default TeamForm
+export default TeamForm;
