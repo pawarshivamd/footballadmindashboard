@@ -99,6 +99,8 @@ const TeamForm = ({ handleClose, activeTeam, setactiveTeam }) => {
         enableReinitialize
         validationSchema={validationSchema}
         onSubmit={(values, { setSubmitting }) => {
+          // console.log(values);
+          // return true;
           values.primary_color = values.primary_color.split("#")[1];
           values.secondary_color = values.secondary_color.split("#")[1];
           values.image = imgBlob;
@@ -111,8 +113,8 @@ const TeamForm = ({ handleClose, activeTeam, setactiveTeam }) => {
               formData.append(key, values[key]);
             }
           }
-
-          if (values.image) {
+          console.log(values);
+          if (values?.team_logo || values?.image) {
             dispatch(createTeam(formData));
             handleClose();
             setSubmitting(false);

@@ -85,7 +85,8 @@ const StadiumTours = () => {
           }}
         >
           <Typography
-            variant="h5"x
+            variant="h5"
+            x
             color="primary"
             sx={{ fontSize: "25px", fontWeight: "600" }}
           >
@@ -135,6 +136,7 @@ const StadiumTours = () => {
           open={deleteModal}
           onClose={() => setDeleteModal(false)}
           onConfirm={handleDelete}
+          setactiveStadium={setactiveStadium}
         />
       </WhitecardBox>
     </Box>

@@ -1,10 +1,10 @@
-import React from "react"
-import { Box, Button, Divider, Grid, Typography } from "@mui/material"
-import EditIcon from "@mui/icons-material/Edit"
-import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined"
+import React from "react";
+import { Box, Button, Divider, Grid, Typography } from "@mui/material";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 
 const StadiumCard = ({ data, openDeletemodal, openStadiumModal }) => {
-  const { number, photo, stadium, team } = data
+  const { number, photo, stadium, team } = data;
   return (
     <>
       <Box sx={{ py: 1, my: 2 }}>
@@ -60,7 +60,11 @@ const StadiumCard = ({ data, openDeletemodal, openStadiumModal }) => {
                     </Button>
                   </Box>
                   <Box sx={{ my: 1 }}>
-                    <Button variant="outlined" onClick={openDeletemodal}>
+                    <Button
+                      variant="outlined"
+                      color="error"
+                      onClick={openDeletemodal}
+                    >
                       <DeleteOutlineOutlinedIcon />
                     </Button>
                   </Box>
@@ -72,7 +76,7 @@ const StadiumCard = ({ data, openDeletemodal, openStadiumModal }) => {
       </Box>
       <Divider />
     </>
-  )
-}
+  );
+};
 
-export default StadiumCard
+export default StadiumCard;

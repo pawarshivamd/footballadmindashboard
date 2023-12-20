@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Button, Divider, Grid, Typography } from "@mui/material";
 import vs from "../../imgs/icon/vs-png.webp.png";
 import EditIcon from "@mui/icons-material/Edit";
@@ -6,6 +6,8 @@ import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { deleteMatch } from "../../actions/matchActions";
+import DeleteConfirmationPopup from "../common/modal/Alert";
+
 import axios from "axios";
 import Notification from "../common/Notifications";
 const MatchBox = ({ match, setModalOpen, setEditData }) => {
@@ -31,7 +33,7 @@ const MatchBox = ({ match, setModalOpen, setEditData }) => {
   // useEffect(() => {
 
   // }, []);
-
+  const [deleteModal, setDeleteModal] = useState(false);
   console.log(match);
   const handleDelete = () => {
     dispatch(deleteMatch(id));
@@ -149,7 +151,11 @@ const MatchBox = ({ match, setModalOpen, setEditData }) => {
               </Button>
             </Box>
             <Box sx={{ my: 1 }}>
-              <Button variant="outlined" onClick={() => handleDelete()}>
+              <Button
+                variant="outlined"
+                color="error"
+                onClick={() => setDeleteModal(true)}
+              >
                 <DeleteOutlineOutlinedIcon />
               </Button>
             </Box>
@@ -157,6 +163,11 @@ const MatchBox = ({ match, setModalOpen, setEditData }) => {
         </Grid>
       </Grid>
       <Divider sx={{ mt: 2 }} />
+      <DeleteConfirmationPopup
+        open={deleteModal}
+        onClose={() => setDeleteModal(false)}
+        onConfirm={handleDelete}
+      />
     </Grid>
   );
 };

@@ -1,6 +1,6 @@
-import { Box, Button, Card, Grid, Typography } from "@mui/material"
-import EditIcon from "@mui/icons-material/Edit"
-import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined"
+import { Box, Button, Card, Grid, Typography } from "@mui/material";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 
 const TeamCard = ({
   team,
@@ -8,7 +8,7 @@ const TeamCard = ({
   setactiveTeam,
   handleOpenTeamModal,
 }) => {
-  const { id, name, primary_color, secondary_color, team_logo } = team
+  const { id, name, primary_color, secondary_color, team_logo } = team;
   return (
     <Grid item lg={4} sm={6} xs={12} key={id}>
       <Card
@@ -81,8 +81,8 @@ const TeamCard = ({
             <Button
               variant="outlined"
               onClick={() => {
-                setactiveTeam(team)
-                handleOpenTeamModal()
+                setactiveTeam(team);
+                handleOpenTeamModal();
               }}
             >
               <EditIcon />
@@ -90,11 +90,11 @@ const TeamCard = ({
           </Box>
           <Box sx={{ my: 1 }}>
             <Button
-              variant="contained"
+              variant="outlined"
               color="error"
               onClick={() => {
-                setactiveTeam(team)
-                openDeletemodal()
+                setactiveTeam(team);
+                openDeletemodal();
               }}
             >
               <DeleteOutlineOutlinedIcon />
@@ -103,7 +103,7 @@ const TeamCard = ({
         </Box>
       </Card>
     </Grid>
-  )
-}
+  );
+};
 
-export default TeamCard
+export default TeamCard;

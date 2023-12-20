@@ -102,7 +102,8 @@ const StadiumForm = ({ activeStadium, handleClose, setactiveStadium }) => {
               formData.append(key, values[key]);
             }
           }
-          if (values.image) {
+
+          if (values.image || values?.photo) {
             dispatch(createStadium(formData));
             handleClose();
             setSubmitting(false);

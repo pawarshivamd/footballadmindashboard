@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 import {
   Button,
   Dialog,
@@ -6,9 +6,15 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
-} from "@mui/material"
+} from "@mui/material";
 
-function DeleteConfirmationPopup({ open, onClose, onConfirm }) {
+function DeleteConfirmationPopup({
+  open,
+  onClose,
+  onConfirm,
+  setactiveTeam,
+  setactiveStadium,
+}) {
   return (
     <Dialog
       open={open}
@@ -24,7 +30,18 @@ function DeleteConfirmationPopup({ open, onClose, onConfirm }) {
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose} color="primary" variant="outlined">
+        <Button
+          onClick={() => {
+            onClose();
+            if (setactiveTeam) {
+              setactiveTeam("");
+            } else if (setactiveStadium) {
+              setactiveStadium("");
+            }
+          }}
+          color="primary"
+          variant="outlined"
+        >
           Cancel
         </Button>
         <Button onClick={onConfirm} color="error" variant="contained" autoFocus>
@@ -32,7 +49,7 @@ function DeleteConfirmationPopup({ open, onClose, onConfirm }) {
         </Button>
       </DialogActions>
     </Dialog>
-  )
+  );
 }
 
-export default DeleteConfirmationPopup
+export default DeleteConfirmationPopup;
