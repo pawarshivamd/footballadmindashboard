@@ -96,6 +96,7 @@ const Login = () => {
                   id="outlined-adornment-Email"
                   type="email"
                   error={touched.email && Boolean(errors.email)}
+                  autoFocus
                 />
                 {touched.email && errors.email && (
                   <Typography variant="caption" color="error">

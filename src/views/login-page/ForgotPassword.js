@@ -104,6 +104,7 @@ const ForgotPassword = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               // error={errors.email !== ''}
+              autoFocus
             />
             {/* {errors.email && <Typography variant="caption" color="error">{errors.email}</Typography>} */}
           </FormControl>
