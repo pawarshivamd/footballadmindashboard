@@ -16,6 +16,7 @@ import {
   SET_DYNAMICS_BEGIN,
   SET_DYNAMICS_SUCCESS,
   SET_DYNAMICS_FAILURE,
+  CLEAR_USER_DATA,
 } from "../reducers/userReducer";
 import Notification from "../views/common/Notifications";
 
@@ -194,3 +195,8 @@ export const setDynamics = (dynamicsData) => {
     }
   };
 };
+
+// Example action to clear user data
+export const clearUserData = () => ({
+  type: "CLEAR_USER_DATA",
+});

@@ -124,7 +124,7 @@ const TeamForm = ({ handleClose, activeTeam, setactiveTeam }) => {
           }
         }}
       >
-        {({ errors, touched, isSubmitting, dirty }) => (
+        {({ errors, touched, isSubmitting, dirty, setFieldValue }) => (
           <Form>
             <Grid container spacing={2}>
               {/* Other Grid Items for Image Upload */}
@@ -183,7 +183,10 @@ const TeamForm = ({ handleClose, activeTeam, setactiveTeam }) => {
                         hidden
                         accept="image/*"
                         type="file"
-                        onChange={(e) => changeImage(e.target.files[0])}
+                        onChange={(e) => {
+                          changeImage(e.target.files[0]);
+                          setFieldValue("image", e.target.files[0]);
+                        }}
                       />
                       <img
                         src={uplodimg}

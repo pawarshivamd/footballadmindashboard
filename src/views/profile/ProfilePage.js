@@ -44,6 +44,7 @@ const ProfilePage = () => {
   };
 
   useEffect(() => {
+    console.log(1);
     const datastorage = localStorage.getItem("auth_token");
     if (!datastorage) {
       navigate("/");
