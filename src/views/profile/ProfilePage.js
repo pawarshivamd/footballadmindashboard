@@ -1,6 +1,6 @@
-import React, { useState } from "react"
-import { Formik, Form, Field } from "formik"
-import * as Yup from "yup"
+import React, { useState, useEffect } from "react";
+import { Formik, Form, Field } from "formik";
+import * as Yup from "yup";
 import {
   Box,
   Button,
@@ -12,12 +12,13 @@ import {
   OutlinedInput,
   Typography,
   FormHelperText,
-} from "@mui/material"
-import { Visibility, VisibilityOff } from "@mui/icons-material"
-import { WhitecardBox } from "../Stadium Tours/StadiumTours"
-import { useDispatch, useSelector } from "react-redux"
-import Loader from "../common/loader/Loader"
-import { updateUser } from "../../actions/userActions"
+} from "@mui/material";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { WhitecardBox } from "../Stadium Tours/StadiumTours";
+import { useDispatch, useSelector } from "react-redux";
+import Loader from "../common/loader/Loader";
+import { updateUser } from "../../actions/userActions";
+import { useNavigate } from "react-router-dom";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required("Name is required"),
@@ -30,28 +31,35 @@ const validationSchema = Yup.object().shape({
     [Yup.ref("password"), null],
     "Passwords must match"
   ),
-})
+});
 
 const ProfilePage = () => {
-  const dispatch = useDispatch()
-  const { userData, loading } = useSelector((state) => state.user)
-  const [showPassword, setShowPassword] = useState(false)
-  const [showConPassword, setShowConPassword] = useState(false)
-
+  const dispatch = useDispatch();
+  const { userData, loading } = useSelector((state) => state.user);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConPassword, setShowConPassword] = useState(false);
+  const navigate = useNavigate();
   const handleClickShowPassword = () => {
-    setShowPassword(!showPassword)
-  }
+    setShowPassword(!showPassword);
+  };
+
+  useEffect(() => {
+    const datastorage = localStorage.getItem("auth_token");
+    if (!datastorage) {
+      navigate("/");
+    }
+  }, []);
 
   const handleMouseDownPassword = (event) => {
-    event.preventDefault()
-  }
+    event.preventDefault();
+  };
   const handleClickShowConPassword = () => {
-    setShowConPassword(!showConPassword)
-  }
+    setShowConPassword(!showConPassword);
+  };
   const handleMouseDownConPassword = (event) => {
-    event.preventDefault()
-  }
-  if (loading) return <Loader />
+    event.preventDefault();
+  };
+  if (loading) return <Loader />;
 
   return (
     <Box
@@ -73,13 +81,13 @@ const ProfilePage = () => {
           }}
           validationSchema={validationSchema}
           onSubmit={(values, { setSubmitting }) => {
-            const { password } = values
+            const { password } = values;
             if (!password) {
-              delete values.password
-              delete values.confirmPassword
+              delete values.password;
+              delete values.confirmPassword;
             }
-            setSubmitting(false)
-            dispatch(updateUser(values))
+            setSubmitting(false);
+            dispatch(updateUser(values));
           }}
         >
           {({ errors, touched, dirty }) => (
@@ -247,7 +255,7 @@ const ProfilePage = () => {
         </Formik>
       </WhitecardBox>
     </Box>
-  )
-}
+  );
+};
 
-export default ProfilePage
+export default ProfilePage;
