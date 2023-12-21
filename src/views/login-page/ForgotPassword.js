@@ -28,15 +28,18 @@ const ForgotPassword = () => {
   const handleSubmit = async () => {
     try {
       const response = await api.post("/adminForgotPassword", { email: email });
-
-      if (response) {
+      console.log("response::>>", response);
+      // return true;
+      if (response.data.status === true) {
         Notification(
           "success",
           "New password sent on registered email. Please check email for more details."
         );
+        navigate("/otp");
+      } else {
+        Notification("error", response.data.message);
       }
       //   window.location.href = "/otp";
-      navigate("/otp");
     } catch (error) {
       Notification("error", error);
     }

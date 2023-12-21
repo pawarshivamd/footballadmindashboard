@@ -89,6 +89,7 @@ export const deleteMatch = (matchId) => {
       const { message, status } = data;
       if (status) {
         dispatch({ type: MATCH_DELETE_SUCCESS, payload: { id: matchId } });
+        dispatch(fetchMatches());
         Notification("success", message);
       } else {
         Notification("error", message);

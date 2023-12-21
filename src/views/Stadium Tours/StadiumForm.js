@@ -29,7 +29,7 @@ const style = {
 };
 
 const validationSchema = Yup.object().shape({
-  team: Yup.number().required("Team required"),
+  team: Yup.number().required("Team is required"),
   stadium: Yup.string().required("Stadium is required"),
   number: Yup.string().required("Inquiry Number is required"),
 });
@@ -196,9 +196,14 @@ const StadiumForm = ({ activeStadium, handleClose, setactiveStadium }) => {
                     label="Stadium Name :"
                     placeholder="Enter Stadium Name"
                     variant="filled"
-                    error={touched.stadium && errors.stadium}
-                    helperText={touched.stadium && errors.stadium}
+                    // error={touched.stadium && errors.stadium}
+                    // helperText={touched.stadium && errors.stadium}
                     InputLabelProps={{ shrink: true }}
+                  />
+                  <ErrorMessage
+                    name="stadium"
+                    component="div"
+                    style={{ color: "#d32f2f" }}
                   />
                 </FormControl>
               </Grid>
@@ -232,9 +237,14 @@ const StadiumForm = ({ activeStadium, handleClose, setactiveStadium }) => {
                     label="Inquiry Number :"
                     placeholder="Enter Inquiry Number"
                     variant="filled"
-                    error={touched.number && errors.number}
-                    helperText={touched.number && errors.number}
+                    // error={touched.number && errors.number}
+                    // helperText={touched.number && errors.number}
                     InputLabelProps={{ shrink: true }}
+                  />
+                  <ErrorMessage
+                    name="number"
+                    component="div"
+                    style={{ color: "#d32f2f" }}
                   />
                 </FormControl>
               </Grid>
