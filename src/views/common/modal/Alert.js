@@ -41,10 +41,11 @@ function DeleteConfirmationPopup({
           }}
           color="primary"
           variant="outlined"
+          sx={{paddingTop:"9px"}}
         >
           Cancel
         </Button>
-        <Button onClick={onConfirm} color="error" variant="contained" autoFocus>
+        <Button onClick={onConfirm} color="error" variant="contained"  sx={{paddingTop:"9px"}} autoFocus>
           Delete
         </Button>
       </DialogActions>

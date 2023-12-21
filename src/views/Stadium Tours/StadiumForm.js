@@ -257,6 +257,7 @@ const StadiumForm = ({ activeStadium, handleClose, setactiveStadium }) => {
                       fontSize: "17px",
                       fontWeight: "600",
                       textTransform: "capitalize",
+                      paddingTop:"9px"
                     }}
                     onClick={handleClose}
                   >
@@ -271,6 +272,7 @@ const StadiumForm = ({ activeStadium, handleClose, setactiveStadium }) => {
                       fontSize: "17px",
                       fontWeight: "600",
                       textTransform: "capitalize",
+                      paddingTop:"9px"
                     }}
                   >
                     Save

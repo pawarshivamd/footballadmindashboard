@@ -93,11 +93,11 @@ const ProfilePage = () => {
         >
           {({ errors, touched, dirty }) => (
             <Form>
-              <Grid container spacing={2}>
+              <Grid container spacing={2} sx={{mt:5}}>
                 {/* Name Field */}
                 <Grid item lg={4} md={6} sm={12} xs={12}>
                   <FormControl
-                    sx={{ mt: 5 }}
+                    sx={{ mt: 1 }}
                     variant="outlined"
                     fullWidth
                     error={touched.name && Boolean(errors.name)}
@@ -118,7 +118,7 @@ const ProfilePage = () => {
                 {/* Email Field */}
                 <Grid item lg={4} md={6} sm={12} xs={12}>
                   <FormControl
-                    sx={{ mt: 5 }}
+                    sx={{ mt: 1 }}
                     variant="outlined"
                     fullWidth
                     error={touched.email && Boolean(errors.email)}
@@ -140,9 +140,9 @@ const ProfilePage = () => {
                 </Grid>
 
                 {/* Mobile Number Field */}
-                <Grid item lg={4} md={6} sm={12} xs={12}>
+                  <Grid item lg={4} md={6} sm={12} xs={12}>
                   <FormControl
-                    sx={{ mt: 5 }}
+                    sx={{ mt: 1 }}
                     variant="outlined"
                     fullWidth
                     error={touched.mobile && Boolean(errors.mobile)}
@@ -160,24 +160,26 @@ const ProfilePage = () => {
                       <FormHelperText>{errors.mobile}</FormHelperText>
                     )}
                   </FormControl>
-                </Grid>
-
+                  </Grid>
+              </Grid>
+              <Grid container spacing={2} sx={{mt:4}}>
+              <Grid item lg={12} sm={12}><Typography sx={{fontSize:"18px"}} color="primary">Change Password</Typography></Grid>
                 {/* Password Field */}
                 <Grid item lg={4} md={6} sm={12} xs={12}>
                   <FormControl
-                    sx={{ mt: 5 }}
+                    sx={{ mt: 1 }}
                     variant="outlined"
                     fullWidth
                     error={touched.password && Boolean(errors.password)}
                   >
                     <InputLabel htmlFor="outlined-adornment-password">
-                      Password
+                     New Password
                     </InputLabel>
                     <Field
                       as={OutlinedInput}
                       name="password"
                       type={showPassword ? "text" : "password"}
-                      label="Password"
+                      label="New Password"
                       endAdornment={
                         <InputAdornment position="end">
                           <IconButton
@@ -200,7 +202,7 @@ const ProfilePage = () => {
                 {/* Confirm Password Field */}
                 <Grid item lg={4} md={6} sm={12} xs={12}>
                   <FormControl
-                    sx={{ mt: 5 }}
+                    sx={{ mt: 1 }}
                     variant="outlined"
                     fullWidth
                     error={
@@ -245,6 +247,7 @@ const ProfilePage = () => {
                       fullWidth
                       type="submit"
                       disabled={!dirty}
+                      sx={{paddingTop:"9px"}}
                     >
                       Save
                     </Button>
