@@ -44,7 +44,8 @@ const validationSchema = Yup.object().shape({
     }),
 });
 
-const MatchForm = ({ handleClose, editData }) => {
+const MatchForm = ({ handleClose, editData, fetchMatchespayload }) => {
+  console.log("fetchMatchespayload", fetchMatchespayload);
   let opponent;
   let host;
   const dispatch = useDispatch();
@@ -81,7 +82,7 @@ const MatchForm = ({ handleClose, editData }) => {
       validationSchema={validationSchema}
       onSubmit={(values, { setSubmitting }) => {
         console.log("values", values);
-        dispatch(createMatch(values));
+        dispatch(createMatch(values, fetchMatchespayload));
         setSubmitting(false);
         handleClose();
         // Handle form submission here
@@ -206,7 +207,7 @@ const MatchForm = ({ handleClose, editData }) => {
                       fontSize: "17px",
                       fontWeight: "600",
                       textTransform: "capitalize",
-                      paddingTop:"9px"
+                      paddingTop: "9px",
                     }}
                     onClick={handleClose}
                   >
@@ -221,7 +222,7 @@ const MatchForm = ({ handleClose, editData }) => {
                       fontSize: "17px",
                       fontWeight: "600",
                       textTransform: "capitalize",
-                      paddingTop:"9px"
+                      paddingTop: "9px",
                     }}
                   >
                     Save

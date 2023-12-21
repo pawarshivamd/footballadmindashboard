@@ -38,7 +38,8 @@ export const fetchMatches = (matches) => {
   };
 };
 
-export const createMatch = (matchData) => {
+export const createMatch = (matchData, fetchMatchespayload) => {
+  console.log("fetchMatchespayload", fetchMatchespayload);
   return async (dispatch) => {
     dispatch({ type: MATCH_CREATE_BEGIN });
     try {
@@ -46,7 +47,7 @@ export const createMatch = (matchData) => {
       const { message, status } = data;
       if (status) {
         Notification("success", message);
-        dispatch(fetchMatches());
+        dispatch(fetchMatches(fetchMatchespayload));
         dispatch({ type: MATCH_CREATE_SUCCESS });
       } else {
         Notification("error", message);

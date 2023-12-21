@@ -36,6 +36,12 @@ const TeamsMatches = () => {
   useEffect(() => {
     fetchMatchesData();
   }, [currentPage]);
+  //
+  const fetchMatchespayload = {
+    start: (currentPage - 1) * stadiumsPerPage,
+    count: stadiumsPerPage,
+  };
+  console.log(fetchMatchespayload, "fetchMatchespayload");
 
   const fetchMatchesData = () => {
     const start = (currentPage - 1) * stadiumsPerPage;
@@ -112,6 +118,9 @@ const TeamsMatches = () => {
                 setEditData([]);
               }}
               editData={editData}
+              fetchMatchespayload={
+                fetchMatchespayload ? fetchMatchespayload : ""
+              }
             />
           ) : (
             <MatchForm
@@ -119,6 +128,9 @@ const TeamsMatches = () => {
                 setModalOpen(false);
                 setEditData([]);
               }}
+              fetchMatchespayload={
+                fetchMatchespayload ? fetchMatchespayload : ""
+              }
             />
           )}
         </CommonModal>
