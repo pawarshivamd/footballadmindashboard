@@ -11,6 +11,7 @@ import {
   Button,
   FormHelperText,
   Typography,
+  Divider,
 } from "@mui/material"
 import EmailIcon from "@mui/icons-material/Email"
 import InstagramIcon from "@mui/icons-material/Instagram"
@@ -52,13 +53,26 @@ const Dynamics = () => {
       }}
     >
       <WhitecardBox>
-        <Typography
-          variant="h5"
-          color="primary"
-          sx={{ fontSize: "25px", fontWeight: "600", my: 1 }}
+      <Box
+          sx={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "space-between",
+            alignItems: "center",
+            py: "15px",
+          }}
         >
-          Dynamics
-        </Typography>
+          <Typography
+            variant="h5"
+            x
+            color="primary"
+            sx={{ fontSize: "25px", fontWeight: "600" }}
+          >
+            Dynamics
+          </Typography>
+        </Box>
+        <Divider />
+      <Box sx={{mt:3}}>
         <Formik
           initialValues={{
             ...dynamics,
@@ -195,12 +209,13 @@ const Dynamics = () => {
                 </Grid>
 
                 {/* Submit Button */}
-                <Grid item xs={12}>
+                <Grid item xs={12}  sx={{display:"flex",justifyContent:"end"}}>
                   <Button
                     variant="contained"
                     fullWidth
                     type="submit"
                     disabled={!dirty}
+                    sx={{width:"min(100% - 0px,15%)" ,paddingTop:"9px"}}
                   >
                     Submit
                   </Button>
@@ -209,6 +224,7 @@ const Dynamics = () => {
             </Form>
           )}
         </Formik>
+        </Box>
       </WhitecardBox>
     </Box>
   )

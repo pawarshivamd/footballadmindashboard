@@ -465,10 +465,11 @@ const Navbar = () => {
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleCloseDialogbox} variant="outlined">
+            <Button onClick={handleCloseDialogbox} variant="outlined" sx={{paddingTop:"9px"}}>
               No
             </Button>
             <Button
+            sx={{paddingTop:"9px"}}
               onClick={() =>
                 //   {
                 //   localStorage.clear();

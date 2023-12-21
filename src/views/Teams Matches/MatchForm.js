@@ -206,6 +206,7 @@ const MatchForm = ({ handleClose, editData }) => {
                       fontSize: "17px",
                       fontWeight: "600",
                       textTransform: "capitalize",
+                      paddingTop:"9px"
                     }}
                     onClick={handleClose}
                   >
@@ -220,6 +221,7 @@ const MatchForm = ({ handleClose, editData }) => {
                       fontSize: "17px",
                       fontWeight: "600",
                       textTransform: "capitalize",
+                      paddingTop:"9px"
                     }}
                   >
                     Save

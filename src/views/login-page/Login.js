@@ -135,22 +135,24 @@ const Login = () => {
                   </Typography>
                 )}
               </FormControl>
+              <Box sx={{display:"flex",justifyContent:"end"}}>
               <Typography
                 style={{
                   textAlign: "end",
                   marginTop: "15px",
-                  display: "block",
+                  display: "inline-block",
                 }}
                 color="primary"
-                to="/forgot-password"
+                to="/forgot-password" 
                 component={RouterLink}
               >
                 Forgot Password?
               </Typography>
+              </Box>
               <Box sx={{ mt: 3, textAlign: "center" }} component="div">
                 <Button
                   variant="contained"
-                  sx={{ fontWeight: "600" }}
+                  sx={{ fontWeight: "600" ,paddingTop:"9px"}}
                   type="submit"
                 >
                   Sign in

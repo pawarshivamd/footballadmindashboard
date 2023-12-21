@@ -116,7 +116,7 @@ const ForgotPassword = () => {
             <Button
               variant="contained"
               //   to="/otp"
-              sx={{ fontWeight: "600" }}
+              sx={{ fontWeight: "600", paddingTop:"9px" }}
               component={Link}
               type="submit"
               onClick={() => handleSubmit()}
