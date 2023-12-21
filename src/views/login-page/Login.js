@@ -19,8 +19,8 @@ import { loginUser } from "../../actions/userActions";
 import { useDispatch } from "react-redux";
 
 const validationSchema = Yup.object().shape({
-  email: Yup.string().email("Invalid email").required("Required"),
-  password: Yup.string().required("Required"),
+  email: Yup.string().email("Invalid email").required("Email is required"),
+  password: Yup.string().required("Password is required"),
 });
 
 const Login = () => {
