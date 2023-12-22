@@ -99,6 +99,7 @@ export const logoutUser = () => {
 
       const { data: userData, message, status } = data;
       if (status) {
+        window.history.pushState(null, null, "/");
         Notification("success", message);
         window.location.href = "/";
         localStorage.clear();
